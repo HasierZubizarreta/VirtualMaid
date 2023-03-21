@@ -10,7 +10,7 @@ public class main {
 
         Scanner scanner = new Scanner(System.in);
 
-        while(aukera != 0 || aukera<6){
+        while(0<aukera && aukera<5){
         
         System.out.println("Ongi etorri berriro erabiltzaile agurra.");
         System.out.println("MENU NAGUSIA:");
@@ -19,9 +19,46 @@ public class main {
 
         aukera = scanner.nextInt();
 
+        switch(aukera){
+
+            case 1:
+                aukera01();
+                break;
+            case 2:
+                aukera02();
+                break;
+            case 3:
+                aukera03();
+                break;
+            case 4:
+                aukera04();
+                break;
+            
+        }
+        
         }
 
         System.out.println("programa amaituta");
     } 
+    static void aukera01() {
+
+        System.out.println("\n\t\tPROGRAMA BERRIA");
+
+    }
+    static void aukera02() {
+
+        System.out.println("\n\t\tEGUNEKO PROGRAMAK");
+        
+    }
+    static void aukera03() {
+
+        System.out.println("\n\t\tHISTORIALA");
+        
+    }
+    static void aukera04() {
+
+        System.out.println("\n\t\tGAILUAK EDITATU");
+        
+    }
     
 }
