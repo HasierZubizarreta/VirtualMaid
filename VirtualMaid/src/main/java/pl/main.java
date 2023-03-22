@@ -1,14 +1,24 @@
 package pl;
 
+import java.util.List;
 import java.util.Scanner;
 
+import bl.ErabiltzaileaEJB;
+import dl.GailuakB;
+import dl.PrezioakOrdukoB;
+
 public class main {
+
+    private static ErabiltzaileaEJB eEJB;
+    private static Scanner scanner;
 
     public static void main(String args[]) {   
 
         int aukera = 1;
 
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
+
+        eEJB = new ErabiltzaileaEJB();
 
         while(0<aukera && aukera<5){
         
@@ -43,6 +53,39 @@ public class main {
     static void aukera01() {
 
         System.out.println("\n\t\tPROGRAMA BERRIA");
+
+        System.out.println("\n\n\tAukeratu ordu bat edo sakatu 25 menu nagusira itzultzeko.\n");
+
+        List<PrezioakOrdukoB> prezioak = eEJB.egunekoPrezioakLortu();
+
+        for(int i=0;i<prezioak.size();i++){
+
+            System.out.println("\n\t" + prezioak.get(i));
+
+        }
+
+        System.out.println("\n\t25:00 - IRTEN");
+
+        int ordua = scanner.nextInt();
+
+        if(ordua!=25){
+
+            List<GailuakB> gailuak = eEJB.etxekoGailuakLortu();
+
+            System.out.println("\n\n\tAukeratu gailu bat bat edo sakatu 0 menu nagusira itzultzeko.\n");
+
+            for(int i=0;i<gailuak.size();i++){
+
+                System.out.println("\n\t" + gailuak.get(i));
+    
+            }
+
+            int gailuaId = scanner.nextInt();
+
+            eEJB.programaBerriaGorde(ordua,gailuaId);
+
+        }
+        return;
 
     }
     static void aukera02() {
