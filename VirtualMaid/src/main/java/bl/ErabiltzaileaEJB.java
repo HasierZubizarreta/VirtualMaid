@@ -3,6 +3,7 @@ package bl;
 import java.util.List;
 
 import dl.GailuakB;
+import dl.HistorialaB;
 import dl.PrezioakOrdukoB;
 
 public class ErabiltzaileaEJB {
@@ -19,8 +20,9 @@ public class ErabiltzaileaEJB {
 
         
     }
-    public void egunekoProgramakLortu() {
-
+    public List<HistorialaB> egunekoProgramakLortu() {
+        
+        return null;
         
     }
     public List<PrezioakOrdukoB> egunekoPrezioakLortu() {
@@ -37,15 +39,19 @@ public class ErabiltzaileaEJB {
 
         
     }
-    public void programaEditatu() {
+    public void programaEditatu(int ordua, int gailuaId) {
 
         
     }
-    public void gailuBerriaLortu() {
+    public void gailuBerriaSortu(GailuakB gailua) {
 
         
     }
-    public void gailuaEzabatu() {
+    public void gailuaEzabatu(int gailuaId) {
+
+        
+    }
+    public void gailuaEditatu(int gailuaId) {
 
         
     }
