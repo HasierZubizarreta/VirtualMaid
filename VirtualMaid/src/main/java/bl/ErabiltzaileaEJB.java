@@ -1,19 +1,25 @@
 package bl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import dl.Erregistroa;
 import dl.GailuakB;
 import dl.HistorialaB;
 import dl.PrezioakOrdukoB;
 
 public class ErabiltzaileaEJB {
+	
+	HistorialaB hB = new HistorialaB();
+
+
 
     public void historialZaharraBorratu() {
 
 
     }
-    public void sortuPDFa(int hasieraData,int amaieraData) {
-
+    public List<Erregistroa> sortuPDFa(LocalDateTime data1,LocalDateTime data2) {
+    	return hB.queryFindData(data1,data2);
         
     }
     public void laburpenaLortu() {
