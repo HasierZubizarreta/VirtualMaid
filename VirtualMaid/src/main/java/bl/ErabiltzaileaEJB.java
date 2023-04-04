@@ -18,7 +18,7 @@ public class ErabiltzaileaEJB {
 
 
     }
-    public List<Erregistroa> sortuPDFa(LocalDateTime data1,LocalDateTime data2) {
+    public List<Erregistroa> historialaSortu(LocalDateTime data1,LocalDateTime data2) {
     	return hB.queryFindData(data1,data2);
         
     }
