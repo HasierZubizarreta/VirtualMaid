@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import dl.Erregistroa;
+import dl.GailuaJB;
 import dl.GailuakB;
 import dl.HistorialaB;
 import dl.PrezioakOrdukoB;
@@ -11,6 +12,7 @@ import dl.PrezioakOrdukoB;
 public class ErabiltzaileaEJB {
 	
 	HistorialaB hB = new HistorialaB();
+	private GailuakB gailuakB=new GailuakB();
 
 
 
@@ -36,9 +38,9 @@ public class ErabiltzaileaEJB {
         return null;
         
     }
-    public List<GailuakB> etxekoGailuakLortu() {
+    public List<GailuaJB> etxekoGailuakLortu() {
        
-        return null;
+        return gailuakB.queryFindAll();
         
     }
     public void programaBerriaGorde(int ordua, int gailuaId) {
@@ -49,17 +51,21 @@ public class ErabiltzaileaEJB {
 
         
     }
-    public void gailuBerriaSortu(GailuakB gailua) {
+    public void gailuBerriaSortu(GailuaJB gailuakDB) {
 
-        
+    	gailuakB.persist(gailuakDB);
     }
+    
     public void gailuaEzabatu(int gailuaId) {
 
-        
+        gailuakB.gailuaEzabatuDB(gailuaId);
     }
+    
     public void gailuaEditatu(int gailuaId) {
 
-        
+    	GailuaJB gailuaDB= gailuakB.find(gailuaId);
+    	gailuaDB.setIraupena(8); //Esto hay que cambiar y coger el dato del formulario.
+    	gailuakB.update(gailuaDB);
     }
 
 }
