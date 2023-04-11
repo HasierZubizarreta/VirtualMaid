@@ -32,7 +32,7 @@ public class main {
         switch(aukera){
 
             case 1:
-                //aukera01();
+                aukera01();
                 break;
             case 2:
                 //aukera02();
@@ -50,44 +50,51 @@ public class main {
 
         System.out.println("programa amaituta");
     } 
-//    static void aukera01() {
-//
-//        System.out.println("\n\t\tPROGRAMA BERRIA");
-//
-//        System.out.println("\n\n\tAukeratu ordu bat edo sakatu 25 menu nagusira itzultzeko.\n");
-//
-//        List<PrezioakOrdukoB> prezioak = eEJB.egunekoPrezioakLortu();
-//
-//        for(int i=0;i<prezioak.size();i++){
-//
-//            System.out.println("\n\t" + prezioak.get(i));
-//
-//        }
-//
-//        System.out.println("\n\t25:00 - IRTEN");
-//
-//        int ordua = scanner.nextInt();
-//
-//        if(ordua!=25){
-//
-//            List<GailuakB> gailuak = eEJB.etxekoGailuakLortu();
-//
-//            System.out.println("\n\n\tAukeratu gailu bat bat edo sakatu 0 menu nagusira itzultzeko.\n");
-//
-//            for(int i=0;i<gailuak.size();i++){
-//
-//                System.out.println("\n\t" + gailuak.get(i));
-//    
-//            }
-//
-//            int gailuaId = scanner.nextInt();
-//
-//            eEJB.programaBerriaGorde(ordua,gailuaId);
-//
-//        }
-//        return;
-//
-//    }
+    static void aukera01() {
+
+        System.out.println("\n\t\tPROGRAMA BERRIA");
+
+        System.out.println("\n\n\tAukeratu ordu bat edo sakatu 25 menu nagusira itzultzeko.\n");
+
+        List<Float> prezioak = eEJB.egunekoPrezioakLortu();
+
+        for(int i=0;i<prezioak.size();i++){
+
+        	if(i<10){
+            	System.out.println("\n\t0"+i+":00 - " + prezioak.get(i)+"€");
+            }
+        	
+        	else{
+        		System.out.println("\n\t"+i+":00 - " + prezioak.get(i)+"€");
+        	}
+
+        }
+
+        System.out.println("\n\t25:00 - IRTEN");
+
+        int ordua = scanner.nextInt();
+
+        if(ordua!=25){
+
+        	List<GailuaJB> gailuakDB;
+            gailuakDB=eEJB.etxekoGailuakLortu();
+
+            System.out.println("\n\n\tAukeratu gailu bat bat edo sakatu 0 menu nagusira itzultzeko.\n");
+
+            for(int i=0;i<gailuakDB.size();i++){
+
+                System.out.println("\n\t" + gailuakDB.get(i));
+    
+            }
+
+            int gailuaId = scanner.nextInt();
+
+            eEJB.programaBerriaGorde(ordua,gailuaId);
+
+        }
+        return;
+
+    }
 //    static void aukera02() {
 //
 //        System.out.println("\n\t\tEGUNEKO PROGRAMAK");
@@ -212,5 +219,4 @@ public class main {
     }
 
 }
-
 

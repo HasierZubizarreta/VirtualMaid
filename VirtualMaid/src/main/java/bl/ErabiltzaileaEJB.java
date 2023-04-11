@@ -13,6 +13,8 @@ public class ErabiltzaileaEJB {
 	
 	HistorialaB hB = new HistorialaB();
 	private GailuakB gailuakB=new GailuakB();
+	private PrezioakOrdukoB prezioakOrdukoB=new PrezioakOrdukoB();
+
 
 
 
@@ -33,9 +35,9 @@ public class ErabiltzaileaEJB {
         return null;
         
     }
-    public List<PrezioakOrdukoB> egunekoPrezioakLortu() {
+    public List<Float> egunekoPrezioakLortu() {
         
-        return null;
+        return prezioakOrdukoB.queryFindAllDB();
         
     }
     public List<GailuaJB> etxekoGailuakLortu() {
