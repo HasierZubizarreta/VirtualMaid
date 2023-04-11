@@ -214,23 +214,3 @@ public class main {
 }
 
 
-/*public class main {
-  public static void main(String args []) {
-      
-	  List<GailuaJB> gailuaDB = new ArrayList<GailuaJB>();
-	  GailuaJB gailuakB;
-	  String [] datuak = {"1","ayman","sadiki","0","22"};
-	  gailuakB=new GailuaJB(Integer.parseInt(datuak[0]), datuak[1], datuak[2], Integer.parseInt(datuak[3]), Float.parseFloat(datuak[4]));
-	  
-	  gailuaDB.add(gailuakB);
-	  //System.out.println(gailuaDB);
-	  GailuakB gailuaB = new GailuakB();
-	  gailuaB.guztiakIdatzi(gailuaDB);
-	  //gailuaB.persist(gailuakB);
-	  //System.out.println(gailuaB.find(2));
-	  //gailuaB.update(gailuakB);
-	  //gailuaB.gailuaEzabatuDB(2);
-	  System.out.println(gailuaB.guztiakIrakurri());
-
-  }
-}*/
