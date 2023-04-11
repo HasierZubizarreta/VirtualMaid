@@ -45,12 +45,12 @@ public class GailuakB {
 	        DataInputStream dis = new DataInputStream(fis);
 
 	        while(dis.available() > 0) {
-	            int intField = dis.readInt();
-	            String stringField1 = dis.readUTF();
-	            String stringField2 = dis.readUTF();
-	            int intField2 = dis.readInt();
-	            float floatField = dis.readFloat();
-	            gailuakJB.add(new GailuaJB(intField, stringField1, stringField2, intField2, floatField));
+	            int idGailua = dis.readInt();
+	            String izena = dis.readUTF();
+	            String mota = dis.readUTF();
+	            int iraupena = dis.readInt();
+	            float kontsumoa = dis.readFloat();
+	            gailuakJB.add(new GailuaJB(idGailua, izena, mota, iraupena, kontsumoa));
 	        }
 
 	        dis.close();
