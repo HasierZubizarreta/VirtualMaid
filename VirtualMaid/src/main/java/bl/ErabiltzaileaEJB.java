@@ -63,10 +63,26 @@ public class ErabiltzaileaEJB {
         gailuakB.gailuaEzabatuDB(gailuaId);
     }
     
-    public void gailuaEditatu(int gailuaId) {
+    public void gailuaEditatu(int gailuaId, int aldaketa, String balioB) {
 
     	GailuaJB gailuaDB= gailuakB.find(gailuaId);
-    	gailuaDB.setIraupena(8); //Esto hay que cambiar y coger el dato del formulario.
+        switch(aldaketa){
+
+            case 1:
+                gailuaDB.setIzena(balioB);
+                break;
+            case 2:
+                gailuaDB.setMota(balioB);
+                break;
+            case 3:
+                gailuaDB.setIraupena(Integer.parseInt(balioB));
+                break;
+            case 4:
+                gailuaDB.setKontsumoa(Float.parseFloat(balioB));
+                break;
+            
+        }
+    	
     	gailuakB.update(gailuaDB);
     }
 

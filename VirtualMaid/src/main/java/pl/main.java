@@ -193,14 +193,28 @@ public class main {
                     //GailuakB gailua = new GailuakB();
                     // Gailu berria hasieratu
                     GailuaJB gailuakB;
-              	  	String [] datuak = {"1","ayman","sadiki","0","22"};
-              	  	gailuakB=new GailuaJB(Integer.parseInt(datuak[0]), datuak[1], datuak[2], Integer.parseInt(datuak[3]), Float.parseFloat(datuak[4]));
+                    System.out.println("\nSartu gailu berriaren izena:\n\t");
+                    String izena = scanner.next();	
+                    System.out.println("\nZe motatako gailua da?:\n\t");
+                    // APLIKAZIOA HOBETZERAKOAN, HAMEN LISTA AGERTU BEHAR DA GAILU MOTEKIN
+                    String mota = scanner.next();	
+                    System.out.println("\nSartu gailu berriaren iraupena:\n\t");
+                    String iraupena = scanner.next();	
+                    System.out.println("\nSartu gailu berriaren kontsumoa:\n\t");	
+                    String kontsumoa = scanner.next();	
+                    System.out.println("\nGailu berria gordetzen...\n");
+
+                    gailuakB=new GailuaJB(Integer.parseInt("1"), izena, mota, Integer.parseInt(iraupena), Float.parseFloat(kontsumoa));
               	  
                     eEJB.gailuBerriaSortu(gailuakB);
                     break;
                 case 1:
                     gailuaID = lortuID();
-                    eEJB.gailuaEditatu(gailuaID);
+                    System.out.println("\nZer editatu nahi duzu? \n\t 01 - Izena.\n\t 02 - Gailu mota.\n\t 03 - Iraupena.\n\t 04 - Kontsumoa.\n");
+                    int aldaketa = scanner.nextInt();
+                    System.out.println("\nSartu balio berria:\n\t");	
+                    String balioB = scanner.next();	
+                    eEJB.gailuaEditatu(gailuaID, aldaketa, balioB);
                     break;
                 case 2:
                     gailuaID = lortuID();
