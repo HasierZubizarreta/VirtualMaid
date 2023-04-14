@@ -3,32 +3,41 @@ package bl;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import dl.Erregistroa;
 import dl.GailuaJB;
 import dl.GailuakB;
 import dl.HistorialaB;
+import dl.HistorialaJB;
+import dl.HistorialenTaulaJB;
 import dl.PrezioakOrdukoB;
 
 public class ErabiltzaileaEJB {
 	
-	HistorialaB hB = new HistorialaB();
+	//HistorialaB hB = new HistorialaB();
 	private GailuakB gailuakB=new GailuakB();
 	private PrezioakOrdukoB prezioakOrdukoB=new PrezioakOrdukoB();
 
+	//aratz eta hasier
+	HistorialenTaulaJB hB = new HistorialenTaulaJB();
 
 
-
-    public void historialZaharraBorratu() {
-
-
+	public void historialaBorratu() {
+    	LocalDateTime data = LocalDateTime.now();
+    	int yearNow = data.getYear();
+    	
+    	hB.historialZaharraBorratu(yearNow);
     }
-    public List<Erregistroa> historialaSortu(LocalDateTime data1,LocalDateTime data2) {
-    	return hB.queryFindData(data1,data2);
-        
-    }
-    public void laburpenaLortu() {
-
-        
+	  public List<HistorialaJB> historialaLortu(LocalDateTime data1,LocalDateTime data2) {
+	    	return hB.queryFindData(data1,data2);
+	    }
+	
+	
+	//aurreko bertsioa
+    //public void historialZaharraBorratu() {    }
+    //public List<Erregistroa> historialaSortu(LocalDateTime data1,LocalDateTime data2) { return hB.queryFindData(data1,data2);}  
+   
+	  
+	  public void laburpenaLortu() {   
+    	
     }
     public List<HistorialaB> egunekoProgramakLortu() {
         
