@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="../TXANT/txantiloia.xhtml">
+<ui:define name="headTitle">informea</ui:define>
+<ui:define name="bodyBurua">
+	<table class="borderIkustezina">
+		<tr>
+			<td class="borderIkustezina">
+				<form action="#{request.contextPath}/index.xhtml">
+					<input type="submit" id="submit" value="HOME" />
+				</form>
+			</td>
+		</tr>	
+	</table>
+	<hr />
+</ui:define>
+<ui:define name="bodyIzenburua">GASTUA</ui:define>
+<ui:define name="bodyEdukia">
+ <h:form>
+	<table class="tableErdiratuta borderIkustezina">
+		<tr>
+			<td class="tdErdiratuta borderIkustezina" style="width: 50%;">
+				NOIZTIK:
+				<h:inputText value="#{aukera3formMB.noiztik}">
+					<f:convertDateTime type="date" pattern="yyyy/MM/dd HH:mm" timeZone="CET"/>
+  				</h:inputText>			
+			</td>
+			<td class="tdErdiratuta borderIkustezina" style="width: 50%;">
+				NORA:
+				<h:inputText value="#{aukera3formMB.nora}">
+					<f:convertDateTime type="date" pattern="yyyy/MM/dd HH:mm" timeZone="CET"/>
+  				</h:inputText>					
+			</td>
+		</tr>
+	</table>
+ </h:form>	
+ <h:dataTable value="#{adminLaburpenakViewMB.produktuenEgoerakLortuDB(administrariAtazakMB.labFesta)}" var="produktua">
+   		<h:column>
+   			<f:facet name="header">Gastu totala</f:facet>
+   			#{produktua.kopurua}
+   		</h:column>   		
+   	<h:dataTable value="#{adminLaburpenakViewMB.produktuenEgoerakLortuDB(administrariAtazakMB.labFesta)}" var="produktua">
+   		<h:column></h:column>>
+   			<f:facet name="header">Kontsumo Totala</f:facet>
+   			#{produktua.kopurua}
+   		</h:column>   		
+   		   		  		  				
+    </h:dataTable>	   		  		  				
+    </h:dataTable>
+	</h:panelGroup>	
+</ui:define>
+</ui:composition>
+</html>
