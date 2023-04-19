@@ -1,10 +1,12 @@
 package dl;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -39,26 +41,21 @@ public class GailuakB {
 	}*/
 	
 	public List<GailuaJB> guztiakIrakurri() {
-	    List<GailuaJB> gailuakJB = new ArrayList<>();
-	    try {
-	        FileInputStream fis = new FileInputStream(PaketekoKonstanteak.gailuakFitxategiIzena);
-	        DataInputStream dis = new DataInputStream(fis);
-
-	        while(dis.available() > 0) {
-	            int idGailua = dis.readInt();
-	            String izena = dis.readUTF();
-	            String mota = dis.readUTF();
-	            int iraupena = dis.readInt();
-	            float kontsumoa = dis.readFloat();
-	            gailuakJB.add(new GailuaJB(idGailua, izena, mota, iraupena, kontsumoa));
-	        }
-
-	        dis.close();
-	        fis.close();
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	    return gailuakJB;
+		String fName = PaketekoKonstanteak.gailuakFitxategiIzena;
+		List <GailuaJB> gailuak = new ArrayList<GailuaJB>();
+		
+		try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(fName)))){
+			int size = in.readInt();
+			
+			for (int i=0; i<size; i++) {
+				GailuaJB g = (GailuaJB) in.readObject();
+				gailuak.add(g);
+			}	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return gailuak;
 	}
 	
 	
@@ -82,24 +79,19 @@ public class GailuakB {
 		}
 	}*/
 	
-	public void guztiakIdatzi(List<GailuaJB> gailuakJB) {
-	    try {
-	        FileOutputStream fos = new FileOutputStream(PaketekoKonstanteak.gailuakFitxategiIzena);
-	        DataOutputStream dos = new DataOutputStream(fos);
-
-	        for(GailuaJB gailuaJB : gailuakJB) {
-	            dos.writeInt(gailuaJB.getIdGailua());
-	            dos.writeUTF(gailuaJB.getIzena());
-	            dos.writeUTF(gailuaJB.getMota());
-	            dos.writeInt(gailuaJB.getIraupena());
-	            dos.writeFloat(gailuaJB.getKontsumoa());
-	        }
-
-	        dos.close();
-	        fos.close();
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+	public void guztiakIdatzi(List<GailuaJB> gailuak) {
+		String fName = PaketekoKonstanteak.gailuakFitxategiIzena;
+        
+        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fName)))){
+			
+        	out.writeInt(gailuak.size());
+        	
+        	for (GailuaJB g : gailuak)
+        		out.writeObject(g);
+        	
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -130,7 +122,7 @@ public class GailuakB {
 	 * @param idProduktua  Bilaketa egiteko balio zehatza
 	 * @return Topatutako produktua edo null
 	 */
-	public GailuaJB find(int idGailua) {
+	public GailuaJB find(String gailuIzena) {
 		GailuaJB topatutakoaJB=null;
 		
 		List<GailuaJB> gailuakJB=guztiakIrakurri();		
@@ -140,7 +132,7 @@ public class GailuakB {
 		int i=0;
 		while(i<gailuakJB.size()&&!topatua) {
 			gailuaJB=gailuakJB.get(i);
-			if(gailuaJB.getIdGailua()==idGailua)
+			if(gailuaJB.getIzena().equals(gailuIzena))
 				topatua=true;
 			else
 				i++;
@@ -178,13 +170,13 @@ public class GailuakB {
 		return;
 	}
 	
-	public void gailuaEzabatuDB(int idGailua) {
-	    List<GailuaJB> gailuakJB = guztiakIrakurri();
-
+	public void gailuaEzabatuDB(String gailuIzena) {
+		List<GailuaJB> gailuakJB = guztiakIrakurri();
+	   
 	    Iterator<GailuaJB> iterator = gailuakJB.iterator();
 	    while (iterator.hasNext()) {
 	        GailuaJB gailuaJB = iterator.next();
-	        if (gailuaJB.getIdGailua()==idGailua) {
+	        if (gailuaJB.getIzena().equals(gailuIzena)) {
 	            iterator.remove();
 	            break;
 	        }

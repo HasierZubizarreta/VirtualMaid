@@ -14,7 +14,7 @@ import java.util.List;
 public class HistorialaB {
 	
 	
-	private void erregistroGuztiakIdatzi(List<Erregistroa> historiala) {
+private void erregistroGuztiakIdatzi(List<Erregistroa> historiala) {
 		
 		String fName = PaketekoKonstanteak.historialaFitxategiIzena;
         
@@ -31,7 +31,7 @@ public class HistorialaB {
         
 	}
 	
-	public  List<Erregistroa> erregistroGuztiakIrakurri(){
+public  List<Erregistroa> erregistroGuztiakIrakurri(){
 		
 		String fName = PaketekoKonstanteak.historialaFitxategiIzena;
 		List <Erregistroa> historiala = new ArrayList<Erregistroa>();
@@ -49,25 +49,46 @@ public class HistorialaB {
 		}
 		return historiala;
 	}
-	
-	public void persistDB(Erregistroa e){
-		List <Erregistroa> hist = erregistroGuztiakIrakurri();
-		hist.add(e);
-		erregistroGuztiakIdatzi(hist);
-	}
-	
-	public  List<Erregistroa> queryFindData(LocalDateTime hasiera, LocalDateTime bukaera){
-		
-		List<Erregistroa> hist = erregistroGuztiakIrakurri();
-		List <Erregistroa> hist2 = new ArrayList<Erregistroa>();
-		
-		for (Erregistroa e : hist) {
-			if (e.getData().isAfter(hasiera) && e.getData().isBefore(bukaera))
-				hist2.add(e);
+public Erregistroa find(int idErregistroa) {
+
+	List <Erregistroa> hist = erregistroGuztiakIrakurri();
+	for (Erregistroa e : hist) {
+		if(e.getId() == idErregistroa) {
+			return e;
 		}
-		
-		return hist2;
 	}
+	Erregistroa topatugabe = null;
+	return topatugabe;
+		
+}
+	
+public void persistDB(Erregistroa e){
+	List <Erregistroa> hist = erregistroGuztiakIrakurri();
+	int idBerria;
+	if(hist.size()==0)
+		idBerria=1;
+	else {
+		Erregistroa azkenE=hist.get(hist.size()-1);
+		idBerria=azkenE.getId()+1;
+	}
+	
+	e.setId(idBerria);
+	hist.add(e);
+	erregistroGuztiakIdatzi(hist);
+}
+	
+public  List<Erregistroa> queryFindData(LocalDateTime hasiera, LocalDateTime bukaera){
+	
+	List<Erregistroa> hist = erregistroGuztiakIrakurri();
+	List <Erregistroa> hist2 = new ArrayList<Erregistroa>();
+	
+	for (Erregistroa e : hist) {
+		if (e.getData().isAfter(hasiera) && e.getData().isBefore(bukaera))
+			hist2.add(e);
+	}
+	
+	return hist2;
+}
 	
 	public int erregistroaEzabatuDB(Erregistroa e) {
 		List <Erregistroa> hist = erregistroGuztiakIrakurri();

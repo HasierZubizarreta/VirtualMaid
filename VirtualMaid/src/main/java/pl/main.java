@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import bl.ErabiltzaileaEJB;
+import dl.Erregistroa;
 import dl.GailuaJB;
 
 public class main {
@@ -35,7 +36,7 @@ public class main {
                 aukera01();
                 break;
             case 2:
-                //aukera02();
+                aukera02();
                 break;
             case 3:
                 //aukera03();
@@ -87,21 +88,21 @@ public class main {
     
             }
 
-            int gailuaId = scanner.nextInt();
+            String izena = scanner.next();
 
-            eEJB.programaBerriaGorde(ordua,gailuaId);
+            eEJB.programaBerriaGorde(izena, ordua);
 
         }
         return;
 
     }
 //    static void aukera02() {
-//
+
 //        System.out.println("\n\t\tEGUNEKO PROGRAMAK");
 //
 //        // LISTA DENBORAREN MENPE EGON BEHAR DA ORDENATUTA
 //
-//        List<HistorialaB> egunekoak =  eEJB.egunekoProgramakLortu();
+//        List<Erregistroa> egunekoak =  eEJB.egunekoProgramakLortu();
 //
 //        int ordua = 0;
 //
@@ -154,8 +155,66 @@ public class main {
 //            eEJB.programaEditatu(ordua, gailua);
 //
 //        }
-//        
+        
 //    }
+    
+    static void aukera02() {
+    	   List<Erregistroa> historiala=eEJB.egunekoProgramakLortu();
+    	      //List<GailuakB> etxekoGailuak = eEJB.etxekoGailuakLortu();
+    	      for (int i = 0; i < 24; i++) {
+    	       StringBuilder sb = new StringBuilder();
+    	       for (Erregistroa programa : historiala) {
+    	           if (programa.getData().getHour() == i) {
+    	               if (sb.length() > 0) {
+    	                   sb.append(", ");
+    	               }
+    	               sb.append(programa.getId());
+    	           }
+    	       }
+    	       if (sb.length() > 0) {
+    	        if(i<10){
+    	               System.out.println("\n0" + i + ":00 -> " + sb.toString());
+    	                }
+    	           
+    	            else{
+    	               System.out.println("\n" + i + ":00 -> " + sb.toString());
+    	            }
+    	       } else {
+    	       
+    	        if(i<10){
+    	        System.out.println("\n0" + i + ":00 -> ");                
+    	        }
+    	           
+    	            else{
+    	            System.out.println("\n" + i + ":00 -> ");            
+    	            }
+    	       
+    	       }
+    	    }
+    	     
+//    	      System.out.println("\n\n\tZer egin nahi duzu?\n\n\t\t00 - Ezer.\n\n\t\t01 - Editatu.\n\n\t\t02 - Ezabatu.\n");
+//
+//    	      int aukera = scanner.nextInt();
+//    	      int ordua;
+//    	 
+//    	      switch(aukera){
+//
+//    	              default:
+//    	                  break;
+//    	              case 1:
+//    	                  ordua = lortuOrdua();
+//    	                  System.out.println("\nZer editatu nahi duzu? \n\t 01 - Id-a.\n\t 02 - Ordua.\n");
+//    	                  int aldaketa = scanner.nextInt();
+//    	                  System.out.println("\nSartu balio berria:\n\t");
+//    	                  int balioB = scanner.nextInt();
+//    	                  eEJB.programaEditatu(ordua, aldaketa, balioB);
+//    	                  break;
+//    	              case 2:
+//    	                  ordua = lortuOrdua();
+//    	                  eEJB.gailuaEzabatu(ordua);
+//    	                  break;
+//    	      }
+    }
 //    static void aukera03() {
 //
 //        System.out.println("\n\t\tHISTORIALA");
@@ -183,7 +242,7 @@ public class main {
         System.out.println("\n\n\tZer egin nahi duzu?\n\n\t\t00 - Ezer.\n\n\t\t01 - Editatu.\n\n\t\t02 - Ezabatu.\n\n\t\t03 - Berria\n");
 
         int aukera = scanner.nextInt();
-        int gailuaID;
+        String gailuaID;
     
         switch(aukera){
 
@@ -223,14 +282,13 @@ public class main {
         }
     }
     
-    static int lortuID(){
+    static String lortuID(){
         
         System.out.println("\n\n\tAukeratu gailu bat edo sakatu 0 menu nagusira itzultzeko.\n");
 
-        return scanner.nextInt();
+        return scanner.next();
 
 
     }
 
 }
-

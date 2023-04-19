@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PrezioakOrdukoB {
 	
-	public List <Float> queryFindAllDB() {
+	public static List <Float> queryFindAllDB() {
 		List <Float> prezioak = new ArrayList<Float>();
 		String k;
 		String[] d;

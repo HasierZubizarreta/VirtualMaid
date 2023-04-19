@@ -17,6 +17,12 @@ public class Erregistroa implements Serializable{
 		super();
 
 	}
+	public Erregistroa(String gailuIzena, LocalDateTime data, float prezioa) {
+		super();
+		this.gailuIzena = gailuIzena;
+		this.data = data;
+		this.prezioa = prezioa;
+	}
 	public Erregistroa(int id, String gailuIzena, LocalDateTime data, float prezioa) {
 		super();
 		this.id = id;
@@ -24,6 +30,7 @@ public class Erregistroa implements Serializable{
 		this.data = data;
 		this.prezioa = prezioa;
 	}
+	
 	public int getId() {
 		return id;
 	}
