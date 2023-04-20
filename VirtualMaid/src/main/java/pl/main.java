@@ -1,12 +1,12 @@
 package pl;
 
-
 import java.util.List;
 import java.util.Scanner;
 
 import bl.ErabiltzaileaEJB;
 import dl.Erregistroa;
 import dl.GailuaJB;
+import dl.PrezioaJB;
 
 public class main {
 
@@ -57,16 +57,16 @@ public class main {
 
         System.out.println("\n\n\tAukeratu ordu bat edo sakatu 25 menu nagusira itzultzeko.\n");
 
-        List<Float> prezioak = eEJB.egunekoPrezioakLortu();
+        List<PrezioaJB> prezioak = eEJB.egunekoPrezioakLortu();
 
         for(int i=0;i<prezioak.size();i++){
 
         	if(i<10){
-            	System.out.println("\n\t0"+i+":00 - " + prezioak.get(i)+"€");
+            	System.out.println("\n\t0"+i+":00 - " + prezioak.get(i).getPrezioa()+"€ - "+prezioak.get(i).getKolorea());
             }
         	
         	else{
-        		System.out.println("\n\t"+i+":00 - " + prezioak.get(i)+"€");
+        		System.out.println("\n\t"+i+":00 - " + prezioak.get(i).getPrezioa()+"€ - "+prezioak.get(i).getKolorea());
         	}
 
         }

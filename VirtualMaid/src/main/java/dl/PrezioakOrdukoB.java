@@ -9,8 +9,9 @@ import java.util.List;
 
 public class PrezioakOrdukoB {
 	
-	public static List <Float> queryFindAllDB() {
-		List <Float> prezioak = new ArrayList<Float>();
+	public static List <PrezioaJB> queryFindAllDB() {
+		List <PrezioaJB> prezioak = new ArrayList<PrezioaJB>();
+		PrezioaJB prezioa;
 		String k;
 		String[] d;
 		try {
@@ -18,9 +19,11 @@ public class PrezioakOrdukoB {
 			BufferedReader b = new BufferedReader(f); 
 			
 			b.readLine();
+			int  ordua = 0;
 			while((k = b.readLine())!=null) { 
 				d=k.split(",");
-				prezioak.add(Float.parseFloat(d[1]));
+				prezioa = new PrezioaJB(ordua,Float.parseFloat(d[1]),d[2]);
+				prezioak.add(prezioa);
 			} 
 			b.close(); 
 		}

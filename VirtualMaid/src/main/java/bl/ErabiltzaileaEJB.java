@@ -9,13 +9,14 @@ import dl.Erregistroa;
 import dl.GailuaJB;
 import dl.GailuakB;
 import dl.HistorialaB;
+import dl.PrezioaJB;
 import dl.PrezioakOrdukoB;
 
 public class ErabiltzaileaEJB {
 	
 	//HistorialaB hB = new HistorialaB();
 	private GailuakB gailuakB=new GailuakB();
-	private List<Float> prezioakOrduko = PrezioakOrdukoB.queryFindAllDB();
+	private List<PrezioaJB> prezioakOrduko = PrezioakOrdukoB.queryFindAllDB();
 	//aratz eta hasier
 	HistorialaB hB = new HistorialaB();
 	//HistorialenTaulaJB hB = new HistorialenTaulaJB();
@@ -48,8 +49,8 @@ public class ErabiltzaileaEJB {
 	       
 	        
 	    }
-   public List<Float> egunekoPrezioakLortu() {
-        
+    public List<PrezioaJB> egunekoPrezioakLortu() {
+    
         return prezioakOrduko;   
     }
     public List<GailuaJB> etxekoGailuakLortu() {
