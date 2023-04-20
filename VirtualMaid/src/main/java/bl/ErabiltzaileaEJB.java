@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
 import dl.Erregistroa;
 import dl.GailuaJB;
 import dl.GailuakB;
@@ -12,6 +15,8 @@ import dl.HistorialaB;
 import dl.PrezioaJB;
 import dl.PrezioakOrdukoB;
 
+@Stateless
+@LocalBean
 public class ErabiltzaileaEJB {
 	
 	//HistorialaB hB = new HistorialaB();
@@ -51,6 +56,7 @@ public class ErabiltzaileaEJB {
 	    }
     public List<PrezioaJB> egunekoPrezioakLortu() {
     
+    	System.out.print("Luzera: "+prezioakOrduko.size());
         return prezioakOrduko;   
     }
     public List<GailuaJB> etxekoGailuakLortu() {
