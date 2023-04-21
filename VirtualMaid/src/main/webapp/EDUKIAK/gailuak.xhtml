@@ -6,14 +6,14 @@
   <head>
     <meta charset="UTF-8"></meta>
     <title>Menú con botones</title>
-    <link rel="stylesheet" href="ESTILOA/orduak.css"></link>
+    <link rel="stylesheet" href="ESTILOA/gailuak.css"></link>
   </head>
   <body id="body">
     <!-- Crea el menú con cuatro botones -->
     <div class="container">
-    <h:dataTable value="#{prezioAukeraketaViewMB.egunekoPrezioakLortu()}" var="prezioa"> 
-            <h:column><h:form onsubmit="window.location.href='gailuak.xhtml'; return false;">
-               <button class="#{prezioa.kolorea}">#{prezioa.informazioa}</button></h:form>  
+    <h:dataTable value="#{gailuAukeraketaViewMB.etxekoGailuakLortu()}" var="gailua"> 
+            <h:column><h:form onsubmit="window.location.href='gailuak.html'; return false;">
+               <button><img id="imga" src="IRUDIAK/electrodomesticos.jpg"/>#{gailua.izena}</button></h:form>  
             </h:column>                
     </h:dataTable>
     <br></br>

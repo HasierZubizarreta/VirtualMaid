@@ -24,6 +24,7 @@ public class PrezioakOrdukoB {
 				d=k.split(",");
 				prezioa = new PrezioaJB(ordua,Float.parseFloat(d[1]),d[2]);
 				prezioak.add(prezioa);
+				ordua++;
 			} 
 			b.close(); 
 		}
