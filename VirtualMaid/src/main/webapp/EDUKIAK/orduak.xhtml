@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  <head>
+    <meta charset="UTF-8"></meta>
+    <title>Menú con botones</title>
+    <link rel="stylesheet" href="ESTILOA/orduak.css"></link>
+  </head>
+  <body id="body">
+    <!-- Crea el menú con cuatro botones -->
+    <div class="container">
+    <h:dataTable value="#{prezioAukeraketaViewMB.egunekoPrezioakLortu()}" var="prezioa"> 
+            <h:column><h:form onsubmit="window.location.href='gailuak.xhtml'; return false;">
+               <button class="#{prezioa.kolorea}">#{prezioa.informazioa}</button></h:form>  
+            </h:column>                
+    </h:dataTable>
+    <br></br>
+    <br></br>
+    </div>
+  </body>
+</html>
