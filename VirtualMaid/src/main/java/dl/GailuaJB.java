@@ -1,12 +1,16 @@
 package dl;
 
-public class GailuaJB {
-	
+import java.io.Serializable;
+
+public class GailuaJB implements Serializable{
+
 	private int idGailua;
 	private String izena;	
 	private String mota;
 	private int iraupena;	
 	private float kontsumoa;
+	
+	private static final long serialVersionUID = 1L;
 	
 	public GailuaJB() {
 	}
