@@ -12,8 +12,9 @@
     <!-- Crea el menú con cuatro botones -->
     <div class="container">
     <h:dataTable value="#{prezioAukeraketaViewMB.egunekoPrezioakLortu()}" var="prezioa"> 
-            <h:column><h:form onsubmit="window.location.href='gailuak.xhtml'; return false;">
-               <button class="#{prezioa.kolorea}">#{prezioa.informazioa}</button></h:form>  
+            <h:column>
+            	<f:facet name="header"><h:outputText value="#{erabiltzaileAtazakMB.ordua}" /></f:facet>
+            	<h:commandButton class="#{prezioa.kolorea}" actionListener="#{erabiltzaileAtazakMB.orduaMantendu(prezioa.ordua,prezioAukeraketaViewMB)}" id="submit" value="#{prezioa.informazioa}" />  
             </h:column>                
     </h:dataTable>
     <br></br>

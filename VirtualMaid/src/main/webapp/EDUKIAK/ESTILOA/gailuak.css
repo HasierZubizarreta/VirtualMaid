@@ -8,28 +8,28 @@
     text-align: center;
     justify-content: center;
     }
-    button {
-        display: flex;
-        margin: 10px 0;
-        padding: 1px;
-        border: none;
-        background-color: #ffffff;
-        color: rgb(0, 0, 0);
-        border-radius: 0px;
-        cursor: pointer;
-        width: 650px;
-        height: 35px;
-        margin: 0 auto;
-        padding: 5px;
-        display: table-cell;
-        vertical-align: middle;
-        /* font-weight: bold; */
-        font-size: 55px;
-        font-size: 1rem;
-        font-family: "Source Sans Pro", sans-serif;
-        color: #222222;
-        }
-button:hover {
+input {
+    display: flex;
+    margin: 10px 0;
+    padding: 1px;
+    border: none;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border-radius: 0px;
+    cursor: pointer;
+    width: 650px;
+    height: 35px;
+    margin: 0 auto;
+    padding: 5px;
+    display: table-cell;
+    vertical-align: middle;
+    /* font-weight: bold; */
+    font-size: 55px;
+    font-size: 1rem;
+    font-family: "Source Sans Pro", sans-serif;
+    color: #222222;
+    }
+input:hover {
     background-color: #707070;
     }
 img {

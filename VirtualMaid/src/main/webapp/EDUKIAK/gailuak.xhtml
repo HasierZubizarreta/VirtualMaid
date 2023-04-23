@@ -12,6 +12,7 @@
     <!-- Crea el menú con cuatro botones -->
     <div class="container">
     <h:dataTable value="#{gailuAukeraketaViewMB.etxekoGailuakLortu()}" var="gailua"> 
+    		<f:facet name="header"><h:outputText value="#{erabiltzaileAtazakMB.ordua}" /></f:facet>
             <h:column><h:form onsubmit="window.location.href='gailuak.html'; return false;">
                <button><img id="imga" src="IRUDIAK/electrodomesticos.jpg"/>#{gailua.izena}</button></h:form>  
             </h:column>                
