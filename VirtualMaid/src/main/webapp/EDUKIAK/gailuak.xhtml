@@ -12,10 +12,13 @@
     <!-- Crea el menú con cuatro botones -->
     <div class="container">
     <h:dataTable value="#{gailuAukeraketaViewMB.etxekoGailuakLortu()}" var="gailua"> 
-    		<f:facet name="header"><h:outputText value="#{erabiltzaileAtazakMB.ordua}" /></f:facet>
-            <h:column><h:form onsubmit="window.location.href='gailuak.html'; return false;">
-               <button><img id="imga" src="IRUDIAK/electrodomesticos.jpg"/>#{gailua.izena}</button></h:form>  
-            </h:column>                
+        <h:column>
+        	<f:facet name="header"><h:outputText value="#{erabiltzaileAtazakMB.ordua}" /></f:facet>
+        	<h:form>
+        	<img id="imga" src="IRUDIAK/electrodomesticos.jpg"/>
+        	<h:commandButton actionListener="#{erabiltzaileAtazakMB.programaBerriaGorde(gailua.izena,gailuAukeraketaViewMB)}" id="submit" value="#{gailua.izena}"/>
+        	</h:form>  
+        </h:column>              
     </h:dataTable>
     <br></br>
     <br></br>

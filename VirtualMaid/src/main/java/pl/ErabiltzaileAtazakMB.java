@@ -25,15 +25,18 @@ public class ErabiltzaileAtazakMB implements Serializable {
 		return ordua;
 	}
 
-	public void programaBerriaGorde(ProgramaFormMB programa){
+	public void programaBerriaGorde(String gailuIzena, GailuAukeraketaViewMB gViewMB) throws IOException{
 	    
-		eEJB.programaBerriaGorde(programa.getGailuIzena(), programa.getOrdua()); 
+		eEJB.programaBerriaGorde(gailuIzena, ordua); 
+		gViewMB.resetView();
+		ordua = 0;
+		FacesContext.getCurrentInstance().getExternalContext().redirect("../");
 	    
 	}
-	public void orduaMantendu(int ordua, PrezioAukeraketaViewMB pView) throws IOException{
+	public void orduaMantendu(int ordua, PrezioAukeraketaViewMB pViewMB) throws IOException{
 		
 		this.ordua = ordua;
-		pView.resetView();
+		pViewMB.resetView();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("gailuak.xhtml");
 	}
 	
