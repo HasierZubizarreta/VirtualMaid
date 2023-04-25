@@ -63,17 +63,21 @@ public class Erregistroa implements Serializable{
 	
 	public String getHasieraOrdua() {
 		
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("hh:mm");
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
         String horaConFormato = data.format(formato);
 		
+        System.out.print(horaConFormato);
+        
 		return horaConFormato;
 	}
 	public String getAmaieraOrdua() {
 		
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("hh:mm");
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
 		
 		LocalDateTime ordua = data.plusMinutes(90);
 		String horaConFormato = ordua.format(formato);
+		
+		System.out.print(horaConFormato);
 		
 		return horaConFormato;		
 		
