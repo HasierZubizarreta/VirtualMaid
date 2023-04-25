@@ -2,6 +2,7 @@ package dl;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Erregistroa implements Serializable{
 
@@ -60,5 +61,22 @@ public class Erregistroa implements Serializable{
 		return "\n"+ this.gailuIzena + ":\tid: "+ this.id + "\tdata: " + this.data.toString() + "\tprezioa: "+ this.prezioa;
 	}
 	
+	public String getHasieraOrdua() {
+		
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("hh:mm");
+        String horaConFormato = data.format(formato);
+		
+		return horaConFormato;
+	}
+	public String getAmaieraOrdua() {
+		
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("hh:mm");
+		
+		LocalDateTime ordua = data.plusMinutes(90);
+		String horaConFormato = ordua.format(formato);
+		
+		return horaConFormato;		
+		
+	}
 	
 }

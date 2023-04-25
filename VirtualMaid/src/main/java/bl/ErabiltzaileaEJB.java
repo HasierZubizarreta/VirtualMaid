@@ -42,18 +42,18 @@ public class ErabiltzaileaEJB {
     //public List<Erregistroa> historialaSortu(LocalDateTime data1,LocalDateTime data2) { return hB.queryFindData(data1,data2);}  
    
 	  
-	  public void laburpenaLortu() {   
+	public void laburpenaLortu() {   
     	
     }
-	    public List<Erregistroa> egunekoProgramakLortu() {
-	        LocalDate now=LocalDateTime.now().toLocalDate();
-	        LocalDateTime has=LocalDateTime.of(now, LocalTime.of(0, 0));
-	        LocalDateTime buk=LocalDateTime.of(now, LocalTime.of(23, 59));
-	    	
-	        return hB.queryFindData(has, buk);
-	       
-	        
-	    }
+    public List<Erregistroa> egunekoProgramakLortu() {
+        LocalDate now=LocalDateTime.now().toLocalDate();
+        LocalDateTime has=LocalDateTime.of(now, LocalTime.of(0, 0));
+        LocalDateTime buk=LocalDateTime.of(now, LocalTime.of(23, 59));
+    	
+        return hB.queryFindData(has, buk);
+       
+        
+    }
     public List<PrezioaJB> egunekoPrezioakLortu() {
     
     	System.out.print("Luzera: "+prezioakOrduko.size());
