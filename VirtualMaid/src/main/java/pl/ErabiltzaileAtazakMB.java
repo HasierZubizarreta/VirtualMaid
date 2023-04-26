@@ -39,6 +39,10 @@ public class ErabiltzaileAtazakMB implements Serializable {
 		pViewMB.resetView();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("gailuak.xhtml");
 	}
-	
+	public void programaEditatu01(int idErregistroa) throws IOException {
+		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("gailuak.xhtml");
+		
+	}
 
 }

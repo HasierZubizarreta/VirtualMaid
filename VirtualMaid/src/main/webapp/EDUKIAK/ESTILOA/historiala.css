@@ -46,6 +46,11 @@
       color: white;
       text-align: start;
   }
+  a{
+      height: 100%;
+      width: 100%;
+      background: none
+  }
   ol, ul {
       list-style: none;
   }

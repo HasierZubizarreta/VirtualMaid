@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Menú con botones</title>
+    <link rel="stylesheet" href="ESTILOA/gailuak.css"/>
+  </head>
+  <body id="body">
+    <div class="container">
+    <h:dataTable value="#{gailuAukeraketaViewMB.etxekoGailuakLortu()}" var="gailua"> 
+        <h:column>
+        	<h:form>
+        	<img id="imga" src="IRUDIAK/electrodomesticos.jpg"/>
+        	<h:commandButton actionListener="#{erabiltzaileAtazakMB.programaBerriaGorde(gailua.izena,gailuAukeraketaViewMB)}" id="submit" value="#{gailua.izena}"/>
+        	</h:form>  
+        </h:column>              
+    </h:dataTable>
+    
+    <h:form>
+    <table>
+            <tr>
+                <th>IZENA</th><th>MOTA</th><th>IRAUPENA<br/>KONTSUMOA</th><th>EKINTZA</th>
+            </tr>
+            <tr>
+                <td>
+                    <h:inputText id="izena" value="#{produktuaFormMB.izena}" required="true" requiredMessage="Izena eremua derrigorrezkoa da."/>
+                    <h:message for="izena" style="color:red" />
+                </td>
+                <td>
+                    <h:inputText id="mota" value="#{produktuaFormMB.izena}" required="true" requiredMessage="Izena eremua derrigorrezkoa da."/>
+                    <h:message for="mota" style="color:red" />
+                </td>
+                <td>
+               		<h:inputText id="iraupena" value="#{produktuaFormMB.izena}" required="true" requiredMessage="Izena eremua derrigorrezkoa da."/>
+                    <h:message for="iraupena" style="color:red" />
+                </td>
+                <td>
+                    <h:inputText id="kontsumoa" value="#{produktuaFormMB.izena}" required="true" requiredMessage="Izena eremua derrigorrezkoa da."/>
+                    <h:message for="kontsumoa" style="color:red" />        
+                </td>                     
+                <td>
+                <h:commandButton actionListener="#{administrariAtazakMB.produktuaSartuDB(produktuaFormMB, adminKudeaketaViewMB)}" id="submit" value="SARTU" />            
+                </td>
+            </tr>        
+    </table>
+    </h:form>
+    </div>
+  </body>
+</html>
