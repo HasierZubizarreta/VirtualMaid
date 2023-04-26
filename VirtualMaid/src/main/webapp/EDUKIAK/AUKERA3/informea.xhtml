@@ -25,34 +25,41 @@
 		<tr>
 			<td class="tdErdiratuta borderIkustezina" style="width: 50%;">
 				NOIZTIK:
-				<h:inputText value="#{aukera3formMB.noiztik}">
-					<f:convertDateTime type="date" pattern="yyyy/MM/dd HH:mm" timeZone="CET"/>
-  				</h:inputText>			
+				<h:inputText value="#{aukera3formMB.noiztik}" id="noiztik" required="true" requiredMessage="ERROREA: Data (NOIZTIK) eremua derrigorrezkoa da">
+					<f:convertDateTime type="date" pattern="yyyy/MM/dd" timeZone="CET"/>
+  				</h:inputText>	
+  				<h:message for="noiztik" style="color:red" />		
 			</td>
 			<td class="tdErdiratuta borderIkustezina" style="width: 50%;">
 				NORA:
-				<h:inputText value="#{aukera3formMB.nora}">
-					<f:convertDateTime type="date" pattern="yyyy/MM/dd HH:mm" timeZone="CET"/>
-  				</h:inputText>					
+				<h:inputText value="#{aukera3formMB.nora}" id="nora" required="true" requiredMessage="ERROREA: Data (NORA) eremua derrigorrezkoa da">
+					<f:convertDateTime type="date" pattern="yyyy/MM/dd" timeZone="CET"/>
+  				</h:inputText>	
+  				<h:message for="nora" style="color:red" />				
 			</td>
+			<td>
+				<h:commandButton actionListener="#{aukera3AtazakMB.labOrrModuaAldatu(aukera3ViewMB)}" id="submit" value="ENTER" />    		
+    		</td>
 		</tr>
 	</table>
- </h:form>	
- <h:dataTable value="#{adminLaburpenakViewMB.produktuenEgoerakLortuDB(administrariAtazakMB.labFesta)}" var="produktua">
+ </h:form>
+ <h:panelGroup rendered="#{aukera3AtazakMB.labOrrModua==1}">	
+ <h2>HAUTATUTAKO DATEN ARTEAN EGINDAKO KONTSUMOA</h2>
+ 	<h:dataTable value="#{aukera3ViewMB.historialaLortu(aukera3FormMB)}" var="erregistroa">
    		<h:column>
    			<f:facet name="header">Gastu totala</f:facet>
    			#{produktua.kopurua}
    		</h:column>
-  </h:dataTable>	   		
-   	<h:dataTable value="#{adminLaburpenakViewMB.produktuenEgoerakLortuDB(administrariAtazakMB.labFesta)}" var="produktua">
+	</h:dataTable>	   		
+ 	<h:dataTable value="#{adminLaburpenakViewMB.produktuenEgoerakLortuDB(administrariAtazakMB.labFesta)}" var="produktua">
    		<h:column>
    			<f:facet name="header">Kontsumo totala</f:facet>
    			#{produktua.kopurua}
    		</h:column>  		
    		   		  		  				
       		  		  				
-    </h:dataTable>
-		
+	</h:dataTable>
+</h:panelGroup>	
 </ui:define>
 </ui:composition>
 </html>

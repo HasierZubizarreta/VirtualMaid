@@ -3,6 +3,7 @@ package bl;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -12,6 +13,7 @@ import dl.Erregistroa;
 import dl.GailuaJB;
 import dl.GailuakB;
 import dl.HistorialaB;
+import dl.KontsumoaJB;
 import dl.PrezioaJB;
 import dl.PrezioakOrdukoB;
 
@@ -113,5 +115,31 @@ public class ErabiltzaileaEJB {
     	
     	gailuakB.update(gailuaDB);
     }
+    
+    public List <KontsumoaJB> kontsumoaKalkulatu(LocalDateTime data1,LocalDateTime data2) {
+    	
+    		List <Erregistroa> erregistroak= new ArrayList<Erregistroa>();
+    		List <KontsumoaJB> kontsumoak;
+    		LocalDateTime data = data1;
+    		float kontsumoa;
+    		float prezioa;
+    		long egunak = 0;
+    		
+    		erregistroak = hB.queryFindData(data1,data2);
+    		
+    		
+    		while(data.isBefore(data2)) {
+    			data.plusDays(egunak);
+    			for(Erregistroa erregistroa : erregistroak) {
+    				if(erregistroa.getData().getDayOfMonth()==data.getDayOfMonth()) {
+    					//kontsumoa+=erregistroa
+    				}
+    			}
+    			egunak++;
+    		}
+    		//plusdays		
+    		return kontsumoak;
+    }
 
 }
+ 
