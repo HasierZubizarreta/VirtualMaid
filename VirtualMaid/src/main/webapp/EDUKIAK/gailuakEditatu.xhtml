@@ -13,36 +13,37 @@
     <h:dataTable value="#{gailuAukeraketaViewMB.etxekoGailuakLortu()}" var="gailua"> 
         <h:column>
         	<h:form>
-        	<img id="imga" src="IRUDIAK/electrodomesticos.jpg"/>
-        	<h:commandButton actionListener="#{erabiltzaileAtazakMB.programaBerriaGorde(gailua.izena,gailuAukeraketaViewMB)}" id="submit" value="#{gailua.izena}"/>
+        	<img class="imga" src="IRUDIAK/electrodomesticos.jpg"/>
+        	<h:commandButton class="lista" actionListener="#{erabiltzaileAtazakMB.gailuaEditatu(gailua.izena,gailuAukeraketaViewMB)}" id="submit" value="#{gailua.izena}"/>
         	</h:form>  
         </h:column>              
     </h:dataTable>
-    
-    <h:form>
+    </div>
+    <div class="container">
+    <h:form class="formularioa">
     <table>
             <tr>
-                <th>IZENA</th><th>MOTA</th><th>IRAUPENA<br/>KONTSUMOA</th><th>EKINTZA</th>
+                <th>IZENA</th><th>MOTA</th><th>IRAUPENA</th><th>KONTSUMOA</th><th>EKINTZA</th>
             </tr>
             <tr>
                 <td>
-                    <h:inputText id="izena" value="#{produktuaFormMB.izena}" required="true" requiredMessage="Izena eremua derrigorrezkoa da."/>
+                    <h:inputText id="izena" value="#{gailuaFormMB.izena}" required="true" requiredMessage="Izena eremua derrigorrezkoa da."/>
                     <h:message for="izena" style="color:red" />
                 </td>
                 <td>
-                    <h:inputText id="mota" value="#{produktuaFormMB.izena}" required="true" requiredMessage="Izena eremua derrigorrezkoa da."/>
+                    <h:inputText id="mota" value="#{gailuaFormMB.mota}" required="true" requiredMessage="Mota eremua derrigorrezkoa da."/>
                     <h:message for="mota" style="color:red" />
                 </td>
                 <td>
-               		<h:inputText id="iraupena" value="#{produktuaFormMB.izena}" required="true" requiredMessage="Izena eremua derrigorrezkoa da."/>
+               		<h:inputText id="iraupena" value="#{gailuaFormMB.iraupena}" required="true" requiredMessage="Iraupena eremua derrigorrezkoa da."/>
                     <h:message for="iraupena" style="color:red" />
                 </td>
                 <td>
-                    <h:inputText id="kontsumoa" value="#{produktuaFormMB.izena}" required="true" requiredMessage="Izena eremua derrigorrezkoa da."/>
+                    <h:inputText id="kontsumoa" value="#{gailuaFormMB.kontsumoa}" required="true" requiredMessage="Kontsumoa eremua derrigorrezkoa da."/>
                     <h:message for="kontsumoa" style="color:red" />        
                 </td>                     
                 <td>
-                <h:commandButton actionListener="#{administrariAtazakMB.produktuaSartuDB(produktuaFormMB, adminKudeaketaViewMB)}" id="submit" value="SARTU" />            
+                <h:commandButton class="ekintza" actionListener="#{erabiltzaileAtazakMB.gailuBerriaSortu(gailuaFormMB, gailuAukeraketaViewMB)}" id="submit" value="SARTU" />            
                 </td>
             </tr>        
     </table>

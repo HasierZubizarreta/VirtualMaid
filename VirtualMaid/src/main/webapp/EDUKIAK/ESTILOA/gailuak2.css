@@ -29,10 +29,34 @@ form {
     font-family: "Source Sans Pro", sans-serif;
     color: #222222;
     }
+a {
+    display: flex;
+    margin: 10px 0;
+    padding: 1px;
+    border: none;
+    background-color: none;
+    color: rgb(0, 0, 0);
+    border-radius: 0px;
+    cursor: pointer;
+    width: 610px;
+    height: 35px;
+    margin: 0 auto;
+    padding: 5px;
+    display: table-cell;
+    vertical-align: middle;
+    /* font-weight: bold; */
+    font-size: 55px;
+    font-size: 1rem;
+    font-family: "Source Sans Pro", sans-serif;
+    color: #222222;
+    }
 .formularioa{
 	width: auto;
     height: auto;
 }
+.formularioa:hover {
+    background-color: white;
+    }
   input {
     display: flex;
     margin: 10px 0;
@@ -54,7 +78,7 @@ form {
     font-family: "Source Sans Pro", sans-serif;
     color: #222222;
     }
-input:hover {
+form:hover {
     background-color: #707070;
     }
 .ekintza{

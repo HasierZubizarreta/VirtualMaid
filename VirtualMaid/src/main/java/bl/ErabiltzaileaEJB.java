@@ -66,6 +66,11 @@ public class ErabiltzaileaEJB {
         return gailuakB.queryFindAll();
         
     }
+    public GailuaJB etxekoGailuaLortu(String gailuIzena) {
+        
+        return gailuakB.find(gailuIzena);
+        
+    }
     public void programaBerriaGorde(String gailuIzena, int ordua) {
     	GailuaJB g = gailuakB.find(gailuIzena);
     	float prezioaOrduko = PrezioakOrdukoB.findPrezioa(ordua);

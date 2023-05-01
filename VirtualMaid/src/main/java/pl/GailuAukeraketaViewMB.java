@@ -34,5 +34,11 @@ public class GailuAukeraketaViewMB implements Serializable {
 		gailuakDB=null; 
 		
 	}
+	public GailuaJB etxekoGailuaLortu(String gailuIzena) {
+        
+		
+		return eEJB.etxekoGailuaLortu(gailuIzena);
+    	
+    }
 
 }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Menú con botones</title>
+    <link rel="stylesheet" href="ESTILOA/gailuak2.css"/>
+  </head>
+  <body id="body">
+  <div class="container">
+    <h:panelGroup rendered="#{erabiltzaileAtazakMB.editatu==false}">
+    <table>
+      <tr>
+        <td>
+        <h:form>
+			<h:commandLink actionListener="#{erabiltzaileAtazakMB.egoeraAldatu()}">
+			  EDITATU
+			</h:commandLink>
+		</h:form>
+		</td>
+      </tr>
+      <tr>
+        <td><h:form>
+			<h:commandLink actionListener="#{erabiltzaileAtazakMB.gailuaEzabatu()}">
+			  EZABATU
+			</h:commandLink>
+		</h:form>
+		</td>
+      </tr>
+    </table>
+    </h:panelGroup>
+    <h:panelGroup rendered="#{erabiltzaileAtazakMB.editatu==true}">
+    <div class="container">
+    <h:form class="formularioa">
+    <table>
+    <ui:repeat var="gailua" value="#{gailuAukeraketaViewMB.etxekoGailuaLortu(erabiltzaileAtazakMB.gailuIzena)}">
+            <tr>
+                <th>IZENA</th><th>MOTA</th><th>IRAUPENA</th><th>KONTSUMOA</th><th>EKINTZA</th>
+            </tr>
+            <tr>
+                <td>
+                    <h:outputText id="izena" value="#{gailua.izena}" required="true" requiredMessage="Izena eremua derrigorrezkoa da."/>
+                    <h:message for="izena" style="color:red" />
+                </td>
+                <td>
+                    <h:inputText id="mota" value="#{gailua.mota}" required="true" requiredMessage="Mota eremua derrigorrezkoa da."/>
+                    <h:message for="mota" style="color:red" />
+                </td>
+                <td>
+               		<h:inputText id="iraupena" value="#{gailua.iraupena}" required="true" requiredMessage="Iraupena eremua derrigorrezkoa da."/>
+                    <h:message for="iraupena" style="color:red" />
+                </td>
+                <td>
+                    <h:inputText id="kontsumoa" value="#{gailua.kontsumoa}" required="true" requiredMessage="Kontsumoa eremua derrigorrezkoa da."/>
+                    <h:message for="kontsumoa" style="color:red" />        
+                </td>                     
+                <td>
+                <h:commandButton class="ekintza" actionListener="#{erabiltzaileAtazakMB.gailuaEditatu02(gailua, gailuAukeraketaViewMB)}" id="submit" value="GORDE ALDAKETA" />            
+                </td>
+            </tr>  
+    </ui:repeat>      
+    </table>
+    </h:form>
+    </div>
+    </h:panelGroup>
+    </div>
+  </body>
+</html>
