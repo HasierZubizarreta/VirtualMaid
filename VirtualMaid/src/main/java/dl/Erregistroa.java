@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Erregistroa implements Serializable{
+public class Erregistroa implements Serializable, Comparable<Erregistroa>{
 
 
 	private int id;
@@ -81,6 +81,11 @@ public class Erregistroa implements Serializable{
 		
 		return horaConFormato;		
 		
+	}
+	@Override
+	public int compareTo(Erregistroa e) {
+		
+		return this.getData().compareTo(e.getData());
 	}
 	
 }

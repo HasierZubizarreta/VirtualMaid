@@ -82,12 +82,12 @@ public class ErabiltzaileaEJB {
     	hB.persistDB(e);
     }
     public void programaEditatu(int ordua, int programaId) {
-   	 Erregistroa e = hB.find(programaId);
-   	 LocalDateTime data = LocalDateTime.of(e.getData().toLocalDate(), LocalTime.of(ordua, 0));
-   	 hB.erregistroaEzabatuDB(e);
-   	 e.setData(data);
-   	 hB.persistDB(e);
-   }
+      	 Erregistroa e = hB.find(programaId);
+      	 LocalDateTime data = LocalDateTime.of(e.getData().toLocalDate(), LocalTime.of(ordua, 0));
+      	 e.setData(data);
+      	 hB.updateDB(e);
+      }
+    
     public void gailuBerriaSortu(GailuaJB gailuakDB) {
 
     	gailuakB.persist(gailuakDB);
