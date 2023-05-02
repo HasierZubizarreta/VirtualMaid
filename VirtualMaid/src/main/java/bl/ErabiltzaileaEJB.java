@@ -87,7 +87,7 @@ public class ErabiltzaileaEJB {
     public Erregistroa erregistroaProgramatu(String gailuIzena, int ordua, int minutuak) {
     	Erregistroa e=null;
     	GailuaJB g = gailuakB.find(gailuIzena);
-    	if((LocalTime.now().getHour()*60 + LocalTime.now().getMinute() + g.getIraupena() ) <= 1440){
+    	if((ordua*60 + minutuak + g.getIraupena() ) <= 1440){
 	    	float prezioaOrduko;
 			float iraupenaOrduko = g.getIraupena() / 60.0f;
 			int orduak = (int) Math.floor(iraupenaOrduko);
