@@ -72,43 +72,57 @@ public class ErabiltzaileaEJB {
         
     }
     public int programaBerriaGorde(String gailuIzena, int ordua) {
-    	GailuaJB g = gailuakB.find(gailuIzena);
-    	if((LocalTime.now().getHour()*60 + g.getIraupena() <= 1440)) {
-	    	if (LocalTime.now().getHour() < ordua) {
-				float prezioaOrduko;
-				float iraupenaOrduko = g.getIraupena() / 60.0f;
-				int orduak = (int) Math.floor(iraupenaOrduko);
-				float prezioTotala = 0.0f;
-				int i;
-				for (i = 0; i < orduak; i++) {
-					prezioaOrduko = PrezioakOrdukoB.findPrezioa(ordua + i);
-					prezioTotala += prezioaOrduko;
-				}
-				float orduaDezimala = iraupenaOrduko - orduak;
-				prezioaOrduko = PrezioakOrdukoB.findPrezioa(ordua + i);
-				prezioTotala += orduaDezimala * prezioaOrduko;
-				//LocalDateTime data = LocalDateTime.of(LocalDate.now(), LocalTime.of(ordua, 0));
-				LocalDateTime data = LocalDateTime.of(LocalDate.of(2023, 05, 01), LocalTime.of(ordua, 0));
-				float kontsumoTotala = g.getKontsumoa() * g.getIraupena();
-				Erregistroa e = new Erregistroa(gailuIzena, data, prezioTotala, kontsumoTotala);
+    	if(LocalTime.now().getHour() < ordua) {
+    		Erregistroa e = erregistroaProgramatu(gailuIzena, ordua, 0);
+	    	if (e != null) {
 				hB.persistDB(e);
 				return 1; //programa gehitzen da
 				}
 	    	else
-	    		return 2; //iraganean ezin da programatu
+	    		return 2; //biharko prezioak ez ditugu
 	    	}
     	else
-    		return 0; //hurrengo eguneko prezioak ez ditugu
+    		return 0; //iraganean ezin da programatu
 	}
+    public Erregistroa erregistroaProgramatu(String gailuIzena, int ordua, int minutuak) {
+    	Erregistroa e=null;
+    	GailuaJB g = gailuakB.find(gailuIzena);
+    	if((LocalTime.now().getHour()*60 + LocalTime.now().getMinute() + g.getIraupena() ) <= 1440){
+	    	float prezioaOrduko;
+			float iraupenaOrduko = g.getIraupena() / 60.0f;
+			int orduak = (int) Math.floor(iraupenaOrduko);
+			float prezioTotala = 0.0f;
+			int i;
+			for (i = 0; i < orduak; i++) {
+				prezioaOrduko = PrezioakOrdukoB.findPrezioa(ordua + i);
+				prezioTotala += prezioaOrduko;
+			}
+			float orduaDezimala = iraupenaOrduko - orduak;
+			prezioaOrduko = PrezioakOrdukoB.findPrezioa(ordua + i);
+			prezioTotala += orduaDezimala * prezioaOrduko;
+			LocalDateTime data = LocalDateTime.of(LocalDate.now(), LocalTime.of(ordua, minutuak));
+			float kontsumoTotala = g.getKontsumoa() * g.getIraupena();
+			e = new Erregistroa(g.getIzena(), data, prezioTotala, kontsumoTotala);
+    	}
+    	
+		return e;
+    }
     
-    public void programaEditatu(Erregistroa eBerria) {
+    public int programaEditatu(Erregistroa eBerria) {
 
-   	 Erregistroa eZaharra = hB.find(eBerria.getId());
-//   	 LocalDateTime data = LocalDateTime.of(LocalDate.now(), LocalTime.parse());
-//   	 e.setData(data);
- 	 hB.updateDB(eBerria); 	 
- 	 
-   	 
+	   	if(eBerria.getData().isAfter(LocalDateTime.now())) {
+		    Erregistroa eAux = erregistroaProgramatu(eBerria.getGailuIzena(), eBerria.getData().getHour(), eBerria.getData().getMinute());
+		   	if(eAux != null) {
+		   		 eBerria.setPrezioa(eAux.getPrezioa());
+		   		 eBerria.setKontsumoa(eAux.getKontsumoa());
+		   		hB.updateDB(eBerria); 
+		   		return 1; //programa aldatu da
+		   	 }
+		   	else
+		   	 	return 2; //biharko prezioak ez dazkigu
+	   	}
+	   	else
+	   		return 0; // iraganean ezin da programatu   		 
    }
     public Erregistroa programarenInformazioaLortu(int programaId) {
     	
