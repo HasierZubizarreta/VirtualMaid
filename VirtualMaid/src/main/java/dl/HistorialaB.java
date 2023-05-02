@@ -9,6 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class HistorialaB {
@@ -49,6 +51,7 @@ public  List<Erregistroa> erregistroGuztiakIrakurri(){
 		}
 		return historiala;
 	}
+
 public Erregistroa find(int idErregistroa) {
 
 	List <Erregistroa> hist = erregistroGuztiakIrakurri();
@@ -74,6 +77,7 @@ public void persistDB(Erregistroa e){
 	
 	e.setId(idBerria);
 	hist.add(e);
+	Collections.sort(hist);
 	erregistroGuztiakIdatzi(hist);
 }
 	
@@ -90,21 +94,55 @@ public  List<Erregistroa> queryFindData(LocalDateTime hasiera, LocalDateTime buk
 	return hist2;
 }
 	
-	public int erregistroaEzabatuDB(Erregistroa e) {
+public int erregistroaEzabatuDB(int idErregistroa) {
 		List <Erregistroa> hist = erregistroGuztiakIrakurri();
 		
-		if(hist.contains(e)) {
-			hist.remove(e);
-			erregistroGuztiakIdatzi(hist);
-			return 1;
-		}
-		else {
-			return 0;
-		}
+//		if(hist.contains(e) == true) {
+//			hist.remove(e);
+//			erregistroGuztiakIdatzi(hist);
+//			return 1;
+//		}
+//		else {
+//			return 0;
+//		}
+		
+		//System.out.print("\nBilatu behar dena: "+ e.toString());
+		Iterator<Erregistroa> iterator = hist.iterator();
+		while (iterator.hasNext()) {
+	        Erregistroa e2 = iterator.next();
+	        //System.out.print(e2.toString());
+	        if (e2.getId() == idErregistroa) {
+	            iterator.remove();
+	            erregistroGuztiakIdatzi(hist);
+	            return 1;
+	        }
+	    }
+	    return 0;
+	    
+	    
 			
 	}
 		
-		
+public void updateDB(Erregistroa eBerria) {
+	List<Erregistroa> hist=erregistroGuztiakIrakurri();
+	
+	boolean topatua=false;
+	Erregistroa e=null;
+	int i=0;
+	while(i<hist.size()&&!topatua) {
+		e=hist.get(i);
+		if(e.getId()==eBerria.getId())
+			topatua=true;
+		else
+			i++;
+	}
+
+	if(topatua) {
+		hist.set(i, eBerria);
+		Collections.sort(hist);
+		erregistroGuztiakIdatzi(hist);
+	}
+}
 	
 	
 	

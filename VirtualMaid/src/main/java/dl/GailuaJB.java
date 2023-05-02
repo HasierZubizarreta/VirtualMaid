@@ -68,8 +68,6 @@ public class GailuaJB implements Serializable{
 		return "GailuaJB [idGailua=" + idGailua + ", izena=" + izena + ", mota=" + mota + ", iraupena=" + iraupena + ", kontsumoa=" + kontsumoa+ "]";
 	}
 	
-	public String toCSV() {
-		return "" + idGailua + ";" +izena+ ";" + mota + ";" + iraupena + ";" + kontsumoa;
-	}
+	
 	
 }

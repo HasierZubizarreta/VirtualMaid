@@ -82,6 +82,7 @@ public class ErabiltzaileaEJB {
     	hB.persistDB(e);
     }
     public void programaEditatu(int ordua, int programaId) {
+<<<<<<< HEAD
    	 Erregistroa e = hB.find(programaId);
    	 LocalDateTime data = LocalDateTime.of(e.getData().toLocalDate(), LocalTime.of(ordua, 0));
    	 hB.erregistroaEzabatuDB(e);
@@ -93,6 +94,14 @@ public class ErabiltzaileaEJB {
     	return hB.find(programaId);
     	
     }
+=======
+      	 Erregistroa e = hB.find(programaId);
+      	 LocalDateTime data = LocalDateTime.of(e.getData().toLocalDate(), LocalTime.of(ordua, 0));
+      	 e.setData(data);
+      	 hB.updateDB(e);
+      }
+    
+>>>>>>> branch 'main' of https://github.com/HasierZubizarreta/VirtualMaid.git
     public void gailuBerriaSortu(GailuaJB gailuakDB) {
 
     	gailuakB.persist(gailuakDB);
