@@ -1,0 +1,4 @@
+1. Mirar si esta instalado python3----> python3 --version si sale la version esta instalado, sino "sudo apt update" y "sudo apt install python3".
+2. Como vamos a necesitar una libreria de python, "sudo apt-get install python3 python3-pip" y "pip install beautifulsoup4".
+3. en el archivo readWeb.py hay que cambiar la ruta del archivo, para que se guarde el archivo csv en la misma carpeta.
+4. "crontab -3" y elegir la primero opcion (que es nano). Abajo del todo escribimos lo siguiente: "0 20 * * * /usr/bin/python3 /home/zta2122p1/Desktop/fitxategiak/readWeb.py"
