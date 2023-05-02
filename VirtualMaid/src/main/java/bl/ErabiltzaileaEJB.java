@@ -88,6 +88,11 @@ public class ErabiltzaileaEJB {
    	 e.setData(data);
    	 hB.persistDB(e);
    }
+    public Erregistroa programarenInformazioaLortu(int programaId) {
+    	
+    	return hB.find(programaId);
+    	
+    }
     public void gailuBerriaSortu(GailuaJB gailuakDB) {
 
     	gailuakB.persist(gailuakDB);
@@ -120,7 +125,13 @@ public class ErabiltzaileaEJB {
     	
     	gailuakB.update(gailuaDB);
     }
-    
+    public void programaEzabatu(int programaId) {
+		
+		Erregistroa e = hB.find(programaId);
+		hB.erregistroaEzabatuDB(e);
+		
+	}
+
     public List <KontsumoaJB> kontsumoaKalkulatu(LocalDateTime data1,LocalDateTime data2) {
     	
     		List <Erregistroa> erregistroak= new ArrayList<Erregistroa>();

@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import bl.ErabiltzaileaEJB;
+import dl.Erregistroa;
 import dl.GailuaJB;
 
 @Named
@@ -52,9 +53,21 @@ public class ErabiltzaileAtazakMB implements Serializable {
 	}
 	public void programaEditatu01(int idErregistroa) throws IOException {
 		
-		FacesContext.getCurrentInstance().getExternalContext().redirect("gailuak.xhtml");
+		this.ordua = idErregistroa;
+		FacesContext.getCurrentInstance().getExternalContext().redirect("programaEditatu.xhtml");
 		
 	}
+	public void programaEditatu02(String hasieraOrdua, HistorialaViewMB hVMB) throws IOException {
+
+		Erregistroa e = eEJB.programarenInformazioaLortu(ordua);
+//		e.setData(null);
+//		eEJB.programaEditatu(ordua, ordua);
+		
+//		GORDE GAILU BERRIA, ALDATU ERABILTZEN DEN METODOA
+		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("historiala.xhtml");
+		
+    }
 	public void gailuBerriaSortu(GailuaFormMB gailuaMB, GailuAukeraketaViewMB gaViewMB) {
 
 		GailuaJB gailuakB=new GailuaJB(1, gailuaMB.getIzena(), gailuaMB.getMota(), gailuaMB.getIraupena(), gailuaMB.getKontsumoa());
@@ -89,5 +102,16 @@ public class ErabiltzaileAtazakMB implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().redirect("gailuakEditatu.xhtml");
         
     }
+	public Erregistroa programarenInformazioaLortu(int programaId) {
+		
+		return eEJB.programarenInformazioaLortu(programaId);
+		
+	}
+	public void programaEzabatu() throws IOException {
 
+        eEJB.programaEzabatu(ordua);
+        this.ordua=0;
+        FacesContext.getCurrentInstance().getExternalContext().redirect("historiala.xhtml");
+        
+    }
 }

@@ -192,28 +192,28 @@ public class main {
     	       }
     	    }
     	     
-//    	      System.out.println("\n\n\tZer egin nahi duzu?\n\n\t\t00 - Ezer.\n\n\t\t01 - Editatu.\n\n\t\t02 - Ezabatu.\n");
-//
-//    	      int aukera = scanner.nextInt();
-//    	      int ordua;
-//    	 
-//    	      switch(aukera){
-//
-//    	              default:
-//    	                  break;
-//    	              case 1:
+    	      System.out.println("\n\n\tZer egin nahi duzu?\n\n\t\t00 - Ezer.\n\n\t\t01 - Editatu.\n\n\t\t02 - Ezabatu.\n");
+
+    	      int aukera = scanner.nextInt();
+    	      int ordua;
+    	 
+    	      switch(aukera){
+
+    	              default:
+    	                  break;
+    	              case 1:
 //    	                  ordua = lortuOrdua();
 //    	                  System.out.println("\nZer editatu nahi duzu? \n\t 01 - Id-a.\n\t 02 - Ordua.\n");
 //    	                  int aldaketa = scanner.nextInt();
 //    	                  System.out.println("\nSartu balio berria:\n\t");
 //    	                  int balioB = scanner.nextInt();
 //    	                  eEJB.programaEditatu(ordua, aldaketa, balioB);
-//    	                  break;
-//    	              case 2:
-//    	                  ordua = lortuOrdua();
-//    	                  eEJB.gailuaEzabatu(ordua);
-//    	                  break;
-//    	      }
+    	                  break;
+    	              case 2:
+    	                  ordua = scanner.nextInt();
+    	                  eEJB.programaEzabatu(ordua);
+    	                  break;
+    	      }
     }
 //    static void aukera03() {
 //

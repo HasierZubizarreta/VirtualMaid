@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Menú con botones</title>
+    <link rel="stylesheet" href="ESTILOA/gailuak2.css"/>
+  </head>
+  <body id="body">
+  <div class="container">
+    <h:panelGroup rendered="#{erabiltzaileAtazakMB.editatu==false}">
+    <table>
+      <tr>
+        <td>
+        <h:form>
+			<h:commandLink actionListener="#{erabiltzaileAtazakMB.egoeraAldatu()}">
+			  EDITATU
+			</h:commandLink>
+		</h:form>
+		</td>
+      </tr>
+      <tr>
+        <td><h:form>
+			<h:commandLink actionListener="#{erabiltzaileAtazakMB.programaEzabatu()}">
+			  EZABATU
+			</h:commandLink>
+		</h:form>
+		</td>
+      </tr>
+    </table>
+    </h:panelGroup>
+    <h:panelGroup rendered="#{erabiltzaileAtazakMB.editatu==true}">
+    <div class="container">
+    <h:form class="formularioa">
+    <table>
+    <ui:repeat var="programa" value="#{historialaViewMB.programarenInformazioaLortu(erabiltzaileAtazakMB.ordua)}">
+            <tr>
+                <th>IZENA</th><th>HASIERA ORDUA</th><th>EKINTZA</th>
+            </tr>
+            <tr>
+                <td>
+                    <h:outputText id="izena" value="#{programa.gailuIzena}" required="true" requiredMessage="Izena eremua derrigorrezkoa da."/>
+                    <h:message for="izena" style="color:red" />
+                </td>
+                <td>
+                    <h:inputText id="mota" value="#{programa.hasieraOrdua}" required="true" requiredMessage="Mota eremua derrigorrezkoa da."/>
+                    <h:message for="mota" style="color:red" />
+                </td>                    
+                <td>
+                <h:commandButton class="ekintza" actionListener="#{erabiltzaileAtazakMB.programaEditatu02(programa.hasieraOrdua, gailuAukeraketaViewMB)}" id="submit" value="GORDE ALDAKETA" />            
+                </td>
+            </tr>  
+    </ui:repeat>      
+    </table>
+    </h:form>
+    </div>
+    </h:panelGroup>
+    </div>
+  </body>
+</html>

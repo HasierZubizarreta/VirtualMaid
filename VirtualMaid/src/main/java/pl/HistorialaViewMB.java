@@ -33,6 +33,12 @@ public class HistorialaViewMB implements Serializable{
     	
     	return erregistroakDB;
     }
+    
+    public Erregistroa programarenInformazioaLortu(int programaId) {
+    	
+    	return eEJB.programarenInformazioaLortu(programaId);
+    	
+    }
 	
 	public void resetView() {
 		
