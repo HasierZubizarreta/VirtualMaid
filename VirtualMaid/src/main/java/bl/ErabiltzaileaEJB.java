@@ -75,10 +75,11 @@ public class ErabiltzaileaEJB {
     	GailuaJB g = gailuakB.find(gailuIzena);
     	float prezioaOrduko = PrezioakOrdukoB.findPrezioa(ordua);
     	float prezioTotala = prezioaOrduko * g.getIraupena(); //hau hobetu behar da
+    	float kontsumoTotala = g.getKontsumoa() * g.getIraupena();
     	
     	LocalDateTime data = LocalDateTime.of(LocalDate.now(), LocalTime.of(ordua, 0));
     	
-    	Erregistroa e = new Erregistroa(gailuIzena, data, prezioTotala);
+    	Erregistroa e = new Erregistroa(gailuIzena, data, prezioTotala, kontsumoTotala);
     	hB.persistDB(e);
     }
     public void programaEditatu(String hasieraOrdua, int programaId) {
@@ -136,13 +137,13 @@ public class ErabiltzaileaEJB {
 		
 	}
 
-    public List <KontsumoaJB> kontsumoaKalkulatu(LocalDateTime data1,LocalDateTime data2) {
+    public List <KontsumoaJB> egunOsokoKontsumoaKalkulatu(LocalDateTime data1,LocalDateTime data2) {
     	
-    		List <Erregistroa> erregistroak= new ArrayList<Erregistroa>();
-    		List <KontsumoaJB> kontsumoak;
+    		List <Erregistroa> erregistroak = new ArrayList<Erregistroa>();
+    		List <KontsumoaJB> kontsumoak = new ArrayList<KontsumoaJB>();
     		LocalDateTime data = data1;
-    		float kontsumoa;
-    		float prezioa;
+    		float egunOsokoKontsumoa = 0;
+    		float egunOsokoprezioa = 0;
     		long egunak = 0;
     		
     		erregistroak = hB.queryFindData(data1,data2);
@@ -152,12 +153,15 @@ public class ErabiltzaileaEJB {
     			data.plusDays(egunak);
     			for(Erregistroa erregistroa : erregistroak) {
     				if(erregistroa.getData().getDayOfMonth()==data.getDayOfMonth()) {
-    					//kontsumoa+=erregistroa
+    					egunOsokoKontsumoa+=erregistroa.getKontsumoa();
+    					egunOsokoprezioa+=erregistroa.getPrezioa();
     				}
     			}
+    			KontsumoaJB kontsumoa = new KontsumoaJB(data, egunOsokoKontsumoa, egunOsokoprezioa);
+    			kontsumoak.add(kontsumoa);
     			egunak++;
     		}
-    		//plusdays		
+    		
     		return kontsumoak;
     }
 

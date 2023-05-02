@@ -11,6 +11,7 @@ public class Erregistroa implements Serializable, Comparable<Erregistroa>{
 	private String gailuIzena;
 	private LocalDateTime data;
 	private float prezioa;
+	private float kontsumoa;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -18,18 +19,20 @@ public class Erregistroa implements Serializable, Comparable<Erregistroa>{
 		super();
 
 	}
-	public Erregistroa(String gailuIzena, LocalDateTime data, float prezioa) {
+	public Erregistroa(String gailuIzena, LocalDateTime data, float prezioa, float kontsumoa) {
 		super();
 		this.gailuIzena = gailuIzena;
 		this.data = data;
 		this.prezioa = prezioa;
+		this.kontsumoa = kontsumoa;
 	}
-	public Erregistroa(int id, String gailuIzena, LocalDateTime data, float prezioa) {
+	public Erregistroa(int id, String gailuIzena, LocalDateTime data, float prezioa, float kontsumoa) {
 		super();
 		this.id = id;
 		this.gailuIzena = gailuIzena;
 		this.data = data;
 		this.prezioa = prezioa;
+		this.kontsumoa = kontsumoa;
 	}
 	
 	public int getId() {
@@ -56,6 +59,15 @@ public class Erregistroa implements Serializable, Comparable<Erregistroa>{
 	public void setPrezioa(float prezioa) {
 		this.prezioa = prezioa;
 	}
+	
+	public float getKontsumoa() {
+		return kontsumoa;
+	}
+	
+	public void setKontsumoa(float kontsumoa) {
+		this.kontsumoa = kontsumoa;
+	}
+	
 	
 	public String toString() {
 		return "\n"+ this.gailuIzena + ":\tid: "+ this.id + "\tdata: " + this.data.toString() + "\tprezioa: "+ this.prezioa;
