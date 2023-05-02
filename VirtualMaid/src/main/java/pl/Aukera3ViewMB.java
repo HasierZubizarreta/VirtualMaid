@@ -24,16 +24,27 @@ public class Aukera3ViewMB implements Serializable{
 	
 	@EJB private ErabiltzaileaEJB eEJB;
 	
-	 public List<Erregistroa> historialaLortu(Aukera3FormMB a3FormMB ) {
+	 public List<Erregistroa> historialaLortu(Aukera3FormMB a3FormMB) {
 	        
 	    	if(erregistroaDB==null) {
 	    		
-	    		erregistroaDB = eEJB.historialaLortu(a3FormMB.getNoiztik(),a3FormMB.getNora() );
+	    		erregistroaDB = eEJB.historialaLortu(a3FormMB.getNoiztik(),a3FormMB.getNora());
 	    		
 	    	}
 	    	
 	    	return erregistroaDB;
 	    }
+	 
+	 public List<KontsumoaJB> kontsumoaLortu(Aukera3FormMB a3FormMB){
+		 
+		 if(kontsumoaJB==null) {
+			 
+			 kontsumoaJB = eEJB.egunOsokoKontsumoaKalkulatu(a3FormMB.getNoiztik(),a3FormMB.getNora());
+			 
+		 }
+		 
+		 return kontsumoaJB;
+	 }
 	 
 	
 	
