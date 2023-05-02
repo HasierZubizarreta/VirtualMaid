@@ -76,7 +76,11 @@ function prepareRegister() {
 					<ui:repeat  value="#{historialaViewMB.etxekoGailuakLortu()}" var="erregistroa">
 					<li class="single-event" data-start="#{erregistroa.hasieraOrdua}" data-end="#{erregistroa.amaieraOrdua}" data-event="event-4">
 						<h:form>
-						<h:commandLink actionListener="#{erabiltzaileAtazakMB.programaEditatu01(erregistroa.id)}">
+						<h:commandLink actionListener="#{erabiltzaileAtazakMB.programaEditatu01(erregistroa.id)}" rendered="#{erregistroa.hasieraOrduaInt gt erabiltzaileAtazakMB.currentHout}">
+						  <span class="event-date">#{erregistroa.hasieraOrdua} - #{erregistroa.amaieraOrdua}</span>
+						  <em class="event-name">#{erregistroa.gailuIzena}</em>
+						</h:commandLink>
+						<h:commandLink rendered="#{erregistroa.hasieraOrduaInt le erabiltzaileAtazakMB.currentHout}">
 						  <span class="event-date">#{erregistroa.hasieraOrdua} - #{erregistroa.amaieraOrdua}</span>
 						  <em class="event-name">#{erregistroa.gailuIzena}</em>
 						</h:commandLink>

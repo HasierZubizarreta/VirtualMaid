@@ -70,6 +70,10 @@ public class Erregistroa implements Serializable, Comparable<Erregistroa>{
         
 		return horaConFormato;
 	}
+	public int getHasieraOrduaInt() {
+		
+		return data.getHour();
+	}
 	public String getAmaieraOrdua() {
 		
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");

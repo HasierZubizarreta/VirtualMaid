@@ -81,12 +81,12 @@ public class ErabiltzaileaEJB {
     	Erregistroa e = new Erregistroa(gailuIzena, data, prezioTotala);
     	hB.persistDB(e);
     }
-    public void programaEditatu(int ordua, int programaId) {
+    public void programaEditatu(String hasieraOrdua, int programaId) {
 
    	 Erregistroa e = hB.find(programaId);
- 	 LocalDateTime data = LocalDateTime.of(e.getData().toLocalDate(), LocalTime.of(ordua, 0));
- 	 e.setData(data);
- 	 hB.updateDB(e);
+   	 LocalDateTime data = LocalDateTime.of(LocalDate.now(), LocalTime.parse(hasieraOrdua));
+   	 e.setData(data);
+ 	 hB.updateDB(e); 	 
    	 
    }
     public Erregistroa programarenInformazioaLortu(int programaId) {
@@ -104,7 +104,7 @@ public class ErabiltzaileaEJB {
         gailuakB.gailuaEzabatuDB(gailuIzena);
     }
     
-    public void gailuaEditatu(String gailuIzena, int aldaketa, String balioB) {
+    public void gailuaEditatuM(String gailuIzena, int aldaketa, String balioB) {
 
     	GailuaJB gailuaDB= gailuakB.find(gailuIzena);
         switch(aldaketa){
@@ -124,6 +124,10 @@ public class ErabiltzaileaEJB {
             
         }
     	
+    	gailuakB.update(gailuaDB);
+    }
+    public void gailuaEditatu(GailuaJB gailuaDB) {
+
     	gailuakB.update(gailuaDB);
     }
     public void programaEzabatu(int programaId) {

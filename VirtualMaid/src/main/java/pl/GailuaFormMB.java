@@ -66,5 +66,14 @@ public class GailuaFormMB {
 	public void setKontsumoa(float kontsumoa) {
 		this.kontsumoa = kontsumoa;
 	}
+	public void clearForm() {
+		
+		this.idGailua = 0;
+		this.izena = null;
+		this.mota = null;
+		this.iraupena = 0;
+		this.kontsumoa = 0.0f;
+		
+	}
 
 }

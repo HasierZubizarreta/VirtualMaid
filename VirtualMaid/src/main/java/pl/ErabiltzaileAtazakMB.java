@@ -2,6 +2,8 @@ package pl;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -20,6 +22,10 @@ public class ErabiltzaileAtazakMB implements Serializable {
 	private int ordua;
 	private boolean editatu;
 	private String gailuIzena;
+
+	public void setGailuIzena(String gailuIzena) {
+		this.gailuIzena = gailuIzena;
+	}
 
 	public ErabiltzaileAtazakMB() {
 		// TODO Auto-generated constructor stub
@@ -59,12 +65,9 @@ public class ErabiltzaileAtazakMB implements Serializable {
 	}
 	public void programaEditatu02(String hasieraOrdua, HistorialaViewMB hVMB) throws IOException {
 
-		Erregistroa e = eEJB.programarenInformazioaLortu(ordua);
-//		e.setData(null);
-//		eEJB.programaEditatu(ordua, ordua);
-		
-//		GORDE GAILU BERRIA, ALDATU ERABILTZEN DEN METODOA
-		
+//		KONPROBATU EGIN BEHAR DA JATORRIZKO ORDUA > ORAINGO ORDUA ETA ORDU BERRIA
+		eEJB.programaEditatu(hasieraOrdua, ordua);
+		editatu=false;
 		FacesContext.getCurrentInstance().getExternalContext().redirect("historiala.xhtml");
 		
     }
@@ -73,6 +76,7 @@ public class ErabiltzaileAtazakMB implements Serializable {
 		GailuaJB gailuakB=new GailuaJB(1, gailuaMB.getIzena(), gailuaMB.getMota(), gailuaMB.getIraupena(), gailuaMB.getKontsumoa());
         eEJB.gailuBerriaSortu(gailuakB);
         gaViewMB.resetView();
+        gailuaMB.clearForm();
 		
     }
 	public void gailuaEditatu(String gailuIzena, GailuAukeraketaViewMB gaViewMB) throws IOException {
@@ -84,16 +88,18 @@ public class ErabiltzaileAtazakMB implements Serializable {
     }
 	public void gailuaEditatu02(GailuaJB gailua, GailuAukeraketaViewMB gaViewMB) throws IOException {
 
-		GailuaJB jatorrizkoGailua = eEJB.etxekoGailuaLortu(gailuIzena);
-		
-//		GORDE GAILU BERRIA, ALDATU ERABILTZEN DEN METODOA
-		
+		eEJB.gailuaEditatu(gailua);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("gailuakEditatu.xhtml");
 		
     }
 	public void egoeraAldatu() {
 		
 		editatu=true;
+	}
+	public void egoeraAldatu(int lok) {
+		
+		editatu=true;
+		this.gailuIzena=eEJB.programarenInformazioaLortu(ordua).getHasieraOrdua();
 	}
 	public void gailuaEzabatu(String gailuIzena) throws IOException {
 
@@ -112,6 +118,11 @@ public class ErabiltzaileAtazakMB implements Serializable {
         eEJB.programaEzabatu(ordua);
         this.ordua=0;
         FacesContext.getCurrentInstance().getExternalContext().redirect("historiala.xhtml");
+        
+    }
+	public int getCurrentHout() {
+
+		return LocalTime.now().getHour();
         
     }
 }

@@ -15,7 +15,7 @@
       <tr>
         <td>
         <h:form>
-			<h:commandLink actionListener="#{erabiltzaileAtazakMB.egoeraAldatu()}">
+			<h:commandLink actionListener="#{erabiltzaileAtazakMB.egoeraAldatu(0)}">
 			  EDITATU
 			</h:commandLink>
 		</h:form>
@@ -45,11 +45,11 @@
                     <h:message for="izena" style="color:red" />
                 </td>
                 <td>
-                    <h:inputText id="mota" value="#{programa.hasieraOrdua}" required="true" requiredMessage="Mota eremua derrigorrezkoa da."/>
+                    <h:inputText id="mota" value="#{erabiltzaileAtazakMB.gailuIzena}" pattern="\d{2}:\d{2}" required="true" requiredMessage="Mota eremua derrigorrezkoa da."/>
                     <h:message for="mota" style="color:red" />
                 </td>                    
                 <td>
-                <h:commandButton class="ekintza" actionListener="#{erabiltzaileAtazakMB.programaEditatu02(programa.hasieraOrdua, gailuAukeraketaViewMB)}" id="submit" value="GORDE ALDAKETA" />            
+                <h:commandButton class="ekintza" actionListener="#{erabiltzaileAtazakMB.programaEditatu02(erabiltzaileAtazakMB.gailuIzena, historialaViewMB)}" id="submit" value="GORDE ALDAKETA" />            
                 </td>
             </tr>  
     </ui:repeat>      

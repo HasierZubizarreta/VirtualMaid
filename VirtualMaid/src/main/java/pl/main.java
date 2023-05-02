@@ -273,7 +273,7 @@ public class main {
                     int aldaketa = scanner.nextInt();
                     System.out.println("\nSartu balio berria:\n\t");	
                     String balioB = scanner.next();	
-                    eEJB.gailuaEditatu(gailuaID, aldaketa, balioB);
+                    eEJB.gailuaEditatuM(gailuaID, aldaketa, balioB);
                     break;
                 case 2:
                     gailuaID = lortuID();
