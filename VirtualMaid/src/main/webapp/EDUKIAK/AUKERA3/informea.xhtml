@@ -25,7 +25,7 @@
 		<tr>
 			<td class="tdErdiratuta borderIkustezina" style="width: 50%;">
 				NOIZTIK:
-				<h:inputText value="#{aukera3formMB.noiztik}" id="noiztik" required="true" requiredMessage="ERROREA: Data (NOIZTIK) eremua derrigorrezkoa da">
+				<h:inputText value="#{aukera3FormMB.noiztik}" id="noiztik" required="true" requiredMessage="ERROREA: Data (NOIZTIK) eremua derrigorrezkoa da">
 					<f:convertDateTime type="date" pattern="yyyy/MM/dd" timeZone="CET"/>
   				</h:inputText>	
   				<h:message for="noiztik" style="color:red" />		
@@ -49,7 +49,7 @@
  </h:panelGroup>	
  <h:panelGroup rendered="#{aukera3AtazakMB.labOrrModua==1}">	
  <h2>HAUTATUTAKO DATEN ARTEAN EGINDAKO KONTSUMOA</h2>
- 	<h:dataTable value="#{aukera3ViewMB.kontsumoaLortu(aukera3ViewMB)}" var="kontsumoa">
+ 	<h:dataTable value="#{aukera3ViewMB.kontsumoaLortu(aukera3FormMB)}" var="kontsumoa">
  		<h:column>
    			<f:facet name="header">Data</f:facet>
    			#{kontsumoa.data}
