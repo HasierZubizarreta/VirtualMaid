@@ -66,7 +66,7 @@ public class ErabiltzaileAtazakMB implements Serializable {
 	public void programaEditatu02(Erregistroa e, HistorialaViewMB hVMB) throws IOException {
 
 //		KONPROBATU EGIN BEHAR DA JATORRIZKO ORDUA > ORAINGO ORDUA ETA ORDU BERRIA
-//		eEJB.programaEditatu(e);
+		eEJB.programaEditatu(e);
 		editatu=false;
 		FacesContext.getCurrentInstance().getExternalContext().redirect("historiala.xhtml");
 		

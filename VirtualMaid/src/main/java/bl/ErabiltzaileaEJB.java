@@ -71,23 +71,42 @@ public class ErabiltzaileaEJB {
         return gailuakB.find(gailuIzena);
         
     }
-    public void programaBerriaGorde(String gailuIzena, int ordua) {
+    public int programaBerriaGorde(String gailuIzena, int ordua) {
     	GailuaJB g = gailuakB.find(gailuIzena);
-    	float prezioaOrduko = PrezioakOrdukoB.findPrezioa(ordua);
-    	float prezioTotala = prezioaOrduko * g.getIraupena(); //hau hobetu behar da
-    	float kontsumoTotala = g.getKontsumoa() * g.getIraupena();
-    	
-    	LocalDateTime data = LocalDateTime.of(LocalDate.now(), LocalTime.of(ordua, 0));
-    	
-    	Erregistroa e = new Erregistroa(gailuIzena, data, prezioTotala, kontsumoTotala);
-    	hB.persistDB(e);
-    }
-    public void programaEditatu(String hasieraOrdua, int programaId) {
+    	if((LocalTime.now().getHour()*60 + g.getIraupena() <= 1440)) {
+	    	if (LocalTime.now().getHour() < ordua) {
+				float prezioaOrduko;
+				float iraupenaOrduko = g.getIraupena() / 60.0f;
+				int orduak = (int) Math.floor(iraupenaOrduko);
+				float prezioTotala = 0.0f;
+				int i;
+				for (i = 0; i < orduak; i++) {
+					prezioaOrduko = PrezioakOrdukoB.findPrezioa(ordua + i);
+					prezioTotala += prezioaOrduko;
+				}
+				float orduaDezimala = iraupenaOrduko - orduak;
+				prezioaOrduko = PrezioakOrdukoB.findPrezioa(ordua + i);
+				prezioTotala += orduaDezimala * prezioaOrduko;
+				LocalDateTime data = LocalDateTime.of(LocalDate.now(), LocalTime.of(ordua, 0));
+				float kontsumoTotala = g.getKontsumoa() * g.getIraupena();
+				Erregistroa e = new Erregistroa(gailuIzena, data, prezioTotala, kontsumoTotala);
+				hB.persistDB(e);
+				return 1; //programa gehitzen da
+				}
+	    	else
+	    		return 2; //iraganean ezin da programatu
+	    	}
+    	else
+    		return 0; //hurrengo eguneko prezioak ez ditugu
+	}
+    
+    public void programaEditatu(Erregistroa eBerria) {
 
-   	 Erregistroa e = hB.find(programaId);
-   	 LocalDateTime data = LocalDateTime.of(LocalDate.now(), LocalTime.parse(hasieraOrdua));
-   	 e.setData(data);
- 	 hB.updateDB(e); 	 
+   	 Erregistroa eZaharra = hB.find(eBerria.getId());
+//   	 LocalDateTime data = LocalDateTime.of(LocalDate.now(), LocalTime.parse());
+//   	 e.setData(data);
+ 	 hB.updateDB(eBerria); 	 
+ 	 
    	 
    }
     public Erregistroa programarenInformazioaLortu(int programaId) {
