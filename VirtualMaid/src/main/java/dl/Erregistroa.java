@@ -1,8 +1,11 @@
 package dl;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Erregistroa implements Serializable, Comparable<Erregistroa>{
 
@@ -97,6 +100,18 @@ public class Erregistroa implements Serializable, Comparable<Erregistroa>{
 		
 		return horaConFormato;		
 		
+	}
+	public Date getDataF() {
+		
+		Instant instant = data.atZone(ZoneId.systemDefault()).toInstant();
+		Date date = Date.from(instant);
+		return date;
+	}
+	public void setDataF(Date data) {
+		
+		Instant instant = data.toInstant();
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+		this.data = localDateTime;
 	}
 	@Override
 	public int compareTo(Erregistroa e) {

@@ -1,6 +1,7 @@
 package pl;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -8,31 +9,31 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class Aukera3FormMB {
-	private LocalDateTime noiztik;
-	private LocalDateTime nora;
+	private Date noiztik;
+	private Date nora;
 	
 	
 	
 	public Aukera3FormMB() {
 		super();
 	}
-	public Aukera3FormMB(LocalDateTime noiztik, LocalDateTime nora) {
+	public Aukera3FormMB(Date noiztik, Date nora) {
 		super();
 		this.noiztik = noiztik;
 		this.nora = nora;
 	}
 	
 	
-	public LocalDateTime getNoiztik() {
+	public Date getNoiztik() {
 		return noiztik;
 	}
-	public void setNoiztik(LocalDateTime noiztik) {
+	public void setNoiztik(Date noiztik) {
 		this.noiztik = noiztik;
 	}
-	public LocalDateTime getNora() {
+	public Date getNora() {
 		return nora;
 	}
-	public void setNora(LocalDateTime nora) {
+	public void setNora(Date nora) {
 		this.nora = nora;
 	}
 	public void	resetForm() {

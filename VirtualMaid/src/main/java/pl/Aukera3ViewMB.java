@@ -1,6 +1,9 @@
 package pl;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -28,7 +31,11 @@ public class Aukera3ViewMB implements Serializable{
 	        
 	    	if(erregistroaDB==null) {
 	    		
-	    		erregistroaDB = eEJB.historialaLortu(a3FormMB.getNoiztik(),a3FormMB.getNora());
+	    		Instant instantH = a3FormMB.getNoiztik().toInstant();
+	    		Instant instantA = a3FormMB.getNora().toInstant();
+	    		LocalDateTime hasiera = LocalDateTime.ofInstant(instantH, ZoneId.systemDefault());
+	    		LocalDateTime amaiera = LocalDateTime.ofInstant(instantA, ZoneId.systemDefault());
+	    		erregistroaDB = eEJB.historialaLortu(hasiera,amaiera);
 	    		
 	    	}
 	    	
@@ -39,7 +46,11 @@ public class Aukera3ViewMB implements Serializable{
 		 
 		 if(kontsumoaJB==null) {
 			 
-			 kontsumoaJB = eEJB.egunOsokoKontsumoaKalkulatu(a3FormMB.getNoiztik(),a3FormMB.getNora());
+			 	Instant instantH = a3FormMB.getNoiztik().toInstant();
+	    		Instant instantA = a3FormMB.getNora().toInstant();
+	    		LocalDateTime hasiera = LocalDateTime.ofInstant(instantH, ZoneId.systemDefault());
+	    		LocalDateTime amaiera = LocalDateTime.ofInstant(instantA, ZoneId.systemDefault());
+	    		kontsumoaJB = eEJB.egunOsokoKontsumoaKalkulatu(hasiera,amaiera);
 			 
 		 }
 		 

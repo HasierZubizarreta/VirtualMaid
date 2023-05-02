@@ -45,11 +45,13 @@
                     <h:message for="izena" style="color:red" />
                 </td>
                 <td>
-                    <h:inputText id="mota" value="#{erabiltzaileAtazakMB.gailuIzena}" pattern="\d{2}:\d{2}" required="true" requiredMessage="Mota eremua derrigorrezkoa da."/>
+                	<h:inputText value="#{programa.dataF}" id="ordua" required="true" requiredMessage="ERROREA: Data eremua derrigorrezkoa da">
+						<f:convertDateTime type="time" pattern="HH:mm" timeZone="CET"/>
+  					</h:inputText>	
                     <h:message for="mota" style="color:red" />
                 </td>                    
                 <td>
-                <h:commandButton class="ekintza" actionListener="#{erabiltzaileAtazakMB.programaEditatu02(erabiltzaileAtazakMB.gailuIzena, historialaViewMB)}" id="submit" value="GORDE ALDAKETA" />            
+                <h:commandButton class="ekintza" actionListener="#{erabiltzaileAtazakMB.programaEditatu02(gailuBerria, historialaViewMB)}" id="submit" value="GORDE ALDAKETA" />            
                 </td>
             </tr>  
     </ui:repeat>      
