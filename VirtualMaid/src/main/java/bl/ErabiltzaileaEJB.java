@@ -87,7 +87,8 @@ public class ErabiltzaileaEJB {
 				float orduaDezimala = iraupenaOrduko - orduak;
 				prezioaOrduko = PrezioakOrdukoB.findPrezioa(ordua + i);
 				prezioTotala += orduaDezimala * prezioaOrduko;
-				LocalDateTime data = LocalDateTime.of(LocalDate.now(), LocalTime.of(ordua, 0));
+				//LocalDateTime data = LocalDateTime.of(LocalDate.now(), LocalTime.of(ordua, 0));
+				LocalDateTime data = LocalDateTime.of(LocalDate.of(2023, 05, 01), LocalTime.of(ordua, 0));
 				float kontsumoTotala = g.getKontsumoa() * g.getIraupena();
 				Erregistroa e = new Erregistroa(gailuIzena, data, prezioTotala, kontsumoTotala);
 				hB.persistDB(e);
@@ -161,15 +162,13 @@ public class ErabiltzaileaEJB {
     		List <Erregistroa> erregistroak = new ArrayList<Erregistroa>();
     		List <KontsumoaJB> kontsumoak = new ArrayList<KontsumoaJB>();
     		LocalDateTime data = data1;
-    		float egunOsokoKontsumoa = 0;
-    		float egunOsokoprezioa = 0;
-    		long egunak = 0;
     		
     		erregistroak = hB.queryFindData(data1,data2);
     		
     		
     		while(data.isBefore(data2)) {
-    			data.plusDays(egunak);
+    			float egunOsokoKontsumoa = 0;
+        		float egunOsokoprezioa = 0;
     			for(Erregistroa erregistroa : erregistroak) {
     				if(erregistroa.getData().getDayOfMonth()==data.getDayOfMonth()) {
     					egunOsokoKontsumoa+=erregistroa.getKontsumoa();
@@ -178,7 +177,7 @@ public class ErabiltzaileaEJB {
     			}
     			KontsumoaJB kontsumoa = new KontsumoaJB(data, egunOsokoKontsumoa, egunOsokoprezioa);
     			kontsumoak.add(kontsumoa);
-    			egunak++;
+    			data = data.plusDays(1);
     		}
     		
     		return kontsumoak;
