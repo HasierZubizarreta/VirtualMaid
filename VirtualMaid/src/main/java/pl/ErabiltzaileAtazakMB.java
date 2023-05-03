@@ -45,7 +45,8 @@ public class ErabiltzaileAtazakMB implements Serializable {
 
 	public void programaBerriaGorde(String gailuIzena, GailuAukeraketaViewMB gViewMB) throws IOException{
 	    
-		eEJB.programaBerriaGorde(gailuIzena, ordua); 
+		int emaitza = eEJB.programaBerriaGorde(gailuIzena, ordua); 
+		System.out.print("Arazoa: "+emaitza);
 		gViewMB.resetView();
 		ordua = 0;
 		FacesContext.getCurrentInstance().getExternalContext().redirect("../");
@@ -68,6 +69,8 @@ public class ErabiltzaileAtazakMB implements Serializable {
 //		KONPROBATU EGIN BEHAR DA JATORRIZKO ORDUA > ORAINGO ORDUA ETA ORDU BERRIA
 		eEJB.programaEditatu(e);
 		editatu=false;
+		this.ordua = 0;
+		hVMB.resetView();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("historiala.xhtml");
 		
     }
@@ -89,6 +92,7 @@ public class ErabiltzaileAtazakMB implements Serializable {
 	public void gailuaEditatu02(GailuaJB gailua, GailuAukeraketaViewMB gaViewMB) throws IOException {
 
 		eEJB.gailuaEditatu(gailua);
+		gaViewMB.resetView();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("gailuakEditatu.xhtml");
 		
     }
@@ -101,7 +105,7 @@ public class ErabiltzaileAtazakMB implements Serializable {
 		editatu=true;
 		this.gailuIzena=eEJB.programarenInformazioaLortu(ordua).getHasieraOrdua();
 	}
-	public void gailuaEzabatu(String gailuIzena) throws IOException {
+	public void gailuaEzabatu() throws IOException {
 
         eEJB.gailuaEzabatu(gailuIzena);
         this.gailuIzena=null;
@@ -125,4 +129,12 @@ public class ErabiltzaileAtazakMB implements Serializable {
 		return LocalTime.now().getHour();
         
     }
+	public void clearSession() throws IOException {
+		
+		this.gailuIzena=null;
+		this.ordua=0;
+		editatu=false;
+        FacesContext.getCurrentInstance().getExternalContext().redirect("../");
+		
+	}
 }

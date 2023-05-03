@@ -1,13 +1,48 @@
-.codyhouse {
-    text-align: center;
-    margin: 40px 0;
-  }
+
   /* reset css */
   /* https://meyerweb.com/eric/tools/css/reset/ 
      v2.0 | 20110126
      License: none (public domain)
   */
-  
+  .menuNagusirakoBotoia{
+	
+	background-color: #707070; /* color de fondo */
+	border: none; /* quitar borde */
+	border-radius: 1px; /* redondear bordes */
+	cursor: pointer; /* cursor con forma de mano */
+	/* font-size: 16px; */ /* tamaño de la fuente */
+	width: 100px;
+	height: 25px;
+	float: right; /* alinear a la derecha */
+  	margin-right: 20px; /* margen derecho para separar del borde */
+  	text-align: center;
+  	font-size: 10px;
+  	padding: 0px;
+  	all: initial;
+}
+.menuNagusirakoBotoia:hover{
+	background-color: #ffffff; 
+	border: 1px solid #707070;
+	padding: 0px;
+}
+.menuNagusirakoBotoiaInput{
+	all: initial;
+	background-color: #707070;
+	margin: 2px; 
+  	color: white;
+  	padding: 0px;
+  	width: 100px;
+	height: 25px;	
+	font-family: "Source Sans Pro", sans-serif;
+	float: right; /* alinear a la derecha */
+  	margin-right: 20px; /* margen derecho para separar del borde */
+  	text-align: center;
+}
+.menuNagusirakoBotoiaInput:hover{
+	background-color: inherit;	
+	color: black;
+	border: 1px solid #707070;
+}
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,

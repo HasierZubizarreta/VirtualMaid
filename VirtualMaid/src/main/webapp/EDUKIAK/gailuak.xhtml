@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="ESTILOA/gailuak.css"></link>
   </head>
   <body id="body">
+  <form class="menuNagusirakoBotoia" action="#{request.contextPath}/index.html">
+	<input class="menuNagusirakoBotoiaInput" type="submit" id="submit" value="HOME" />
+  </form>
     <!-- Crea el menú con cuatro botones -->
     <div class="container">
     <h:dataTable value="#{gailuAukeraketaViewMB.etxekoGailuakLortu()}" var="gailua"> 

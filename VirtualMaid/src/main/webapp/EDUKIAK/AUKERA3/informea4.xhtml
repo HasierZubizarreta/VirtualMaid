@@ -11,6 +11,95 @@
 <form class="menuNagusirakoBotoia" action="#{request.contextPath}/index.html">
 	<input class="menuNagusirakoBotoiaInput" type="submit" id="submit" value="HOME" />
 </form>
+<div class="container">
+    <div class="column">
+      <canvas id="myChartAste"></canvas>
+    </div> 
+    <div class="column">
+      <canvas id="myChartHilabete"></canvas>
+    </div>
+</div>
+<h:outputScript>
+const ctxA = document.getElementById('myChartAste').getContext('2d');
+const ctxH = document.getElementById('myChartHilabete').getContext('2d');
+
+const dataAD = [5.6,#{aukera3ViewMB.astekoKontsumoaLortu().get(1).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(2).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(3).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(4).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(5).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(6).prezioa}];
+const dataHD = [50, 30, 40, 60, 80, 70, 20,10,32,19,56,69];
+
+const backgroundColor = Array(7).fill('rgba(255, 99, 132, 0.2)');
+const borderColor = Array(7).fill('rgba(255, 99, 132, 1)');
+
+// Datos para el histograma
+const dataA = {
+  labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+  datasets: [{
+    label: 'Ejemplo de histograma',
+    data: dataAD,
+    backgroundColor: backgroundColor,
+    borderColor: borderColor,
+    borderWidth: 1
+  }]
+};
+
+// Configuración del histograma
+const optionsA = {
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: 'Días de la semana'
+      }
+    },
+    y: {
+      title: {
+        display: true,
+        text: 'Valores'
+      }
+    }
+  }
+};
+// Datos para el histograma
+const dataH = {
+  labels: ['Urtarrila','Otsaila','Martxoa','Apirila','Maiatza','Ekaina','Uztaila','Abuztua','Iraila','Urria','Azaroa','Abendua'],
+  datasets: [{
+    label: 'Ejemplo de histograma',
+    data: dataHD,
+    backgroundColor: backgroundColor,
+    borderColor: borderColor,
+    borderWidth: 1
+  }]
+};
+
+// Configuración del histograma
+const optionsH = {
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: 'Meses del Año'
+      }
+    },
+    y: {
+      title: {
+        display: true,
+        text: 'Valores'
+      }
+    }
+  }
+};
+
+// Creamos el histograma
+const myChartA = new Chart(ctxA, {
+  type: 'bar',
+  data: dataA,
+  options: optionsA
+});
+const myChartH = new Chart(ctxH, {
+  type: 'bar',
+  data: dataH,
+  options: optionsH
+});
+</h:outputScript>
 <h2>GASTUA</h2>
 <br/>
  <h:form>

@@ -1,12 +1,21 @@
 #body {
     background-color: white;
     }
-#menu {
-    background-color: #707070;
-    padding: 1px;
+form, h1, h2 {
+    border: none;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     border-radius: 0px;
-    text-align: center;
-    justify-content: center;
+    cursor: pointer;
+    height: 35px;
+    margin: 0 auto;
+    padding: 5px;
+    display: table-cell;
+    vertical-align: middle;
+    /* font-weight: bold; */
+    font-size: 1rem;
+    font-family: "Source Sans Pro", sans-serif;
+    color: #222222;
     }
 .menuNagusirakoBotoia{
 	
@@ -21,12 +30,10 @@
   	margin-right: 20px; /* margen derecho para separar del borde */
   	text-align: center;
   	font-size: 10px;
-  	padding: 0px;
 }
 .menuNagusirakoBotoia:hover{
 	background-color: #ffffff; 
 	border: 1px solid #707070;
-	padding: 0px;
 }
 .menuNagusirakoBotoiaInput{
 	/* width: 100px;
@@ -35,40 +42,23 @@
 	display: inline-block; /* convertir en elemento en línea */
   	margin: 0 auto; 
   	color: white;
-  	padding: 0px;
-  	width: 100px;
-	height: 25px;	
+	
 }
 .menuNagusirakoBotoiaInput:hover{
 	background-color: inherit;	
 	color: black;
 }
-form {
+.container {
     display: flex;
-    margin: 10px 0;
-    padding: 1px;
-    border: none;
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    border-radius: 0px;
-    cursor: pointer;
-    width: 610px;
-    height: 35px;
-    margin: 0 auto;
-    padding: 5px;
-    display: table-cell;
-    vertical-align: middle;
-    /* font-weight: bold; */
-    font-size: 55px;
-    font-size: 1rem;
-    font-family: "Source Sans Pro", sans-serif;
-    color: #222222;
-    }
-.formularioa{
-	width: auto;
-    height: auto;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    text-align: center;
+        } 
+ .container > div {
+  flex-basis: 500px;
 }
-  input {
+  input{
     display: flex;
     margin: 10px 0;
     padding: 1px;
@@ -77,8 +67,8 @@ form {
     color: rgb(0, 0, 0);
     border-radius: 0px;
     cursor: pointer;
-    width: 96%;
-    height: 35px;
+    width: 100%;
+    height: 100%;
     margin: 0 auto;
     padding: 5px;
     display: table-cell;
@@ -92,32 +82,6 @@ form {
 input:hover {
     background-color: #707070;
     }
-.ekintza{
-	width: 98%;
-    height: 45px;
-    }
-.lista{
-	width: 200px;
-    height: 35px;
-}
-img {
-    width: 30px;
-    /* height: 30px; */
-    margin-right: 10px;
-    border-radius: 5%;
-    padding: 0px;
-    vertical-align: middle;
-    }
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 300px;
-    text-align: center;
-        }  
-br {
-    height: 5.1; /* reduce el espaciado entre las líneas de texto a la mitad */
-    }  
 table {
     border-collapse: collapse;
     border: 0.7px solid gray;
@@ -125,15 +89,25 @@ table {
     background-color: #707070;
     /* width: 650px; */
     /* height: 130px; */
+    font-size: 55px;
+    font-size: 1rem;
+    font-family: "Source Sans Pro", sans-serif;
+    color: #222222;
+    text-align: center;
+    align-content: center;
+    margin: 0 auto; /* Establecer margen izquierdo y derecho automáticos */
+     width: 50%; /* Establecer ancho de la tabla */
     }
 
 td {
     padding: 0.5px;
-    width: 500px;
-    background-color: #707070;
+    width: 300px;
+    background-color: #ffffff;
+    
     }
 th {
     padding: 0.5px;
     background-color: #707070;
     width: 200px;
+    color: white;
     }

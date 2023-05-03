@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="ESTILOA/gailuak2.css"/>
   </head>
   <body id="body">
+  <h:form class="menuNagusirakoBotoia">
+  	<h:commandLink class="menuNagusirakoBotoia" action="#{erabiltzaileAtazakMB.clearSession()}">
+	<input class="menuNagusirakoBotoiaInput" type="submit" id="submit" value="HOME" />
+	</h:commandLink>
+  </h:form>
   <div class="container">
     <h:panelGroup rendered="#{erabiltzaileAtazakMB.editatu==false}">
     <table>

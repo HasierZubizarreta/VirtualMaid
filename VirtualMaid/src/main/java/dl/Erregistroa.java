@@ -91,9 +91,12 @@ public class Erregistroa implements Serializable, Comparable<Erregistroa>{
 	}
 	public String getAmaieraOrdua() {
 		
+		GailuakB gailuakB=new GailuakB();
+		GailuaJB gailua = gailuakB.find(gailuIzena);
+		
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
 		
-		LocalDateTime ordua = data.plusMinutes(90);
+		LocalDateTime ordua = data.plusMinutes(gailua.getIraupena());
 		String horaConFormato = ordua.format(formato);
 		
 		System.out.print(horaConFormato);

@@ -26,6 +26,7 @@ public class Aukera3AtazakMB implements Serializable{
 	public void labOrrModuaAldatu(Aukera3ViewMB a3ViewMB) {	
 		//a3ViewMB.resetView();
 		labOrrModua=1; //1: Laburpenen orrialdean festarako formularioa + dagokion taula bistaratu
+		a3ViewMB.resetView();
 	}
 
 }
