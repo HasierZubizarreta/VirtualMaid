@@ -8,9 +8,11 @@
 </head>
 <h:body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-<form class="menuNagusirakoBotoia" action="#{request.contextPath}/index.html">
+<h:form class="menuNagusirakoBotoia">
+  	<h:commandLink class="menuNagusirakoBotoia" action="#{aukera3AtazakMB.resetView()}">
 	<input class="menuNagusirakoBotoiaInput" type="submit" id="submit" value="HOME" />
-</form>
+	</h:commandLink>
+</h:form>
 <div class="container">
     <div class="column">
       <canvas id="myChartAste"></canvas>
@@ -23,7 +25,7 @@
 const ctxA = document.getElementById('myChartAste').getContext('2d');
 const ctxH = document.getElementById('myChartHilabete').getContext('2d');
 
-const dataAD = [5.6,#{aukera3ViewMB.astekoKontsumoaLortu().get(1).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(2).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(3).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(4).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(5).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(6).prezioa}];
+const dataAD = [#{aukera3ViewMB.astekoKontsumoaLortu().get(0).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(1).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(2).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(3).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(4).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(5).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(6).prezioa}];
 const dataHD = [50, 30, 40, 60, 80, 70, 20,10,32,19,56,69];
 
 const backgroundColor = Array(7).fill('rgba(255, 99, 132, 0.2)');
@@ -31,9 +33,9 @@ const borderColor = Array(7).fill('rgba(255, 99, 132, 1)');
 
 // Datos para el histograma
 const dataA = {
-  labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+  labels: ['Astelehena', 'Asteartea', 'Asteazkena', 'Osteguna', 'Ostirala', 'Larunbata', 'Igandea'],
   datasets: [{
-    label: 'Ejemplo de histograma',
+    label: 'Asteroko Gastua',
     data: dataAD,
     backgroundColor: backgroundColor,
     borderColor: borderColor,
@@ -47,13 +49,13 @@ const optionsA = {
     x: {
       title: {
         display: true,
-        text: 'Días de la semana'
+        text: 'Asteko Egunak'
       }
     },
     y: {
       title: {
         display: true,
-        text: 'Valores'
+        text: 'Gastua (€)'
       }
     }
   }
@@ -62,7 +64,7 @@ const optionsA = {
 const dataH = {
   labels: ['Urtarrila','Otsaila','Martxoa','Apirila','Maiatza','Ekaina','Uztaila','Abuztua','Iraila','Urria','Azaroa','Abendua'],
   datasets: [{
-    label: 'Ejemplo de histograma',
+    label: 'Hileroko Gastua',
     data: dataHD,
     backgroundColor: backgroundColor,
     borderColor: borderColor,
@@ -104,16 +106,17 @@ const myChartH = new Chart(ctxH, {
 <br/>
  <h:form>
 	<table class="formularioa">
+	<tr>
+        <th>NOIZTIK</th><th>NORA</th><th>EKINTZA</th>
+        </tr>
 		<tr>
-			<td style="width: 50%;">
-				NOIZTIK:
+			<td>
 				<h:inputText value="#{aukera3FormMB.noiztik}" id="noiztik" required="true" requiredMessage="ERROREA: Data (NOIZTIK) eremua derrigorrezkoa da">
 					<f:convertDateTime type="date" pattern="yyyy/MM/dd" timeZone="CET"/>
   				</h:inputText>	
   				<h:message for="noiztik" style="color:red" />		
 			</td>
-			<td style="width: 50%;">
-				NORA:
+			<td>
 				<h:inputText value="#{aukera3FormMB.nora}" id="nora" required="true" requiredMessage="ERROREA: Data (NORA) eremua derrigorrezkoa da">
 					<f:convertDateTime type="date" pattern="yyyy/MM/dd" timeZone="CET"/>
   				</h:inputText>	

@@ -19,9 +19,6 @@ form, h1, h2 {
     }
 .menuNagusirakoBotoia{
 	
-	background-color: #707070; /* color de fondo */
-	border: none; /* quitar borde */
-	border-radius: 1px; /* redondear bordes */
 	cursor: pointer; /* cursor con forma de mano */
 	/* font-size: 16px; */ /* tamaño de la fuente */
 	width: 100px;
@@ -31,17 +28,17 @@ form, h1, h2 {
   	text-align: center;
   	font-size: 10px;
 }
-.menuNagusirakoBotoia:hover{
-	background-color: #ffffff; 
-	border: 1px solid #707070;
-}
 .menuNagusirakoBotoiaInput{
 	/* width: 100px;
 	height: 30px; */
-	background-color: inherit;
+	background-color: #707070; /* color de fondo */
+	border: none; /* quitar borde */
+	border-radius: 1px; /* redondear bordes */
 	display: inline-block; /* convertir en elemento en línea */
   	margin: 0 auto; 
   	color: white;
+  	float: right; /* alinear a la derecha */
+  	margin-right: 20px; /* margen derecho para separar del borde */
 	
 }
 .menuNagusirakoBotoiaInput:hover{

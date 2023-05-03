@@ -31,7 +31,7 @@ const borderColor = Array(7).fill('rgba(255, 99, 132, 1)');
 
 // Datos para el histograma
 const dataA = {
-  labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+  labels: ['Astelehena', 'Asteartea', 'Asteazkena', 'Osteguna', 'Ostirala', 'Larunbata', 'Igandea'],
   datasets: [{
     label: 'Ejemplo de histograma',
     data: dataAD,
@@ -47,13 +47,13 @@ const optionsA = {
     x: {
       title: {
         display: true,
-        text: 'Días de la semana'
+        text: 'Asteko Egunak'
       }
     },
     y: {
       title: {
         display: true,
-        text: 'Valores'
+        text: 'Gastua (€)'
       }
     }
   }
@@ -62,7 +62,7 @@ const optionsA = {
 const dataH = {
   labels: ['Urtarrila','Otsaila','Martxoa','Apirila','Maiatza','Ekaina','Uztaila','Abuztua','Iraila','Urria','Azaroa','Abendua'],
   datasets: [{
-    label: 'Ejemplo de histograma',
+    label: 'Hileroko Gastua',
     data: dataHD,
     backgroundColor: backgroundColor,
     borderColor: borderColor,
@@ -76,13 +76,13 @@ const optionsH = {
     x: {
       title: {
         display: true,
-        text: 'Meses del Año'
+        text: 'Hilabetea'
       }
     },
     y: {
       title: {
         display: true,
-        text: 'Valores'
+        text: 'Gastua (€)'
       }
     }
   }

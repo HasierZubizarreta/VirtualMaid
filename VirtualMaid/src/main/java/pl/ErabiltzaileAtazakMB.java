@@ -18,6 +18,10 @@ import dl.GailuaJB;
 @SessionScoped
 public class ErabiltzaileAtazakMB implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@EJB private ErabiltzaileaEJB eEJB;
 	private int ordua;
 	private boolean editatu;
