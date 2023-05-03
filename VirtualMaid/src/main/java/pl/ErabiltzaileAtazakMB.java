@@ -2,7 +2,6 @@ package pl;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.ejb.EJB;
@@ -46,9 +45,13 @@ public class ErabiltzaileAtazakMB implements Serializable {
 	public String getGailuIzena() {
 		return gailuIzena;
 	}
+	
+	public String[] gailuMotakLortu() {
+		return ErabiltzaileaEJB.gailuMotak;
+	}
 
-	public void programaBerriaGorde(String gailuIzena, GailuAukeraketaViewMB gViewMB) throws IOException{
-	    
+	public void programaBerriaGorde(String gailuIzena, String gailuPrograma, GailuAukeraketaViewMB gViewMB) throws IOException{
+		eEJB.gailuaProgramaAukeratu(gailuIzena, gailuPrograma);
 		int emaitza = eEJB.programaBerriaGorde(gailuIzena, ordua); 
 		System.out.print("Arazoa: "+emaitza);
 		gViewMB.resetView();
@@ -80,8 +83,9 @@ public class ErabiltzaileAtazakMB implements Serializable {
     }
 	public void gailuBerriaSortu(GailuaFormMB gailuaMB, GailuAukeraketaViewMB gaViewMB) {
 
-		GailuaJB gailuakB=new GailuaJB(1, gailuaMB.getIzena(), gailuaMB.getMota(), gailuaMB.getIraupena(), gailuaMB.getKontsumoa());
-        eEJB.gailuBerriaSortu(gailuakB);
+		//GailuaJB gailuakB=new GailuaJB(1, gailuaMB.getIzena(), gailuaMB.getMota(), gailuaMB.getIraupena(), gailuaMB.getKontsumoa());
+		GailuaJB gailuakB = eEJB.gailuBerriaLortu(gailuaMB.getIzena(), gailuaMB.getMota(), gailuaMB.getIraupena(), gailuaMB.getKontsumoa());
+		eEJB.gailuBerriaSortu(gailuakB);
         gaViewMB.resetView();
         gailuaMB.clearForm();
 		
@@ -139,6 +143,13 @@ public class ErabiltzaileAtazakMB implements Serializable {
 		this.ordua=0;
 		editatu=false;
         FacesContext.getCurrentInstance().getExternalContext().redirect("../");
+		
+	}
+	public void ordukoProgramakErakutsi(String ordua, HistorialaViewMB hVMB) {
+		
+		editatu=true;
+		this.gailuIzena=ordua;
+		hVMB.resetView();
 		
 	}
 }

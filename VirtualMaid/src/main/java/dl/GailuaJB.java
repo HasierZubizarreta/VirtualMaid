@@ -1,14 +1,21 @@
 package dl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class GailuaJB implements Serializable{
+public abstract class GailuaJB implements Serializable{
 
 	private int idGailua;
 	private String izena;	
 	private String mota;
 	private int iraupena;	
 	private float kontsumoa;
+	
+	//Semeentzako aldagaiak
+	protected List<String> programak = new ArrayList<String>();
+	protected String irudia;
+	private int iraupenaPertsonala;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -24,6 +31,9 @@ public class GailuaJB implements Serializable{
 	}
 	
 
+	protected abstract void programakBete();
+	public abstract void setIraupena(String programa);
+	
 	public int getIdGailua() {
 		return idGailua;
 	}
@@ -64,9 +74,29 @@ public class GailuaJB implements Serializable{
 		this.kontsumoa = kontsumoa;
 	}
 	
+	
+	public void setIraupenaPertsonala(int iraupenaPertsonala) {
+		this.iraupenaPertsonala = iraupenaPertsonala;
+	}
+	
+	public int getIraupenaPertsonala() {
+		return iraupenaPertsonala;
+	}
+
+	public List<String> getProgramak() {
+		return programak;
+	}
+
+	public String getIrudia() {
+		return irudia;
+	}
+
+
 	public String toString() {
 		return "GailuaJB [idGailua=" + idGailua + ", izena=" + izena + ", mota=" + mota + ", iraupena=" + iraupena + ", kontsumoa=" + kontsumoa+ "]";
 	}
+	
+	
 	
 	
 	

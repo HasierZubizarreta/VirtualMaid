@@ -1,11 +1,15 @@
 package pl;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import bl.ErabiltzaileaEJB;
 import dl.Erregistroa;
 import dl.GailuaJB;
+import dl.GailuaOrokorra;
 import dl.PrezioaJB;
 
 public class main {
@@ -43,6 +47,9 @@ public class main {
                 break;
             case 4:
                 aukera04();
+                break;
+            case 5:
+                aukera05();
                 break;
             
         }
@@ -263,7 +270,7 @@ public class main {
                     String kontsumoa = scanner.next();	
                     System.out.println("\nGailu berria gordetzen...\n");
 
-                    gailuakB=new GailuaJB(Integer.parseInt("1"), izena, mota, Integer.parseInt(iraupena), Float.parseFloat(kontsumoa));
+                    gailuakB=new GailuaOrokorra(Integer.parseInt("1"), izena, Integer.parseInt(iraupena), Float.parseFloat(kontsumoa));
               	  
                     eEJB.gailuBerriaSortu(gailuakB);
                     break;
@@ -290,5 +297,63 @@ public class main {
 
 
     }
+    static void aukera05() {
+    	
+    	List<List<String>> unitateak = new ArrayList<>(); 
+    	
+    	List<Erregistroa> erregistroakDB = eEJB.egunekoProgramakLortu();
+    	System.out.println("Programak: "+erregistroakDB+"\n");	
+    		for(int i=0; i<24;i++) {
 
+    			List<String> orduka = new ArrayList<>();
+	    		for(int j=0; j<erregistroakDB.size();j++) {
+	    			
+	    			LocalTime timeH = LocalTime.parse(erregistroakDB.get(j).getHasieraOrdua(), DateTimeFormatter.ofPattern("HH:mm"));
+	    			LocalTime timeA = LocalTime.parse(erregistroakDB.get(j).getAmaieraOrdua(), DateTimeFormatter.ofPattern("HH:mm"));
+	    			
+	    			System.out.println("Orduak "+i+" : "+timeH.getHour()+" "+timeA.getHour()+"\n");	
+	    			
+	    			if(timeH.getHour()<= i && i <= timeA.getHour() && orduka.size()==0) {
+	    				
+	    				if(i<9) {
+	    					orduka.add("0"+i+":00");
+	    					orduka.add("0"+(i+1)+":00");
+	    				}
+	    				else if(i==9) {
+	    					orduka.add("0"+i+":00");
+	    					orduka.add(+(i+1)+":00");
+	    				}
+	    				else {
+	    					orduka.add(i+":00");
+	    					orduka.add(+(i+1)+":00");
+	    				}
+	    				orduka.add(erregistroakDB.get(j).getGailuIzena());
+	    				
+	    			}
+	    			else if(timeH.getHour()<= i && i <= timeA.getHour() && orduka.get(2).length()<30) {
+	    				
+	    				String balioa = orduka.get(2);
+	    				orduka.set(2,balioa+", "+erregistroakDB.get(j).getGailuIzena());
+	    				
+	    			}
+	    			else if(timeH.getHour()<= i && i <= timeA.getHour() && orduka.get(2).length()>=30) {
+	    				
+	    				String balioa = orduka.get(2);
+	    				orduka.set(2,balioa+", ...");
+	    				break;
+	    				
+	    			}
+    			
+	    		}
+	    		if(orduka.size()!=0) {
+	    			
+	    			unitateak.add(orduka);
+	    			System.out.println("Lerro berria gordeta: "+orduka.get(0)+orduka.get(1)+orduka.get(2)+"\n");
+	    			
+	    		}
+	    		
+    		}
+    		
+    	}
+    	
 }

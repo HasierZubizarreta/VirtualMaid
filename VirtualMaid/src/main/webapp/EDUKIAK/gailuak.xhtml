@@ -18,8 +18,12 @@
         <h:column>
         	<f:facet name="header"><h:outputText value="#{erabiltzaileAtazakMB.ordua}" /></f:facet>
         	<h:form>
-        	<img id="imga" src="IRUDIAK/electrodomesticos.jpg"/>
-        	<h:commandButton actionListener="#{erabiltzaileAtazakMB.programaBerriaGorde(gailua.izena,gailuAukeraketaViewMB)}" id="submit" value="#{gailua.izena}"/>
+        	<img id="imga" src="IRUDIAK/electrodomesticos.jpg"/> 
+			<!-- <h:graphicImage id="imga" value="#{resource[gailua.irudia]}" /> -->
+        	<h:selectOneMenu value="#{gailuaPrograma}">
+                <f:selectItems value="#{gailua.programak}" />
+            </h:selectOneMenu>
+        	<h:commandButton actionListener="#{erabiltzaileAtazakMB.programaBerriaGorde(gailua.izena,gailuaPrograma,gailuAukeraketaViewMB)}" id="submit" value="#{gailua.izena}"/>
         	</h:form>  
         </h:column>              
     </h:dataTable>

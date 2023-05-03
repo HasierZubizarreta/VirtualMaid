@@ -279,7 +279,7 @@
   .cd-schedule .events .single-event a {
     display: block;
     height: 100%;
-    padding: .8em;
+    padding: .3em;
   }
   
   @media only screen and (min-width: 550px) {
@@ -352,7 +352,7 @@
       margin-right: 0;
     }
     .cd-schedule .events .single-event a {
-      padding: 1.2em;
+      padding: 0em;
     }
     .cd-schedule .events .single-event:last-of-type {
       /* reset style */

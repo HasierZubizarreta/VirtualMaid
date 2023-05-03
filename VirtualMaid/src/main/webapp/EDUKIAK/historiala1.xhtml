@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+    <link rel="stylesheet" href="ESTILOA/historiala.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="historiala.js"></script>
+</head>
+<h:body>
+<form class="menuNagusirakoBotoia" action="#{request.contextPath}/index.html">
+	<input class="menuNagusirakoBotoiaInput" type="submit" id="submit" value="HOME" />
+</form>
+<div class="cd-schedule loading" style="position:absolute;left:30%;">
+	<div class="timeline">
+		<ul>
+			<li><span>00:00</span></li>
+			<li><span>00:30</span></li>
+			<li><span>01:00</span></li>
+			<li><span>01:30</span></li>
+			<li><span>02:00</span></li>
+			<li><span>02:30</span></li>
+			<li><span>03:00</span></li>
+			<li><span>03:30</span></li>
+			<li><span>04:00</span></li>
+			<li><span>04:30</span></li>
+			<li><span>05:00</span></li>
+			<li><span>05:30</span></li>
+			<li><span>06:00</span></li>
+			<li><span>06:30</span></li>
+			<li><span>07:00</span></li>
+			<li><span>07:30</span></li>
+			<li><span>08:00</span></li>
+			<li><span>08:30</span></li>
+			<li><span>09:00</span></li>
+			<li><span>09:30</span></li>
+			<li><span>10:00</span></li>
+			<li><span>10:30</span></li>
+			<li><span>11:00</span></li>
+			<li><span>11:30</span></li>
+			<li><span>12:00</span></li>
+			<li><span>12:30</span></li>
+			<li><span>13:00</span></li>
+			<li><span>13:30</span></li>
+			<li><span>14:00</span></li>
+			<li><span>14:30</span></li>
+			<li><span>15:00</span></li>
+			<li><span>15:30</span></li>
+			<li><span>16:00</span></li>
+			<li><span>16:30</span></li>
+			<li><span>17:00</span></li>
+			<li><span>17:30</span></li>
+			<li><span>18:00</span></li>
+			<li><span>18:30</span></li>
+			<li><span>19:00</span></li>
+			<li><span>19:30</span></li>
+			<li><span>20:00</span></li>
+			<li><span>20:30</span></li>
+			<li><span>21:00</span></li>
+			<li><span>21:30</span></li>
+			<li><span>22:00</span></li>
+			<li><span>22:30</span></li>
+			<li><span>23:00</span></li>
+			<li><span>23:30</span></li>
+		</ul>
+	</div> <!-- .timeline -->
+	<div class="events">
+		<ul class="wrap">
+			<li class="events-group">
+				<div class="top-info"><span>#{historialaViewMB.astekoEgunaLortu()}</span></div>
+				<ul>
+					<ui:repeat  value="#{historialaViewMB.egunekoProgramakBatutaLortu()}" var="erregistroa">
+					<li class="single-event" data-start="#{erregistroa.get(0)}" data-end="#{erregistroa.get(1)}" data-event="event-4" style="width: 100%">
+						<h:form>
+						<h:commandLink actionListener="#{erabiltzaileAtazakMB.ordukoProgramakErakutsi(erregistroa.get(0),historialaViewMB)}">
+						  <span class="event-date">#{erregistroa.get(0)} - #{erregistroa.get(1)}</span>
+						  <em class="event-name">#{erregistroa.get(2)}</em>
+						</h:commandLink>
+						</h:form>
+					</li>
+					</ui:repeat>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div> <!-- .cd-schedule -->
+<h:panelGroup rendered="#{erabiltzaileAtazakMB.editatu==true}">
+<h:outputText value="#{historialaViewMB.ordukaEgunekoProgramakLortu(erabiltzaileAtazakMB.gailuIzena)}" />
+</h:panelGroup>
+</h:body>
+</html>

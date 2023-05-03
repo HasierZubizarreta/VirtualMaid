@@ -1,8 +1,8 @@
 package pl;
 
 import java.io.Serializable;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -13,13 +13,17 @@ import javax.inject.Named;
 
 import bl.ErabiltzaileaEJB;
 import dl.Erregistroa;
-import dl.GailuaJB;
 
 @Named
 @ViewScoped
 public class HistorialaViewMB implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<Erregistroa> erregistroakDB;
+	private List<List<String>> unitateak;
 	@EJB private ErabiltzaileaEJB eEJB;
 
 	public HistorialaViewMB() {
@@ -81,33 +85,74 @@ public class HistorialaViewMB implements Serializable{
     	
     }
     
-    public List<Erregistroa> egunekoProgramakBatutaLortu() {
-        
-    	if(erregistroakDB==null) {
+    public List<List<String>> egunekoProgramakBatutaLortu() {
+    	
+    	if(erregistroakDB==null || unitateak==null) {
     		
     		erregistroakDB = eEJB.egunekoProgramakLortu();
+    		unitateak = new ArrayList<>(); 
     		
-    		for(int i=0; i<erregistroakDB.size();i++) {
+    		for(int i=0; i<24;i++) {
+
+    			List<String> orduka = new ArrayList<>();
+	    		for(int j=0; j<erregistroakDB.size();j++) {
+	    			
+	    			LocalTime timeH = LocalTime.parse(erregistroakDB.get(j).getHasieraOrdua(), DateTimeFormatter.ofPattern("HH:mm"));
+	    			LocalTime timeA = LocalTime.parse(erregistroakDB.get(j).getAmaieraOrdua(), DateTimeFormatter.ofPattern("HH:mm"));
+	    			
+	    			if(timeH.getHour()<= i && i <= timeA.getHour() && orduka.size()==0) {
+	    				
+	    				if(i<9) {
+	    					orduka.add("0"+i+":00");
+	    					orduka.add("0"+(i+1)+":00");
+	    				}
+	    				else if(i==9) {
+	    					orduka.add("0"+i+":00");
+	    					orduka.add(+(i+1)+":00");
+	    				}
+	    				else {
+	    					orduka.add(i+":00");
+	    					orduka.add(+(i+1)+":00");
+	    				}
+	    				orduka.add(erregistroakDB.get(j).getGailuIzena());
+	    				
+	    			}
+	    			else if(timeH.getHour()<= i && i <= timeA.getHour() && orduka.get(2).length()<30) {
+	    				
+	    				String balioa = orduka.get(2);
+	    				orduka.set(2,balioa+", "+erregistroakDB.get(j).getGailuIzena());
+	    				
+	    			}
+	    			else if(timeH.getHour()<= i && i <= timeA.getHour() && orduka.get(2).length()>=30) {
+	    				
+	    				String balioa = orduka.get(2);
+	    				orduka.set(2,balioa+", ...");
+	    				break;
+	    				
+	    			}
     			
-    			String hasieraOrdua = erregistroakDB.get(i).getData().getHour()+":00";
+	    		}
+	    		if(orduka.size()!=0) {
+	    			
+	    			unitateak.add(orduka);
+	    			
+	    		}
+	    		
     		}
     		
     	}
     	
-//    	Sartu erregistroak taldetan, orduka jarrita -> String bat barruan izenak jarriz (if string length > 50 jarri 3 puntu)
-//    	on click bistaratu orduan daudenak
-//    	bideratu erregistroa 
-    	
-    	return erregistroakDB;
+    	return unitateak;
     }
-    public List<Erregistroa> ordukaEgunekoProgramakLortu(int ordua) {
+    public List<Erregistroa> ordukaEgunekoProgramakLortu(String ordua) {
     	
-    	return eEJB.ordukaEgunekoProgramakLortu(ordua);
+    	return eEJB.ordukaEgunekoProgramakLortu(LocalTime.parse(ordua).getHour());
     	
     }
 	public void resetView() {
 		
 		erregistroakDB=null; 
+		unitateak=null;
 		
 	}
 
