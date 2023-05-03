@@ -26,7 +26,7 @@ public class HistorialaViewMB implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-    public List<Erregistroa> etxekoGailuakLortu() {
+    public List<Erregistroa> egunekoProgramakLortu() {
         
     	if(erregistroakDB==null) {
     		
@@ -80,7 +80,31 @@ public class HistorialaViewMB implements Serializable{
     	return eguna;
     	
     }
-	
+    
+    public List<Erregistroa> egunekoProgramakBatutaLortu() {
+        
+    	if(erregistroakDB==null) {
+    		
+    		erregistroakDB = eEJB.egunekoProgramakLortu();
+    		
+    		for(int i=0; i<erregistroakDB.size();i++) {
+    			
+    			String hasieraOrdua = erregistroakDB.get(i).getData().getHour()+":00";
+    		}
+    		
+    	}
+    	
+//    	Sartu erregistroak taldetan, orduka jarrita -> String bat barruan izenak jarriz (if string length > 50 jarri 3 puntu)
+//    	on click bistaratu orduan daudenak
+//    	bideratu erregistroa 
+    	
+    	return erregistroakDB;
+    }
+    public List<Erregistroa> ordukaEgunekoProgramakLortu(int ordua) {
+    	
+    	return eEJB.ordukaEgunekoProgramakLortu(ordua);
+    	
+    }
 	public void resetView() {
 		
 		erregistroakDB=null; 

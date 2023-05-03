@@ -70,7 +70,7 @@
 			<li class="events-group">
 				<div class="top-info"><span>#{historialaViewMB.astekoEgunaLortu()}</span></div>
 				<ul>
-					<ui:repeat  value="#{historialaViewMB.etxekoGailuakLortu()}" var="erregistroa">
+					<ui:repeat  value="#{historialaViewMB.egunekoProgramakLortu()}" var="erregistroa">
 					<li class="single-event" data-start="#{erregistroa.hasieraOrdua}" data-end="#{erregistroa.amaieraOrdua}" data-event="event-4" style="width: 100%">
 						<h:form>
 						<h:commandLink actionListener="#{erabiltzaileAtazakMB.programaEditatu01(erregistroa.id)}" rendered="#{erregistroa.hasieraOrduaInt gt erabiltzaileAtazakMB.currentHout}">

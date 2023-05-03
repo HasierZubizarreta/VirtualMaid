@@ -56,6 +56,15 @@ public class ErabiltzaileaEJB {
        
         
     }
+    public List<Erregistroa> ordukaEgunekoProgramakLortu(int ordua) {
+        LocalDate now=LocalDateTime.now().toLocalDate();
+        LocalDateTime has=LocalDateTime.of(now, LocalTime.of(ordua, 0));
+        LocalDateTime buk=LocalDateTime.of(now, LocalTime.of(ordua+1, 00));
+    	
+        return hB.queryFindData(has, buk);
+       
+        
+    }
     public List<PrezioaJB> egunekoPrezioakLortu() {
     
     	System.out.print("Luzera: "+prezioakOrduko.size());
