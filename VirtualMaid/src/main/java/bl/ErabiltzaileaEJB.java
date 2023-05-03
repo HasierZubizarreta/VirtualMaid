@@ -102,7 +102,7 @@ public class ErabiltzaileaEJB {
 			prezioTotala += orduaDezimala * prezioaOrduko;
 			LocalDateTime data = LocalDateTime.of(LocalDate.now(), LocalTime.of(ordua, minutuak));
 			float kontsumoTotala = g.getKontsumoa() * g.getIraupena()/60.0f; 
-			e = new Erregistroa(g.getIzena(), data, prezioTotala, kontsumoTotala);
+			e = new Erregistroa(g.getIzena(), data, prezioTotala, kontsumoTotala); 
     	}
     	
 		return e;
