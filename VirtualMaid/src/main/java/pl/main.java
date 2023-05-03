@@ -6,6 +6,7 @@ import java.util.Scanner;
 import bl.ErabiltzaileaEJB;
 import dl.Erregistroa;
 import dl.GailuaJB;
+import dl.GailuaOrokorra;
 import dl.PrezioaJB;
 
 public class main {
@@ -263,7 +264,7 @@ public class main {
                     String kontsumoa = scanner.next();	
                     System.out.println("\nGailu berria gordetzen...\n");
 
-                    gailuakB=new GailuaJB(Integer.parseInt("1"), izena, mota, Integer.parseInt(iraupena), Float.parseFloat(kontsumoa));
+                    gailuakB=new GailuaOrokorra(Integer.parseInt("1"), izena, Integer.parseInt(iraupena), Float.parseFloat(kontsumoa));
               	  
                     eEJB.gailuBerriaSortu(gailuakB);
                     break;

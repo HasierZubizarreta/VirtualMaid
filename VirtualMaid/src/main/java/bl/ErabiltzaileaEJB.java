@@ -11,9 +11,11 @@ import javax.ejb.Stateless;
 
 import dl.Erregistroa;
 import dl.GailuaJB;
+import dl.GailuaOrokorra;
 import dl.GailuakB;
 import dl.HistorialaB;
 import dl.KontsumoaJB;
+import dl.Labadora;
 import dl.PrezioaJB;
 import dl.PrezioakOrdukoB;
 
@@ -27,7 +29,7 @@ public class ErabiltzaileaEJB {
 	//aratz eta hasier
 	HistorialaB hB = new HistorialaB();
 	//HistorialenTaulaJB hB = new HistorialenTaulaJB();
-
+	public static final String[] gailuMotak = {"Labadora", "Bestelakoa"};
 
 	//public void historialaBorratu() {
     	//LocalDateTime data = LocalDateTime.now();
@@ -134,9 +136,35 @@ public class ErabiltzaileaEJB {
     	gailuakB.persist(gailuakDB);
     }
     
+    public GailuaJB gailuBerriaLortu(String izena, String mota, int iraupena, float kontsumoa) {
+        
+    	GailuaJB g=null;
+    	switch (mota) {
+		case "Labadora":
+			g = new Labadora(0, izena, iraupena, kontsumoa);
+			break;
+		
+		case "Bestelakoa":
+			g = new GailuaOrokorra(0,izena, iraupena, kontsumoa);
+			break;
+		
+		default:
+			System.out.println("\n EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n");
+			break;
+				
+		}
+    	return g;
+    }
+    
     public void gailuaEzabatu(String gailuIzena) {
 
         gailuakB.gailuaEzabatuDB(gailuIzena);
+    }
+    
+    public void gailuaProgramaAukeratu(String gailuIzena ,String gailuPrograma) {
+    	GailuaJB g = gailuakB.find(gailuIzena);
+    	g.setIraupena(gailuPrograma);
+    	gailuakB.update(g);
     }
     
     public void gailuaEditatuM(String gailuIzena, int aldaketa, String balioB) {
