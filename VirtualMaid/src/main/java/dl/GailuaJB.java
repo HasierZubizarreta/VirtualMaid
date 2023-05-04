@@ -17,6 +17,11 @@ public abstract class GailuaJB implements Serializable{
 	protected String irudia;
 	private int iraupenaPertsonala;
 	
+	//semeek erabiltzeko aldagaiak;
+	private float auxf=0.0f;
+	private String auxs="";
+	private int auxi=0;
+	
 	private static final long serialVersionUID = 1L;
 	
 	public GailuaJB() {
@@ -95,9 +100,34 @@ public abstract class GailuaJB implements Serializable{
 	public String toString() {
 		return "GailuaJB [idGailua=" + idGailua + ", izena=" + izena + ", mota=" + mota + ", iraupena=" + iraupena + ", kontsumoa=" + kontsumoa+ "]";
 	}
+
 	
 	
+	//semeek erabiltzeko getter eta setter
 	
+	public float getAuxf() {
+		return auxf;
+	}
+
+	public void setAuxf(float auxf) {
+		this.auxf = auxf;
+	}
+
+	public String getAuxs() {
+		return auxs;
+	}
+
+	public void setAuxs(String auxs) {
+		this.auxs = auxs;
+	}
+
+	public int getAuxi() {
+		return auxi;
+	}
+
+	public void setAuxi(int auxi) {
+		this.auxi = auxi;
+	}
 	
 	
 }
