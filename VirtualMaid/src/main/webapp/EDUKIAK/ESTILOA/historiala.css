@@ -43,6 +43,42 @@
 	color: black;
 	border: 1px solid #707070;
 }
+.botoia{
+	
+	all: initial;
+	font-family: "Source Sans Pro", sans-serif;
+	background: #f7bd7f;
+	width: 451px;
+    height: 51px;
+    
+    z-index: 3;
+    
+    left: -1px;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 10%), inset 0 -3px 0 rgb(0 0 0 / 20%);
+    float: right; 
+    
+}
+.botoias{
+	
+	font-size: 1.4rem;
+    opacity: .7;
+    line-height: 1.2;
+    margin-bottom: .2em;
+	
+}
+.botoiaem{
+	
+	display: block;
+    color: white;
+    font-weight: bold;
+        font-size: 2rem;
+}
+.elemento {
+  margin-top: 500px;
+  margin-right: 190px;
+  float: right; /* flotar el elemento a la derecha */
+  
+}
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,

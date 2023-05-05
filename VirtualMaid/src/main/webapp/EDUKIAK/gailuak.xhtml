@@ -23,7 +23,7 @@
         	<h:selectOneMenu value="#{gailuaPrograma}">
                 <f:selectItems value="#{gailua.programak}" />
             </h:selectOneMenu>
-        	<h:commandButton actionListener="#{erabiltzaileAtazakMB.programaBerriaGorde(gailua.izena,gailuaPrograma,gailuAukeraketaViewMB)}" id="submit" value="#{gailua.izena}"/>
+        	<h:commandButton style="width: 30%" actionListener="#{erabiltzaileAtazakMB.programaBerriaGorde(gailua.izena,gailuaPrograma,gailuAukeraketaViewMB)}" id="submit" value="#{gailua.izena}"/>
         	</h:form>  
         </h:column>              
     </h:dataTable>

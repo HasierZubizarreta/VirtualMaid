@@ -78,7 +78,7 @@ public class ErabiltzaileAtazakMB implements Serializable {
 		editatu=false;
 		this.ordua = 0;
 		hVMB.resetView();
-		FacesContext.getCurrentInstance().getExternalContext().redirect("historiala.xhtml");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("historiala1.xhtml");
 		
     }
 	public void gailuBerriaSortu(GailuaFormMB gailuaMB, GailuAukeraketaViewMB gaViewMB) {
@@ -129,7 +129,7 @@ public class ErabiltzaileAtazakMB implements Serializable {
 
         eEJB.programaEzabatu(ordua);
         this.ordua=0;
-        FacesContext.getCurrentInstance().getExternalContext().redirect("historiala.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("historiala1.xhtml");
         
     }
 	public int getCurrentHout() {

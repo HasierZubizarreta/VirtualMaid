@@ -85,8 +85,25 @@
 		</ul>
 	</div>
 </div> <!-- .cd-schedule -->
+<div class="elemento"  style="display: block;">
 <h:panelGroup rendered="#{erabiltzaileAtazakMB.editatu==true}">
-<h:outputText value="#{historialaViewMB.ordukaEgunekoProgramakLortu(erabiltzaileAtazakMB.gailuIzena)}" />
+
+	<ui:repeat  value="#{historialaViewMB.ordukaEgunekoProgramakLortu(erabiltzaileAtazakMB.gailuIzena)}" var="erregistroaOrduan" >
+		<h:form class="botoia">
+			<h:commandLink actionListener="#{erabiltzaileAtazakMB.programaEditatu01(erregistroaOrduan.id)}" rendered="#{erregistroaOrduan.hasieraOrduaInt gt erabiltzaileAtazakMB.currentHout}">
+			  <span class="botoias">#{erregistroaOrduan.hasieraOrdua} - #{erregistroaOrduan.amaieraOrdua}</span>
+			  <em class="botoiaem">#{erregistroaOrduan.gailuIzena}</em>
+			</h:commandLink>
+			<h:commandLink rendered="#{erregistroaOrduan.hasieraOrduaInt le erabiltzaileAtazakMB.currentHout}">
+			  <span class="botoias">#{erregistroaOrduan.hasieraOrdua} - #{erregistroaOrduan.amaieraOrdua}</span>
+			  <em class="botoiaem">#{erregistroaOrduan.gailuIzena}</em>
+			</h:commandLink>
+		</h:form>
+		<br />
+	</ui:repeat>
+
 </h:panelGroup>
+</div>
+
 </h:body>
 </html>

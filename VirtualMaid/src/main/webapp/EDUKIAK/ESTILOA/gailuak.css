@@ -68,7 +68,7 @@ form {
 	width: auto;
     height: auto;
 }
-  input {
+  select, input {
     display: flex;
     margin: 10px 0;
     padding: 1px;
@@ -77,7 +77,7 @@ form {
     color: rgb(0, 0, 0);
     border-radius: 0px;
     cursor: pointer;
-    width: 96%;
+    width: 90%;
     height: 35px;
     margin: 0 auto;
     padding: 5px;
