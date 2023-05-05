@@ -3,6 +3,7 @@ package bl;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class ErabiltzaileaEJB {
     }
     public List<Erregistroa> ordukaEgunekoProgramakLortu(int ordua) {
         LocalDate now=LocalDateTime.now().toLocalDate();
-        LocalDateTime has=LocalDateTime.of(now, LocalTime.of(ordua-1, 59));
+        LocalDateTime has=LocalDateTime.of(now, LocalTime.of(ordua, 00));
         LocalDateTime buk;
         if(ordua==23) {
         	buk=LocalDateTime.of(now, LocalTime.of(ordua, 59));	
@@ -69,8 +70,27 @@ public class ErabiltzaileaEJB {
         else {
         	buk=LocalDateTime.of(now, LocalTime.of(ordua+1, 00));	
         }
+        List<Erregistroa> erregistroak = hB.queryFindData(LocalDateTime.of(now, LocalTime.of(0, 0)), buk);
+        List<Erregistroa> iragazitakoak = new ArrayList<>();
     	
-        return hB.queryFindData(has, buk);
+        for(int i=0;i<erregistroak.size();i++) {
+    		
+//    	BEGIRATU HASIERA ORDUA EDO AMAIERA ORDUA LIMITEA ETA GERO DEN
+        	
+        	GailuaJB gailua = gailuakB.find(erregistroak.get(i).getGailuIzena());
+    		
+    		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
+    		
+    		LocalDateTime amaiera = erregistroak.get(i).getData().plusMinutes(gailua.getIraupena());
+        	
+        	if(erregistroak.get(i).getData().isAfter(has) || amaiera.isAfter(has)) {
+        		
+        		iragazitakoak.add(erregistroak.get(i));
+        		
+        	}
+   		
+    	}
+        return iragazitakoak;
        
         
     }
@@ -127,7 +147,7 @@ public class ErabiltzaileaEJB {
     }
     
     public int programaEditatu(Erregistroa eBerria) {
-
+    	System.out.println("\nOrdua:" + eBerria.getData());
 	   	if(eBerria.getData().isAfter(LocalDateTime.now())) {
 		    Erregistroa eAux = erregistroaProgramatu(eBerria.getGailuIzena(), eBerria.getData().getHour(), eBerria.getData().getMinute());
 		   	if(eAux != null) {

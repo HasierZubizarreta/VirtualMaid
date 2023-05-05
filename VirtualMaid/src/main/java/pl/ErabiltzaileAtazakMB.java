@@ -2,6 +2,8 @@ package pl;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.ejb.EJB;
@@ -75,11 +77,17 @@ public class ErabiltzaileAtazakMB implements Serializable {
 	public void programaEditatu02(Erregistroa e, HistorialaViewMB hVMB) throws IOException {
 
 //		KONPROBATU EGIN BEHAR DA JATORRIZKO ORDUA > ORAINGO ORDUA ETA ORDU BERRIA
-		eEJB.programaEditatu(e);
+		LocalDate now = LocalDate.now();
+		LocalTime ordua = LocalTime.of(e.getData().getHour(), e.getData().getMinute());
+		LocalDateTime zuzenketa = LocalDateTime.of(now, ordua);
+		e.setData(zuzenketa);
+		int errorea = eEJB.programaEditatu(e);
 		editatu=false;
 		this.ordua = 0;
 		hVMB.resetView();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("historiala1.xhtml");
+		
+		System.out.println("\nErrorea:" + errorea);
 		
     }
 	public void gailuBerriaSortu(GailuaFormMB gailuaMB, GailuAukeraketaViewMB gaViewMB) {
