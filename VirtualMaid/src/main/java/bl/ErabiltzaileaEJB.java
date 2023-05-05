@@ -16,6 +16,7 @@ import dl.GailuakB;
 import dl.HistorialaB;
 import dl.KontsumoaJB;
 import dl.Labadora;
+import dl.Labea;
 import dl.PrezioaJB;
 import dl.PrezioakOrdukoB;
 
@@ -29,7 +30,7 @@ public class ErabiltzaileaEJB {
 	//aratz eta hasier
 	HistorialaB hB = new HistorialaB();
 	//HistorialenTaulaJB hB = new HistorialenTaulaJB();
-	public static final String[] gailuMotak = {"Labadora", "Bestelakoa"};
+	public static final String[] gailuMotak = {"Labadora","Labea", "Bestelakoa"};
 
 	//public void historialaBorratu() {
     	//LocalDateTime data = LocalDateTime.now();
@@ -163,8 +164,10 @@ public class ErabiltzaileaEJB {
 			g = new GailuaOrokorra(0,izena, iraupena, kontsumoa);
 			break;
 		
+		case "Labea":
+			g = new Labea(0,izena, iraupena, kontsumoa);
 		default:
-			System.out.println("\n EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n");
+			System.out.println("\n EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n"); //arazoa badago ikusteko da
 			break;
 				
 		}

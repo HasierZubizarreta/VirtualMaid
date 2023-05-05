@@ -42,7 +42,9 @@
     <table>
     <ui:repeat var="gailua" value="#{gailuAukeraketaViewMB.etxekoGailuaLortu(erabiltzaileAtazakMB.gailuIzena)}">
             <tr>
-                <th>IZENA</th><th>MOTA</th><th>IRAUPENA</th><th>KONTSUMOA</th><th>EKINTZA</th>
+                <th>IZENA</th><th>MOTA</th><th>IRAUPENA</th><th>KONTSUMOA</th>
+                 <ui:fragment rendered="#{gailua.mota eq 'Labea'}"><th>TENPERATURA</th></ui:fragment> 
+                 <th>EKINTZA</th>
             </tr>
             <tr>
                 <td>
@@ -50,7 +52,7 @@
                     <h:message for="izena" style="color:red" />
                 </td>
                 <td>
-                    <h:inputText id="mota" value="#{gailua.mota}" required="true" requiredMessage="Mota eremua derrigorrezkoa da."/>
+                    <h:outputText id="mota" value="#{gailua.mota}" required="true" requiredMessage="Mota eremua derrigorrezkoa da."/>
                     <h:message for="mota" style="color:red" />
                 </td>
                 <td>
@@ -60,7 +62,12 @@
                 <td>
                     <h:inputText id="kontsumoa" value="#{gailua.kontsumoa}" required="true" requiredMessage="Kontsumoa eremua derrigorrezkoa da."/>
                     <h:message for="kontsumoa" style="color:red" />        
-                </td>                     
+                </td>
+                 <ui:fragment rendered="#{gailua.mota eq 'Labea'}">
+	                <td>
+	                   	<h:inputText id="tenperatura" value="#{gailua.auxf}" />
+	               	</td>
+               	</ui:fragment>
                 <td>
                 <h:commandButton class="ekintza" actionListener="#{erabiltzaileAtazakMB.gailuaEditatu02(gailua, gailuAukeraketaViewMB)}" id="submit" value="GORDE ALDAKETA" />            
                 </td>
