@@ -20,7 +20,7 @@
         	<h:form>
         	<img id="imga" src="IRUDIAK/electrodomesticos.jpg"/> 
 			<!-- <h:graphicImage id="imga" value="#{resource[gailua.irudia]}" /> -->
-        	<h:selectOneMenu value="#{gailuaPrograma}">
+        	<h:selectOneMenu style="width: 30%"  value="#{gailuaPrograma}">
                 <f:selectItems value="#{gailua.programak}" />
             </h:selectOneMenu>
         	<h:commandButton style="width: 30%" actionListener="#{erabiltzaileAtazakMB.programaBerriaGorde(gailua.izena,gailuaPrograma,gailuAukeraketaViewMB)}" id="submit" value="#{gailua.izena}"/>

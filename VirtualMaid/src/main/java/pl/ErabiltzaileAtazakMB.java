@@ -68,6 +68,7 @@ public class ErabiltzaileAtazakMB implements Serializable {
 	public void programaEditatu01(int idErregistroa) throws IOException {
 		
 		this.ordua = idErregistroa;
+		editatu=false;
 		FacesContext.getCurrentInstance().getExternalContext().redirect("programaEditatu.xhtml");
 		
 	}
