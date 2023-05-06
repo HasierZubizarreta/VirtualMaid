@@ -79,9 +79,13 @@
   	z-index: 0;
 }
 .elemento {
-  margin-top: 500px;
-  margin-right: 190px;
-  float: right; /* flotar el elemento a la derecha */
+  
+  position: absolute; /* Establecemos una posición absoluta en el elemento */
+  right: 300px; /* Colocamos el elemento en el lado derecho del contenedor */
+  top: 650px; /* Colocamos el elemento en la mitad de la altura del contenedor */
+  border: 1px solid #707070;
+  padding: 2px;
+  border-radius: 1px;
   
 }
   html, body, div, span, applet, object, iframe,

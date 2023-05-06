@@ -3,6 +3,8 @@ package bl;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class ErabiltzaileaEJB {
 	HistorialaB hB = new HistorialaB();
 	//HistorialenTaulaJB hB = new HistorialenTaulaJB();
 	public static final String[] gailuMotak = {"Labadora","Labea", "Bestelakoa"};
+	private static final int ArrayList = 0;
 
 	//public void historialaBorratu() {
     	//LocalDateTime data = LocalDateTime.now();
@@ -245,12 +248,11 @@ public class ErabiltzaileaEJB {
     		
     		erregistroak = hB.queryFindData(data1,data2);
     		
-    		
     		while(data.isBefore(data2)) {
     			float egunOsokoKontsumoa = 0;
         		float egunOsokoprezioa = 0;
     			for(Erregistroa erregistroa : erregistroak) {
-    				if(erregistroa.getData().getDayOfMonth()==data.getDayOfMonth()) {
+    				if(erregistroa.getData().getDayOfYear()==data.getDayOfYear() && erregistroa.getData().getYear()==data.getYear()) {
     					egunOsokoKontsumoa+=erregistroa.getKontsumoa();
     					egunOsokoprezioa+=erregistroa.getPrezioa();
     				}
@@ -261,6 +263,48 @@ public class ErabiltzaileaEJB {
     		}
     		
     		return kontsumoak;
+    }
+    public List <KontsumoaJB> hilabetekaKontsumoaKalkulatu() {
+    	
+    	
+    	int añoActual = LocalDate.now().getYear();
+    	LocalDate primeroDeEneroDeEsteAño = LocalDate.of(añoActual, Month.JANUARY, 1);
+    	LocalDate primeroDeEneroDelProximoAño = LocalDate.of(añoActual + 1, Month.JANUARY, 1);
+    	LocalDateTime primeroDeEneroDeEsteAñoDateTime = primeroDeEneroDeEsteAño.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+    	LocalDateTime primeroDeEneroDelProximoAñoDateTime = primeroDeEneroDelProximoAño.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+
+    	List <KontsumoaJB> egunka = egunOsokoKontsumoaKalkulatu(primeroDeEneroDeEsteAñoDateTime, primeroDeEneroDelProximoAñoDateTime);
+    	List <KontsumoaJB> hilabeteka = new ArrayList<KontsumoaJB>();
+    	
+    	for(int i= 1;i<13;i++) {
+    		
+    		float konts = 0.0f;
+    		float prezioa = 0.0f;
+    		System.out.println("KALKULUAK:");
+    		for(int j=0;j<egunka.size();j++) {
+    		
+    			if(i==egunka.get(j).getData().getMonthValue()) {
+    				
+    				konts=konts+egunka.get(j).getKontsumoa();
+    				prezioa=prezioa+egunka.get(j).getPrezioa();
+    				
+    			}
+    		
+    		}
+    		
+    		KontsumoaJB kontsumoa = new KontsumoaJB(LocalDateTime.of(añoActual, i, 1, 00, 0), konts, prezioa);
+    		hilabeteka.add(kontsumoa);
+    		System.out.println("Prezioa: ("+(i)+"): "+kontsumoa.getPrezioa());
+    		System.out.println("Get: ("+(i)+"): "+hilabeteka.get(i-1).getPrezioa());
+    		
+    	}
+    	System.out.println("BALIOAK:");
+    	for(int j=0;j<hilabeteka.size();j++) {
+    		
+    		System.out.println("Prezioa: ("+(j+1)+"): "+hilabeteka.get(j).getPrezioa());
+    	}
+    	return hilabeteka;
+    	
     }
 
 }

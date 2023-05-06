@@ -96,17 +96,18 @@ public class Aukera3ViewMB implements Serializable{
 		 DayOfWeek diaDeLaSemanaActual = fechaActual.getDayOfWeek();
 		 int diasDesdeLunesHastaHoy = diaDeLaSemanaActual.getValue() - 1;
 		 LocalDate lunesDeEstaSemana = fechaActual.minusDays(diasDesdeLunesHastaHoy);
-		 LocalDate lunesDeLaSemanaPasada = lunesDeEstaSemana.minusDays(7);
-		 LocalDateTime lunesDeLaSemanaPasadaDateTime = lunesDeLaSemanaPasada.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
-		 
-		 int diasParaLlegarAlLunes = 8 - diaDeLaSemanaActual.getValue();
-		 LocalDate proximoLunes = fechaActual.plusDays(diasParaLlegarAlLunes);
-		 LocalDateTime lunesDeEstaSemanaL = proximoLunes.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+		 LocalDate lunesDeLaSiguienteSemana = lunesDeEstaSemana.plusDays(7);
+		 LocalDateTime lunesDeEstaSemanaDateTime = lunesDeEstaSemana.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+		 LocalDateTime lunesDeLaSiguienteSemanaDateTime = lunesDeLaSiguienteSemana.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
 
-		 return eEJB.egunOsokoKontsumoaKalkulatu(lunesDeLaSemanaPasadaDateTime,lunesDeEstaSemanaL);
+		 return eEJB.egunOsokoKontsumoaKalkulatu(lunesDeEstaSemanaDateTime, lunesDeLaSiguienteSemanaDateTime);
 		 
 		 }
-	
+	 public List <KontsumoaJB> hilabetekaKontsumoaKalkulatu() {
+		 
+		 return eEJB.hilabetekaKontsumoaKalkulatu();
+		 
+	 }
 	 public void resetView(){
 	 
 		 kontsumoaJB=null;

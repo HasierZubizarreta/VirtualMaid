@@ -9,9 +9,11 @@
     <script type="text/javascript" src="historiala.js"></script>
 </head>
 <h:body>
-<form class="menuNagusirakoBotoia" action="#{request.contextPath}/index.html">
+<h:form class="menuNagusirakoBotoia">
+  	<h:commandLink class="menuNagusirakoBotoia" action="#{erabiltzaileAtazakMB.clearSession()}">
 	<input class="menuNagusirakoBotoiaInput" type="submit" id="submit" value="HOME" />
-</form>
+	</h:commandLink>
+  </h:form>
 <div class="cd-schedule loading" style="position:absolute;left:30%;">
 	<div class="timeline">
 		<ul>
@@ -85,9 +87,9 @@
 		</ul>
 	</div>
 </div> <!-- .cd-schedule -->
-<div class="elemento"  style="display: block;">
-<h:panelGroup rendered="#{erabiltzaileAtazakMB.editatu==true}">
 
+<h:panelGroup rendered="#{erabiltzaileAtazakMB.editatu==true}">
+<div class="elemento"  style="display: block;">
 	<ui:repeat  value="#{historialaViewMB.ordukaEgunekoProgramakLortu(erabiltzaileAtazakMB.gailuIzena)}" var="erregistroaOrduan" >
 		<h:form class="botoia">
 			<h:commandLink actionListener="#{erabiltzaileAtazakMB.programaEditatu01(erregistroaOrduan.id)}" rendered="#{erregistroaOrduan.hasieraOrduaInt gt erabiltzaileAtazakMB.currentHout}">
@@ -104,8 +106,8 @@
 		<br />
 	</ui:repeat>
 
-</h:panelGroup>
 </div>
+</h:panelGroup>
 
 </h:body>
 </html>

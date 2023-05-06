@@ -10,7 +10,7 @@ public class GailuaOrokorra extends GailuaJB {
 	public GailuaOrokorra(int idGailua, String izena, int iraupenaP, float kontsumoa) {
 		super(idGailua, izena, "Bestelakoa", iraupenaP, kontsumoa);
 		super.setIraupenaPertsonala(iraupenaP);
-		super.irudia =  System.getProperty("user.home")+"/Development/Eclipse/VirtualMaid/VirtualMaid/src/main/webapp/EDUKIAK/IRUDIAK/electrodomesticos.jpg";
+		super.irudia =  "IRUDIAK/electrodomesticos.jpg";
 		programakBete();
 	}
 

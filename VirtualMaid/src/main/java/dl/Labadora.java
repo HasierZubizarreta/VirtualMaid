@@ -15,7 +15,7 @@ public class Labadora extends GailuaJB{
 	public Labadora(int idGailua, String izena, int iraupenaP, float kontsumoa) {
 		super(idGailua, izena, "Labadora", iraupenaP, kontsumoa);
 		super.setIraupenaPertsonala(iraupenaP);
-		super.irudia =  System.getProperty("user.home")+"/Development/Eclipse/VirtualMaid/VirtualMaid/src/main/webapp/EDUKIAK/IRUDIAK/electrodomesticos.jpg";
+		super.irudia =  "IRUDIAK/garbigailua.jpg";
 		programakBete();
 	}
 	

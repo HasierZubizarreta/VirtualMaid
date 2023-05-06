@@ -12,16 +12,18 @@
   <form class="menuNagusirakoBotoia" action="#{request.contextPath}/index.html">
 	<input class="menuNagusirakoBotoiaInput" type="submit" id="submit" value="HOME" />
   </form>
-    <div class="container">
+    <div class="container" style="height: auto;">
     <h:dataTable value="#{gailuAukeraketaViewMB.etxekoGailuakLortu()}" var="gailua"> 
         <h:column>
+        	<f:facet name="header">ETXEKO GAILUAK</f:facet>
         	<h:form>
-        	<img class="imga" src="IRUDIAK/electrodomesticos.jpg"/>
+        	<img class="imga" src="#{gailua.irudia}"/>
         	<h:commandButton class="lista" actionListener="#{erabiltzaileAtazakMB.gailuaEditatu(gailua.izena,gailuAukeraketaViewMB)}" id="submit" value="#{gailua.izena}"/>
         	</h:form>  
         </h:column>              
     </h:dataTable>
     </div>
+  
     <div class="container">
     <h:form class="formularioa">
     <table>

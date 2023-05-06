@@ -13,12 +13,12 @@
 	<input class="menuNagusirakoBotoiaInput" type="submit" id="submit" value="HOME" />
   </form>
     <!-- Crea el menú con cuatro botones -->
-    <div class="container">
+    <div class="container"  style="height: auto;">
     <h:dataTable value="#{gailuAukeraketaViewMB.etxekoGailuakLortu()}" var="gailua"> 
         <h:column>
         	<f:facet name="header"><h:outputText value="#{erabiltzaileAtazakMB.ordua}" /></f:facet>
         	<h:form>
-        	<img id="imga" src="IRUDIAK/electrodomesticos.jpg"/> 
+        	<img id="imga" src="#{gailua.irudia}"/> 
 			<!-- <h:graphicImage id="imga" value="#{resource[gailua.irudia]}" /> -->
         	<h:selectOneMenu style="width: 30%"  value="#{gailuaPrograma}">
                 <f:selectItems value="#{gailua.programak}" />
