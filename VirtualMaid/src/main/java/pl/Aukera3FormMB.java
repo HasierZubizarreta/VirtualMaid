@@ -12,8 +12,6 @@ public class Aukera3FormMB {
 	private Date noiztik;
 	private Date nora;
 	
-	
-	
 	public Aukera3FormMB() {
 		super();
 	}
@@ -22,7 +20,6 @@ public class Aukera3FormMB {
 		this.noiztik = noiztik;
 		this.nora = nora;
 	}
-	
 	
 	public Date getNoiztik() {
 		return noiztik;
@@ -39,8 +36,6 @@ public class Aukera3FormMB {
 	public void	resetForm() {
 		this.noiztik = null;	
 		this.nora=null;
-
 	}
 	
-
 }

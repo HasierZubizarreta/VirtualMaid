@@ -16,7 +16,7 @@ import java.util.List;
 public class HistorialaB {
 	
 	
-private void erregistroGuztiakIdatzi(List<Erregistroa> historiala) {
+	private void erregistroGuztiakIdatzi(List<Erregistroa> historiala) {
 		
 		String fName = PaketekoKonstanteak.historialaFitxategiIzena;
         
@@ -33,7 +33,7 @@ private void erregistroGuztiakIdatzi(List<Erregistroa> historiala) {
         
 	}
 	
-public  List<Erregistroa> erregistroGuztiakIrakurri(){
+	public  List<Erregistroa> erregistroGuztiakIrakurri(){
 		
 		String fName = PaketekoKonstanteak.historialaFitxategiIzena;
 		List <Erregistroa> historiala = new ArrayList<Erregistroa>();
@@ -52,61 +52,50 @@ public  List<Erregistroa> erregistroGuztiakIrakurri(){
 		return historiala;
 	}
 
-public Erregistroa find(int idErregistroa) {
-
-	List <Erregistroa> hist = erregistroGuztiakIrakurri();
-	for (Erregistroa e : hist) {
-		if(e.getId() == idErregistroa) {
-			return e;
-		}
-	}
-	Erregistroa topatugabe = null;
-	return topatugabe;
-		
-}
+	public Erregistroa find(int idErregistroa) {
 	
-public void persistDB(Erregistroa e){
-	List <Erregistroa> hist = erregistroGuztiakIrakurri();
-	int idBerria;
-	if(hist.size()==0)
-		idBerria=1;
-	else {
-		Erregistroa azkenE=hist.get(hist.size()-1);
-		idBerria=azkenE.getId()+1;
-	}
-	
-	e.setId(idBerria);
-	hist.add(e);
-	Collections.sort(hist);
-	erregistroGuztiakIdatzi(hist);
-}
-	
-public  List<Erregistroa> queryFindData(LocalDateTime hasiera, LocalDateTime bukaera){
-	
-	List<Erregistroa> hist = erregistroGuztiakIrakurri();
-	List <Erregistroa> hist2 = new ArrayList<Erregistroa>();
-	
-	for (Erregistroa e : hist) {
-		if (e.getData().isAfter(hasiera) && e.getData().isBefore(bukaera))
-			hist2.add(e);
-	}
-	
-	return hist2;
-}
-	
-public int erregistroaEzabatuDB(int idErregistroa) {
 		List <Erregistroa> hist = erregistroGuztiakIrakurri();
+		for (Erregistroa e : hist) {
+			if(e.getId() == idErregistroa) {
+				return e;
+			}
+		}
+		Erregistroa topatugabe = null;
+		return topatugabe;
+			
+	}
+	
+	public void persistDB(Erregistroa e){
+		List <Erregistroa> hist = erregistroGuztiakIrakurri();
+		int idBerria;
+		if(hist.size()==0)
+			idBerria=1;
+		else {
+			Erregistroa azkenE=hist.get(hist.size()-1);
+			idBerria=azkenE.getId()+1;
+		}
 		
-//		if(hist.contains(e) == true) {
-//			hist.remove(e);
-//			erregistroGuztiakIdatzi(hist);
-//			return 1;
-//		}
-//		else {
-//			return 0;
-//		}
+		e.setId(idBerria);
+		hist.add(e);
+		Collections.sort(hist);
+		erregistroGuztiakIdatzi(hist);
+	}
+	
+	public  List<Erregistroa> queryFindData(LocalDateTime hasiera, LocalDateTime bukaera){
+	
+		List<Erregistroa> hist = erregistroGuztiakIrakurri();
+		List <Erregistroa> hist2 = new ArrayList<Erregistroa>();
 		
-		//System.out.print("\nBilatu behar dena: "+ e.toString());
+		for (Erregistroa e : hist) {
+			if (e.getData().isAfter(hasiera) && e.getData().isBefore(bukaera))
+				hist2.add(e);
+		}
+		
+		return hist2;
+	}
+	
+	public int erregistroaEzabatuDB(int idErregistroa) {
+		List <Erregistroa> hist = erregistroGuztiakIrakurri();
 		Iterator<Erregistroa> iterator = hist.iterator();
 		while (iterator.hasNext()) {
 	        Erregistroa e2 = iterator.next();
@@ -123,29 +112,25 @@ public int erregistroaEzabatuDB(int idErregistroa) {
 			
 	}
 		
-public void updateDB(Erregistroa eBerria) {
-	List<Erregistroa> hist=erregistroGuztiakIrakurri();
+	public void updateDB(Erregistroa eBerria) {
+		List<Erregistroa> hist=erregistroGuztiakIrakurri();
+		
+		boolean topatua=false;
+		Erregistroa e=null;
+		int i=0;
+		while(i<hist.size()&&!topatua) {
+			e=hist.get(i);
+			if(e.getId()==eBerria.getId())
+				topatua=true;
+			else
+				i++;
+		}
 	
-	boolean topatua=false;
-	Erregistroa e=null;
-	int i=0;
-	while(i<hist.size()&&!topatua) {
-		e=hist.get(i);
-		if(e.getId()==eBerria.getId())
-			topatua=true;
-		else
-			i++;
+		if(topatua) {
+			hist.set(i, eBerria);
+			Collections.sort(hist);
+			erregistroGuztiakIdatzi(hist);
+		}
 	}
-
-	if(topatua) {
-		hist.set(i, eBerria);
-		Collections.sort(hist);
-		erregistroGuztiakIdatzi(hist);
-	}
-}
-	
-	
-	
-	
 	
 }

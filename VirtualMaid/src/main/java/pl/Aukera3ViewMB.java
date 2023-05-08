@@ -44,7 +44,7 @@ public class Aukera3ViewMB implements Serializable{
 	    	}
 	    	
 	    	return erregistroaDB;
-	    }
+	 }
 	 
 	 public List<KontsumoaJB> kontsumoaLortu(Aukera3FormMB a3FormMB){
 		 
@@ -61,16 +61,7 @@ public class Aukera3ViewMB implements Serializable{
 		 
 		 return kontsumoaJB;
 	 }
-	 public String kontsumoaHilabetekaLortu(){
-		
-//		LocalDateTime hasiera = LocalDateTime.ofInstant(instantH, ZoneId.systemDefault());
-//		LocalDateTime amaiera = LocalDateTime.ofInstant(instantA, ZoneId.systemDefault());
-//		kontsumoaJB = eEJB.egunOsokoKontsumoaKalkulatu(hasiera,amaiera);
-		
-		String balioak = "[5, 1, 0, 20, 120, 2, 23,1,32,19,56,69]";
-		
-		 return balioak;
-	 }
+	 
 	 public String hilabetekoKontsumoaLortu(){
 			
 		 LocalDate fechaActual = LocalDate.now();

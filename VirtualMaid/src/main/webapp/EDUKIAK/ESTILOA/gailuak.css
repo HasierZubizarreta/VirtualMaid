@@ -114,6 +114,7 @@ img {
     align-items: center;
     height: 300px;
     text-align: center;
+    font-family: "Source Sans Pro", sans-serif;
         }  
 br {
     height: 5.1; /* reduce el espaciado entre las líneas de texto a la mitad */

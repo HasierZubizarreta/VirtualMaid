@@ -58,7 +58,7 @@ public class ErabiltzaileAtazakMB implements Serializable {
 		System.out.print("Arazoa: "+emaitza);
 		gViewMB.resetView();
 		ordua = 0;
-		FacesContext.getCurrentInstance().getExternalContext().redirect("../");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("../../");
 	    
 	}
 	public void orduaMantendu(int ordua, PrezioAukeraketaViewMB pViewMB) throws IOException{
@@ -151,7 +151,7 @@ public class ErabiltzaileAtazakMB implements Serializable {
 		this.gailuIzena=null;
 		this.ordua=0;
 		editatu=false;
-        FacesContext.getCurrentInstance().getExternalContext().redirect("../");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("../../");
 		
 	}
 	public void ordukoProgramakErakutsi(String ordua, HistorialaViewMB hVMB) {

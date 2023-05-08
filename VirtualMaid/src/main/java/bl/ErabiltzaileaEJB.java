@@ -27,30 +27,17 @@ import dl.PrezioakOrdukoB;
 @LocalBean
 public class ErabiltzaileaEJB {
 	
-	//HistorialaB hB = new HistorialaB();
 	private GailuakB gailuakB=new GailuakB();
 	private List<PrezioaJB> prezioakOrduko = PrezioakOrdukoB.queryFindAllDB();
 	//aratz eta hasier
 	HistorialaB hB = new HistorialaB();
-	//HistorialenTaulaJB hB = new HistorialenTaulaJB();
 	public static final String[] gailuMotak = {"Labadora","Labea", "Bestelakoa"};
 	private static final int ArrayList = 0;
 
-	//public void historialaBorratu() {
-    	//LocalDateTime data = LocalDateTime.now();
-    	//int yearNow = data.getYear();
-    	//
-    	//hB.historialZaharraBorratu(yearNow);
-    //}
 	public List<Erregistroa> historialaLortu(LocalDateTime data1,LocalDateTime data2) {
     	return hB.queryFindData(data1,data2);
     }
-	
-	//aurreko bertsioa
-    //public void historialZaharraBorratu() {    }
-    //public List<Erregistroa> historialaSortu(LocalDateTime data1,LocalDateTime data2) { return hB.queryFindData(data1,data2);}  
-   
-	  
+	 
 	public void laburpenaLortu() {   
     	
     }
@@ -99,7 +86,6 @@ public class ErabiltzaileaEJB {
     }
     public List<PrezioaJB> egunekoPrezioakLortu() {
     
-    	System.out.print("Luzera: "+prezioakOrduko.size());
         return prezioakOrduko;   
     }
     public List<GailuaJB> etxekoGailuakLortu() {
@@ -150,8 +136,8 @@ public class ErabiltzaileaEJB {
     }
     
     public int programaEditatu(Erregistroa eBerria) {
-    	System.out.println("\nOrdua:" + eBerria.getData());
-	   	if(eBerria.getData().isAfter(LocalDateTime.now())) {
+
+    	if(eBerria.getData().isAfter(LocalDateTime.now())) {
 		    Erregistroa eAux = erregistroaProgramatu(eBerria.getGailuIzena(), eBerria.getData().getHour(), eBerria.getData().getMinute());
 		   	if(eAux != null) {
 		   		 eBerria.setPrezioa(eAux.getPrezioa());
@@ -190,7 +176,7 @@ public class ErabiltzaileaEJB {
 		case "Labea":
 			g = new Labea(0,izena, iraupena, kontsumoa);
 		default:
-			System.out.println("\n EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n"); //arazoa badago ikusteko da
+			
 			break;
 				
 		}
@@ -204,8 +190,22 @@ public class ErabiltzaileaEJB {
     
     public void gailuaProgramaAukeratu(String gailuIzena ,String gailuPrograma) {
     	GailuaJB g = gailuakB.find(gailuIzena);
-    	g.setIraupena(gailuPrograma);
-    	gailuakB.update(g);
+    	List<Erregistroa> programak = egunekoProgramakLortu();
+    	boolean aurkitu=false;
+    	for(Erregistroa e: programak) {
+    		
+    		if(e.getGailuIzena().equals(gailuIzena)) {
+    			aurkitu=true;
+    			break;
+    		}
+    		
+    	}
+    	if(!aurkitu) {
+    		
+        	g.setIraupena(gailuPrograma);
+        	gailuakB.update(g);
+    		
+    	}
     }
     
     public void gailuaEditatuM(String gailuIzena, int aldaketa, String balioB) {
@@ -280,7 +280,7 @@ public class ErabiltzaileaEJB {
     		
     		float konts = 0.0f;
     		float prezioa = 0.0f;
-    		System.out.println("KALKULUAK:");
+    		
     		for(int j=0;j<egunka.size();j++) {
     		
     			if(i==egunka.get(j).getData().getMonthValue()) {
@@ -294,15 +294,9 @@ public class ErabiltzaileaEJB {
     		
     		KontsumoaJB kontsumoa = new KontsumoaJB(LocalDateTime.of(añoActual, i, 1, 00, 0), konts, prezioa);
     		hilabeteka.add(kontsumoa);
-    		System.out.println("Prezioa: ("+(i)+"): "+kontsumoa.getPrezioa());
-    		System.out.println("Get: ("+(i)+"): "+hilabeteka.get(i-1).getPrezioa());
     		
     	}
-    	System.out.println("BALIOAK:");
-    	for(int j=0;j<hilabeteka.size();j++) {
-    		
-    		System.out.println("Prezioa: ("+(j+1)+"): "+hilabeteka.get(j).getPrezioa());
-    	}
+    	
     	return hilabeteka;
     	
     }

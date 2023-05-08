@@ -5,12 +5,15 @@
       xmlns:h="http://java.sun.com/jsf/html">
 <head>
 	<link rel="stylesheet" href="../ESTILOA/informea.css"/>
+	<title>03 AUKERA</title>
 </head>
 <h:body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-<form class="menuNagusirakoBotoia" action="#{request.contextPath}/index.html">
+<h:form class="menuNagusirakoBotoia">
+  	<h:commandLink class="menuNagusirakoBotoia" action="#{aukera3AtazakMB.resetView()}">
 	<input class="menuNagusirakoBotoiaInput" type="submit" id="submit" value="HOME" />
-</form>
+	</h:commandLink>
+</h:form>
 <div class="container">
     <div class="column">
       <canvas id="myChartAste"></canvas>
@@ -18,23 +21,22 @@
     <div class="column">
       <canvas id="myChartHilabete"></canvas>
     </div>
-  </div>
+</div>
 <h:outputScript>
-// Obtenemos el canvas por su id
 const ctxA = document.getElementById('myChartAste').getContext('2d');
 const ctxH = document.getElementById('myChartHilabete').getContext('2d');
 
-const dataAD = #{aukera3ViewMB.astekoKontsumoaLortu()};
-const dataHD = #{aukera3ViewMB.kontsumoaHilabetekaLortu()};
+const dataAD = [#{aukera3ViewMB.astekoKontsumoaLortu().get(0).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(1).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(2).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(3).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(4).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(5).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(6).prezioa}];
+const dataHD = [#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(0).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(1).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(2).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(3).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(4).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(5).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(6).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(7).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(8).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(9).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(10).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(11).prezioa}];
 
 const backgroundColor = Array(7).fill('rgba(255, 99, 132, 0.2)');
 const borderColor = Array(7).fill('rgba(255, 99, 132, 1)');
 
 // Datos para el histograma
 const dataA = {
-  labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+  labels: ['Astelehena', 'Asteartea', 'Asteazkena', 'Osteguna', 'Ostirala', 'Larunbata', 'Igandea'],
   datasets: [{
-    label: 'Ejemplo de histograma',
+    label: 'Asteroko Gastua',
     data: dataAD,
     backgroundColor: backgroundColor,
     borderColor: borderColor,
@@ -48,13 +50,13 @@ const optionsA = {
     x: {
       title: {
         display: true,
-        text: 'Días de la semana'
+        text: 'Asteko Egunak'
       }
     },
     y: {
       title: {
         display: true,
-        text: 'Valores'
+        text: 'Gastua (€)'
       }
     }
   }
@@ -77,25 +79,29 @@ const optionsH = {
     x: {
       title: {
         display: true,
-        text: 'Hilabetea'
+        text: 'Meses del Año'
       }
     },
     y: {
       title: {
         display: true,
-        text: 'Gastua (€)'
+        text: 'Valores'
       }
     }
   }
 };
 
 // Creamos el histograma
+const myChartA = new Chart(ctxA, {
+  type: 'bar',
+  data: dataA,
+  options: optionsA
+});
 const myChartH = new Chart(ctxH, {
   type: 'bar',
   data: dataH,
   options: optionsH
 });
-
 </h:outputScript>
 <h2>GASTUA</h2>
 <br/>

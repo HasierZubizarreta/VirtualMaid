@@ -101,8 +101,6 @@ public abstract class GailuaJB implements Serializable{
 		return "GailuaJB [idGailua=" + idGailua + ", izena=" + izena + ", mota=" + mota + ", iraupena=" + iraupena + ", kontsumoa=" + kontsumoa+ "]";
 	}
 
-	
-	
 	//semeek erabiltzeko getter eta setter
 	
 	public float getAuxf() {
@@ -128,6 +126,5 @@ public abstract class GailuaJB implements Serializable{
 	public void setAuxi(int auxi) {
 		this.auxi = auxi;
 	}
-	
 	
 }

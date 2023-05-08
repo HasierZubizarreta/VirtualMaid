@@ -15,7 +15,7 @@ public class Labea extends GailuaJB{
 	public Labea(int idGailua, String izena, int iraupenaP, float kontsumoa) {
 		super(idGailua, izena, "Labea", iraupenaP, kontsumoa);
 		super.setIraupenaPertsonala(iraupenaP);
-		super.irudia =  "IRUDIAK/labea.jpg";
+		super.irudia =  "../IRUDIAK/labea.jpg";
 		programakBete();
 	}
 	
