@@ -71,8 +71,8 @@ public class HistorialaB {
 		if(hist.size()==0)
 			idBerria=1;
 		else {
-			Erregistroa azkenE=hist.get(hist.size()-1);
-			idBerria=azkenE.getId()+1;
+		
+			idBerria=findNextId(hist)+1;
 		}
 		
 		e.setId(idBerria);
@@ -131,6 +131,17 @@ public class HistorialaB {
 			Collections.sort(hist);
 			erregistroGuztiakIdatzi(hist);
 		}
+	}
+	
+	private int findNextId(List<Erregistroa> hist) {
+		int max =0;
+		for(Erregistroa e : hist) {
+			
+			if(max<e.getId())
+				max=e.getId();
+			
+		}
+		return max;
 	}
 	
 }
