@@ -1,5 +1,6 @@
 package bl;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -264,16 +265,29 @@ public class ErabiltzaileaEJB {
     		
     		return kontsumoak;
     }
-    public List <KontsumoaJB> hilabetekaKontsumoaKalkulatu() {
+    public List <KontsumoaJB> hilabetekaKontsumoaKalkulatu(int noiz) {
     	
+    	LocalDateTime hasiera = null;
+		LocalDateTime amaiera = null;
+		int añoActual = LocalDate.now().getYear();
+		 
+		 if(noiz==1) {
+			 
+			LocalDate primeroDeEneroDeEsteAño = LocalDate.of(añoActual, Month.JANUARY, 1);
+	    	LocalDate primeroDeEneroDelAñoPasado = LocalDate.of(añoActual - 1, Month.JANUARY, 1);
+	    	amaiera = primeroDeEneroDeEsteAño.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+	    	hasiera = primeroDeEneroDelAñoPasado.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+			 
+		 }
+		 else {
+		 
+			LocalDate primeroDeEneroDeEsteAño = LocalDate.of(añoActual, Month.JANUARY, 1);
+	    	LocalDate primeroDeEneroDelProximoAño = LocalDate.of(añoActual + 1, Month.JANUARY, 1);
+	    	hasiera = primeroDeEneroDeEsteAño.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+	    	amaiera = primeroDeEneroDelProximoAño.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+		 }
     	
-    	int añoActual = LocalDate.now().getYear();
-    	LocalDate primeroDeEneroDeEsteAño = LocalDate.of(añoActual, Month.JANUARY, 1);
-    	LocalDate primeroDeEneroDelProximoAño = LocalDate.of(añoActual + 1, Month.JANUARY, 1);
-    	LocalDateTime primeroDeEneroDeEsteAñoDateTime = primeroDeEneroDeEsteAño.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
-    	LocalDateTime primeroDeEneroDelProximoAñoDateTime = primeroDeEneroDelProximoAño.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
-
-    	List <KontsumoaJB> egunka = egunOsokoKontsumoaKalkulatu(primeroDeEneroDeEsteAñoDateTime, primeroDeEneroDelProximoAñoDateTime);
+    	List <KontsumoaJB> egunka = egunOsokoKontsumoaKalkulatu(hasiera, amaiera);
     	List <KontsumoaJB> hilabeteka = new ArrayList<KontsumoaJB>();
     	
     	for(int i= 1;i<13;i++) {

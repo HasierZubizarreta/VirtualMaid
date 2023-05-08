@@ -27,9 +27,10 @@ public class informazioaGehitu {
         LocalDate endDate = LocalDate.of(2023, 5, 8);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Random random = new Random();
-        int minGailuKop = 0, maxGailuKop = 5, randomGailuKop;
+        int minGailuKop = 1, maxGailuKop = 20, randomGailuKop;
         int minOrdua = 0, maxOrdua = 23, randomOrdua; 
         int minIdGailua = 1, maxIdGailua = 6, randomIdGailua; 
+        int minZero = 0, maxZero = 500, randomZero;
 
         for (LocalDate date = startDate; date.isBefore(endDate.plusDays(1)); date = date.plusDays(1)) {
             String formattedDate = date.format(formatter);
@@ -37,6 +38,9 @@ public class informazioaGehitu {
             randomGailuKop = random.nextInt((maxGailuKop - minGailuKop) + 1) + minGailuKop;
             randomOrdua = random.nextInt((maxOrdua - minOrdua) + 1) + minOrdua;
             randomIdGailua = random.nextInt((maxIdGailua - minIdGailua) + 1) + minIdGailua;
+            randomZero = random.nextInt((maxZero - minZero) + 1) + minZero;
+            
+            if(randomZero !=0) {
             
             for(int i=0; i<randomGailuKop;i++) {
 
@@ -50,6 +54,8 @@ public class informazioaGehitu {
 //            	System.out.println("Emaitza = "+emaitza);
             	
             	
+            }
+            
             }
         }
         System.out.println("Amaituta");

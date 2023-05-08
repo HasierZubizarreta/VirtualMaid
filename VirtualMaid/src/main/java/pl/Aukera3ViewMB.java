@@ -5,6 +5,7 @@ import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.ZoneId;
 import java.time.temporal.WeekFields;
 import java.util.List;
@@ -81,22 +82,40 @@ public class Aukera3ViewMB implements Serializable{
 		 return balioak;
 		 }
 	 
-	 public List<KontsumoaJB> astekoKontsumoaLortu(){
+	 public List<KontsumoaJB> astekoKontsumoaLortu(int noiz){
 			
-		 LocalDate fechaActual = LocalDate.now();
-		 DayOfWeek diaDeLaSemanaActual = fechaActual.getDayOfWeek();
-		 int diasDesdeLunesHastaHoy = diaDeLaSemanaActual.getValue() - 1;
-		 LocalDate lunesDeEstaSemana = fechaActual.minusDays(diasDesdeLunesHastaHoy);
-		 LocalDate lunesDeLaSiguienteSemana = lunesDeEstaSemana.plusDays(7);
-		 LocalDateTime lunesDeEstaSemanaDateTime = lunesDeEstaSemana.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
-		 LocalDateTime lunesDeLaSiguienteSemanaDateTime = lunesDeLaSiguienteSemana.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
-
-		 return eEJB.egunOsokoKontsumoaKalkulatu(lunesDeEstaSemanaDateTime, lunesDeLaSiguienteSemanaDateTime);
+		LocalDateTime hasiera = null;
+		LocalDateTime amaiera = null;
+		int añoActual = LocalDate.now().getYear();
+		 
+		 if(noiz==1) {
+			 
+			 LocalDate fechaActual = LocalDate.now();
+			 DayOfWeek diaDeLaSemanaActual = fechaActual.getDayOfWeek();
+			 int diasDesdeLunesHastaHoy = diaDeLaSemanaActual.getValue() - 1;
+			 LocalDate lunesDeEstaSemana = fechaActual.minusDays(diasDesdeLunesHastaHoy);
+			 LocalDate lunesDeLaSemanaPasada = lunesDeEstaSemana.minusDays(7);
+			 hasiera = lunesDeLaSemanaPasada.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+			 amaiera = lunesDeEstaSemana.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+			 
+		 }
+		 else {
+		 
+			 LocalDate fechaActual = LocalDate.now();
+			 DayOfWeek diaDeLaSemanaActual = fechaActual.getDayOfWeek();
+			 int diasDesdeLunesHastaHoy = diaDeLaSemanaActual.getValue() - 1;
+			 LocalDate lunesDeEstaSemana = fechaActual.minusDays(diasDesdeLunesHastaHoy);
+			 LocalDate lunesDeLaSiguienteSemana = lunesDeEstaSemana.plusDays(7);
+			 hasiera = lunesDeEstaSemana.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+			 amaiera = lunesDeLaSiguienteSemana.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+		 }
+		 
+		 return eEJB.egunOsokoKontsumoaKalkulatu(hasiera, amaiera);
 		 
 		 }
-	 public List <KontsumoaJB> hilabetekaKontsumoaKalkulatu() {
+	 public List <KontsumoaJB> hilabetekaKontsumoaKalkulatu(int noiz) {
 		 
-		 return eEJB.hilabetekaKontsumoaKalkulatu();
+		 return eEJB.hilabetekaKontsumoaKalkulatu(noiz);
 		 
 	 }
 	 public void resetView(){

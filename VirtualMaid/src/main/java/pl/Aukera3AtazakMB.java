@@ -16,6 +16,7 @@ public class Aukera3AtazakMB implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private int labOrrModua;
+	private int denbora=0, orain=0;
 	
 	public int getLabOrrModua() {
 		return labOrrModua;
@@ -36,5 +37,33 @@ public class Aukera3AtazakMB implements Serializable{
 		FacesContext.getCurrentInstance().getExternalContext().redirect("../../");
 		
 	}
+	
+	public void aldatuAurtengoGastuetara(Aukera3ViewMB a3ViewMB) {
+		
+		denbora=0; orain=0;
+		a3ViewMB.resetView();
+	}
+	public void aldatuAurrekoUrtekoGastuetara(Aukera3ViewMB a3ViewMB) {
+		
+		denbora=0; orain=1;
+		a3ViewMB.resetView();
+	}
+	public void aldatuAstekoGastuetara(Aukera3ViewMB a3ViewMB) {
+		
+		denbora=1; orain=0;
+		a3ViewMB.resetView();
+	}
+	public void aldatuAurrekoAstekoGastuetara(Aukera3ViewMB a3ViewMB) {
+		
+		denbora=1; orain=1;
+		a3ViewMB.resetView();
+	}
 
+	public int getDenbora() {
+		return denbora;
+	}
+
+	public int getOrain() {
+		return orain;
+	}
 }

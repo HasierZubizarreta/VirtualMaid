@@ -14,20 +14,74 @@
 	<input class="menuNagusirakoBotoiaInput" type="submit" id="submit" value="HOME" />
 	</h:commandLink>
 </h:form>
+<div style="text-align:center; font-family: 'Source Sans Pro', sans-serif">
+  <h:form style="display: inherit;">
+  <h:commandButton style="float:initial; padding: 4px; width: auto" actionListener="#{aukera3AtazakMB.aldatuAurtengoGastuetara(aukera3ViewMB)}" class="menuNagusirakoBotoiaInput" value="AURTENGO GASTUAK"/>
+  <h:commandButton style="float:initial; padding: 4px; width: auto" actionListener="#{aukera3AtazakMB.aldatuAurrekoUrtekoGastuetara(aukera3ViewMB)}" class="menuNagusirakoBotoiaInput" value="AURREKO URTEKO GASTUAK"/> 
+  <h:commandButton style="float:initial; padding: 4px; width: auto" actionListener="#{aukera3AtazakMB.aldatuAstekoGastuetara(aukera3ViewMB)}" class="menuNagusirakoBotoiaInput" value="ASTEKO GASTUAK"/>
+  <h:commandButton style="float:initial; padding: 4px; width: auto" actionListener="#{aukera3AtazakMB.aldatuAurrekoAstekoGastuetara(aukera3ViewMB)}" class="menuNagusirakoBotoiaInput" value="AURREKO ASTEKO GASTUAK"/>
+  </h:form>
+</div>
+<h:panelGroup rendered="#{aukera3AtazakMB.denbora==0}">
 <div class="container">
-    <div class="column">
-      <canvas id="myChartAste"></canvas>
-    </div> 
     <div class="column">
       <canvas id="myChartHilabete"></canvas>
     </div>
 </div>
-<h:outputScript>
-const ctxA = document.getElementById('myChartAste').getContext('2d');
+</h:panelGroup>
+<h:panelGroup rendered="#{aukera3AtazakMB.denbora==1}">
+<div class="container">
+    <div class="column">
+      <canvas id="myChartAste"></canvas>
+    </div> 
+</div>
+</h:panelGroup>
+<h:outputScript rendered="#{aukera3AtazakMB.denbora==0}">
 const ctxH = document.getElementById('myChartHilabete').getContext('2d');
+const dataHD = [#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu(aukera3AtazakMB.orain).get(0).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu(aukera3AtazakMB.orain).get(1).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu(aukera3AtazakMB.orain).get(2).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu(aukera3AtazakMB.orain).get(3).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu(aukera3AtazakMB.orain).get(4).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu(aukera3AtazakMB.orain).get(5).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu(aukera3AtazakMB.orain).get(6).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu(aukera3AtazakMB.orain).get(7).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu(aukera3AtazakMB.orain).get(8).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu(aukera3AtazakMB.orain).get(9).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu(aukera3AtazakMB.orain).get(10).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu(aukera3AtazakMB.orain).get(11).prezioa}];
 
-const dataAD = [#{aukera3ViewMB.astekoKontsumoaLortu().get(0).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(1).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(2).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(3).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(4).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(5).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu().get(6).prezioa}];
-const dataHD = [#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(0).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(1).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(2).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(3).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(4).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(5).prezioa}, #{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(6).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(7).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(8).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(9).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(10).prezioa},#{aukera3ViewMB.hilabetekaKontsumoaKalkulatu().get(11).prezioa}];
+const backgroundColor = Array(7).fill('rgba(255, 99, 132, 0.2)');
+const borderColor = Array(7).fill('rgba(255, 99, 132, 1)');
+
+// Datos para el histograma
+const dataH = {
+  labels: ['Urtarrila','Otsaila','Martxoa','Apirila','Maiatza','Ekaina','Uztaila','Abuztua','Iraila','Urria','Azaroa','Abendua'],
+  datasets: [{
+    label: 'Hileroko Gastua',
+    data: dataHD,
+    backgroundColor: backgroundColor,
+    borderColor: borderColor,
+    borderWidth: 1
+  }]
+};
+
+// Configuración del histograma
+const optionsH = {
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: 'Urteko Hilabeteak'
+      }
+    },
+    y: {
+      title: {
+        display: true,
+        text: 'Gastua (€)'
+      }
+    }
+  }
+};
+
+const myChartH = new Chart(ctxH, {
+  type: 'bar',
+  data: dataH,
+  options: optionsH
+});
+</h:outputScript>
+<h:outputScript rendered="#{aukera3AtazakMB.denbora==1}">
+const ctxA = document.getElementById('myChartAste').getContext('2d');
+const dataAD = [#{aukera3ViewMB.astekoKontsumoaLortu(aukera3AtazakMB.orain).get(0).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu(aukera3AtazakMB.orain).get(1).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu(aukera3AtazakMB.orain).get(2).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu(aukera3AtazakMB.orain).get(3).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu(aukera3AtazakMB.orain).get(4).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu(aukera3AtazakMB.orain).get(5).prezioa},#{aukera3ViewMB.astekoKontsumoaLortu(aukera3AtazakMB.orain).get(6).prezioa}];
 
 const backgroundColor = Array(7).fill('rgba(255, 99, 132, 0.2)');
 const borderColor = Array(7).fill('rgba(255, 99, 132, 1)');
@@ -61,35 +115,6 @@ const optionsA = {
     }
   }
 };
-// Datos para el histograma
-const dataH = {
-  labels: ['Urtarrila','Otsaila','Martxoa','Apirila','Maiatza','Ekaina','Uztaila','Abuztua','Iraila','Urria','Azaroa','Abendua'],
-  datasets: [{
-    label: 'Hileroko Gastua',
-    data: dataHD,
-    backgroundColor: backgroundColor,
-    borderColor: borderColor,
-    borderWidth: 1
-  }]
-};
-
-// Configuración del histograma
-const optionsH = {
-  scales: {
-    x: {
-      title: {
-        display: true,
-        text: 'Urteko Hilabeteak'
-      }
-    },
-    y: {
-      title: {
-        display: true,
-        text: 'Gastua (€)'
-      }
-    }
-  }
-};
 
 // Creamos el histograma
 const myChartA = new Chart(ctxA, {
@@ -97,11 +122,7 @@ const myChartA = new Chart(ctxA, {
   data: dataA,
   options: optionsA
 });
-const myChartH = new Chart(ctxH, {
-  type: 'bar',
-  data: dataH,
-  options: optionsH
-});
+
 </h:outputScript>
 <h2>GASTUA</h2>
 <br/>
