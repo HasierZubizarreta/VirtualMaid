@@ -49,6 +49,7 @@ public class PrezioakOrdukoB {
 			d=k.split(",");
 			a=Float.parseFloat(d[1]);
 			b.close(); 
+			f.close();
 		}
 		catch (IOException e) {
 			e.printStackTrace();
