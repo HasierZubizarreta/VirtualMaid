@@ -87,7 +87,7 @@ public class ErabiltzaileAtazakMB implements Serializable {
 		hVMB.resetView();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("historiala1.xhtml");
 		
-		System.out.println("\nErrorea:" + errorea);
+		System.out.println("\nExit kodea:" + errorea);
 		
     }
 	public void gailuBerriaSortu(GailuaFormMB gailuaMB, GailuAukeraketaViewMB gaViewMB) {

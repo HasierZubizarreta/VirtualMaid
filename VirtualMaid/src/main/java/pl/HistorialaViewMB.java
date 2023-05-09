@@ -101,7 +101,7 @@ public class HistorialaViewMB implements Serializable{
 	    			LocalTime timeA = LocalTime.parse(erregistroakDB.get(j).getAmaieraOrdua(), DateTimeFormatter.ofPattern("HH:mm"));
 	    			LocalTime ordua = LocalTime.of(i, 1);
 	    			
-	    			if(timeH.isBefore(ordua) && ordua.isBefore(timeA) && orduka.size()==0) {
+	    			if(timeH.getHour()==ordua.getHour() || (timeA.getHour()==ordua.getHour() && timeA.getMinute()!=0) || (ordua.isAfter(timeH)&&ordua.isBefore(timeA)) && orduka.size()==0) {
 	    				
 	    				if(i<9) {
 	    					orduka.add("0"+i+":00");
@@ -118,13 +118,13 @@ public class HistorialaViewMB implements Serializable{
 	    				orduka.add(erregistroakDB.get(j).getGailuIzena());
 	    				
 	    			}
-	    			else if(timeH.isBefore(ordua) && ordua.isBefore(timeA) && orduka.get(2).length()<30) {
+	    			else if(timeH.getHour()==ordua.getHour() || (timeA.getHour()==ordua.getHour() && timeA.getMinute()!=0) || (ordua.isAfter(timeH)&&ordua.isBefore(timeA)) && orduka.get(2).length()<30) {
 	    				
 	    				String balioa = orduka.get(2);
 	    				orduka.set(2,balioa+", "+erregistroakDB.get(j).getGailuIzena());
 	    				
 	    			}
-	    			else if(timeH.isBefore(ordua) && ordua.isBefore(timeA) && orduka.get(2).length()>=30) {
+	    			else if(timeH.getHour()==ordua.getHour() || (timeA.getHour()==ordua.getHour() && timeA.getMinute()!=0) || (ordua.isAfter(timeH)&&ordua.isBefore(timeA)) && orduka.get(2).length()>=30) {
 	    				
 	    				String balioa = orduka.get(2);
 	    				orduka.set(2,balioa+", ...");
